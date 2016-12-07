@@ -7,12 +7,10 @@ use \W\Controller\Controller;
 class DefaultController extends Controller
 {
 
-	/**
-	 * Page d'accueil par défaut
-	 */
+	// Home Page
 	public function home()
 	{
-		$this->show('default/home');
+		$this->show('default/home', ['title' => 'home']);
 	}
 
 }
