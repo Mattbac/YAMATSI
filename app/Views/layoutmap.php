@@ -28,7 +28,7 @@
 				<?= $this->section('main_content') ?>
 		</section>
 
-		<script type="text/javascript" src="<?= $this->assetUrl('js/main.js') ?>"></script>
+		<script type="text/javascript" src="<?= $this->assetUrl('js/mainmap.js') ?>"></script>
 		<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHheo_U6zgBrVvqV61I6tMkA40Tkblc7w&callback=initMap">
 		</script>

@@ -12,12 +12,13 @@
 		['GET|POST',	'/register/assoc[/]?'				, 'Register#assoc'				, 'register_assoc'],
 		['GET|POST',	'/register/comp[/]?'				, 'Register#company'			, 'register_company'],
 
-		['GET|POST',	'/create/event[/]?'					, 'Create#event'				, 'create_event'],
+		['GET|POST',	'/create/map[/]?'					, 'Create#map'					, 'create_map'],
+		['GET|POST',	'/create/event/[i:lat]/[i:lng][/]?'	, 'Create#event'				, 'create_event'],
 
-		['GET',			'/page/user/[i:id][/]?'				, 'Page#user'					, 'page_user'],
-		['GET',			'/page/assoc/[i:id][/]?'			, 'Page#assoc'					, 'page_assoc'],
-		['GET',			'/page/company/[i:id][/]?'			, 'Page#company'				, 'page_company'],
-		['GET',			'/page/event/[i:id][/]?'			, 'Page#event'					, 'page_event'],
+		['GET',			'/page/user[/]?[i:id]?[/]?'			, 'Page#user'					, 'page_user'],
+		['GET',			'/page/assoc[/]?[i:id]?[/]?'		, 'Page#assoc'					, 'page_assoc'],
+		['GET',			'/page/company[/]?[i:id]?[/]?'		, 'Page#company'				, 'page_company'],
+		['GET',			'/page/event[/]?[i:id]?[/]?'		, 'Page#event'					, 'page_event'],
 		
 		['GET|POST',	'/edit/user/[i:id][/]?'				, 'Edit#user'					, 'edit_user'],
 		['GET|POST',	'/edit/assoc/[i:id][/]?'			, 'Edit#assoc'					, 'edit_assoc'],
