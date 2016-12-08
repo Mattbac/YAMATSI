@@ -10,7 +10,7 @@ class CreateController extends Controller
     // Creation Event Form
     public function event()
     {
-        $this->show('default/home', ['title' => 'create event']);
+        $this->show('create/createevent', ['title' => 'OutLooker - Créer un évènement']);
     }
 
 }

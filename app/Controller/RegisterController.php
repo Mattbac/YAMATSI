@@ -10,25 +10,25 @@ class RegisterController extends Controller
     // Register Type
     public function type()
     {
-        $this->show('default/home', ['title' => 'register type']);
+        $this->show('register/selector', ['title' => 'OutLooker - Inscription']);
     }
 
     // Register Assoc
     public function assoc()
     {
-        $this->show('default/home', ['title' => 'register assoc']);
+        $this->show('register/assoc', ['title' => 'OutLooker - Inscription']);
     }
 
     // Register Company
     public function company()
     {
-        $this->show('default/home', ['title' => 'register company']);
+        $this->show('register/company', ['title' => 'OutLooker - Inscription']);
     }
 
     // Register User
     public function user()
     {
-        $this->show('default/home', ['title' => 'register user']);
+        $this->show('register/user', ['title' => 'OutLooker - Inscription']);
     }
 
 }

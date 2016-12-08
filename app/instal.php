@@ -1,7 +1,5 @@
 <?php
 
-var_dump($w_config);
-
 $db = new PDO('mysql:host='.$w_config['db_host'].';dbname=', $w_config['db_user'], $w_config['db_pass']);
 $db->query("CREATE DATABASE IF NOT EXISTS ".$w_config['db_name']);
 

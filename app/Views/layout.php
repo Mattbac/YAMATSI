@@ -9,7 +9,7 @@
 <body>
 	<div class="container">
 		<header>
-			<h1><?= $this->e($title) ?></h1>
+			<?= $this->insert('basics/header') ?>
 		</header>
 
 		<section>
@@ -17,6 +17,7 @@
 		</section>
 
 		<footer>
+		    <?= $this->insert('basics/footer') ?>
 		</footer>
 	</div>
 </body>
