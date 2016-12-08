@@ -14,15 +14,15 @@ class SearchController extends Controller
     }
 
     // Search map Position
-    public function mapPosition()
+    public function mapPosition($lat, $lng)
     {
-        $this->show('search/map', ['title' => 'search mapPosition']);
+        $this->show('search/map', ['title' => 'search mapPosition '.$lat.' '.$lng]);
     }
 
     // Search Map Position Event
-    public function mapPositionEvent()
+    public function mapPositionEvent($lat, $lng, $id)
     {
-        $this->show('search/map', ['title' => 'search mapPositionEvent']);
+        $this->show('search/map', ['title' => 'search mapPositionEvent '.$lat.' '.$lng.' '.$id]);
     }
 
 }

@@ -8,27 +8,28 @@ class PageController extends Controller
 {
 
     // Page User
-    public function user()
+    public function user($id = 0)
     {
-        $this->show('default/home', ['title' => 'page user']);
+
+        $this->show('default/home', ['title' => 'page user '.$id]);
     }
 
     // Page Assoc
-    public function assoc()
+    public function assoc($id = 0)
     {
-        $this->show('default/home', ['title' => 'page assoc']);
+        $this->show('default/home', ['title' => 'page assoc '.$id]);
     }
 
     // Page Company
-    public function company()
+    public function company($id = 0)
     {
-        $this->show('default/home', ['title' => 'page company']);
+        $this->show('default/home', ['title' => 'page company '.$id]);
     }
 
     // Page Event
-    public function event()
+    public function event($id = 0)
     {
-        $this->show('default/home', ['title' => 'page event']);
+        $this->show('default/home', ['title' => 'page event '.$id]);
     }
 
 }
