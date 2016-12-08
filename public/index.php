@@ -10,7 +10,7 @@ require '../app/config.php';
 require '../W/globals.php';
 
 // instal db
-require '../app/instal.php';
+require '../app/install.php';
 
 //instancie notre appli en lui passant la config et les routes
 $app = new W\App($w_routes, $w_config);
