@@ -13,8 +13,8 @@ class CreateController extends Controller
         if(isset($_POST['submitformcreate'])){
 
         }
-        
-        $this->show('default/home', ['title' => 'create event']);
+
+        $this->show('create/event', ['title' => 'OutLooker - Créer un évènement']);
     }
 
 }
