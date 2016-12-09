@@ -12,7 +12,8 @@ email VARCHAR(255) NOT NULL,/* email */
 password VARCHAR(255) NOT NULL,/* Password */
 message TEXT(255),/* Presentation message */
 valid INT(1),/* Compte valide or not */
-type VARCHAR(255) NOT NULL/* user, assoc, comp */
+type VARCHAR(255) NOT NULL,/* user, assoc, comp */
+token VARCHAR(255) NULL
 )";
 $db->query($sql);
 
