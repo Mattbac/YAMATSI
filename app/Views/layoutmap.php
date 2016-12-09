@@ -18,7 +18,7 @@
 				z-index: 150;
 			}
 		</style>
-		<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
+		<?= $this->section('link_content') ?>
 	</head>
 	<body>
 		<div id="map">
@@ -28,9 +28,6 @@
 				<?= $this->section('main_content') ?>
 		</section>
 
-		<script type="text/javascript" src="<?= $this->assetUrl('js/mainmap.js') ?>"></script>
-		<script async defer
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHheo_U6zgBrVvqV61I6tMkA40Tkblc7w&callback=initMap">
-		</script>
+		<?= $this->section('script_content') ?>
 	</body>
 </html>
