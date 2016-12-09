@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class UsersModel extends \W\Model\UsersModel {
+class UsersModel extends \W\Model\Model {
 
 }
 
