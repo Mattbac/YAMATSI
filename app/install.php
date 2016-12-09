@@ -1,85 +1,85 @@
 <?php
-$db = new PDO('mysql:host='.$w_config['db_host'].';dbname=', $w_config['db_user'], $w_config['db_pass']);
-$db->query("CREATE DATABASE IF NOT EXISTS ".$w_config['db_name']);
 
+$db->query($sql);
+
+class PDODbImporter{
+    private static $keywords = array(
+        'ALTER', 'CREATE', 'DELETE', 'DROP', 'INSERT',
+        'REPLACE', 'SELECT', 'SET', 'TRUNCATE', 'UPDATE', 'USE',
+        'DELIMITER', 'END'
+    );
+    /**
+     * Loads an SQL stream into the database one command at a time.
+     *
+     * @params $sqlfile The file containing the mysql-dump data.
+     * @params $connection Instance of a PDO Connection Object.
+     * @return boolean Returns true, if SQL was imported successfully.
+     * @throws Exception
+     */
+    public static function importSQL($sqlfile, $connection)
+    {    
+        # read file into array
+        $file = file($sqlfile);
+        # import file line by line
+        # and filter (remove) those lines, beginning with an sql comment token
+        $file = array_filter($file,
+                        create_function('$line',
+                                'return strpos(ltrim($line), "--") !== 0;'));
+        # and filter (remove) those lines, beginning with an sql notes token
+        $file = array_filter($file,
+                        create_function('$line',
+                                'return strpos(ltrim($line), "/*") !== 0;'));
+        $sql = "";
+        $del_num = false;
+        foreach($file as $line){
+            $query = trim($line);
+            try
+            {
+                $delimiter = is_int(strpos($query, "DELIMITER"));
+                if($delimiter || $del_num){
+                    if($delimiter && !$del_num ){
+                        $sql = "";
+                        $sql = $query."; ";
+                        $del_num = true;
+                    }else if($delimiter && $del_num){
+                        $sql .= $query." ";
+                        $del_num = false;
+                        $connection->exec($sql);
+                        $sql = "";
+                    }else{                            
+                        $sql .= $query."; ";
+                    }
+                }else{
+                    $delimiter = is_int(strpos($query, ";"));
+                    if($delimiter){
+                        $connection->exec("$sql $query");
+                        $sql = "";
+                    }else{
+                        $sql .= " $query";
+                    }
+                }
+            }
+            catch (\Exception $e)
+            {
+                
+            }
+            
+        }
+    }
+}
+
+$db = new PDO('mysql:host='.$w_config['db_host'].';dbname=', $w_config['db_user'], $w_config['db_pass']);
+
+$db->query("CREATE DATABASE IF NOT EXISTS ".$w_config['db_name']);
 
 $db = new PDO('mysql:host='.$w_config['db_host'].';dbname='.$w_config['db_name'], $w_config['db_user'], $w_config['db_pass']);
 
-$sql = "CREATE TABLE IF NOT EXISTS users (
-id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,/* id */
-nickname VARCHAR(255) NOT NULL,/* nickname */
-email VARCHAR(255) NOT NULL,/* email */
-password VARCHAR(255) NOT NULL,/* Password */
-message TEXT(255),/* Presentation message */
-valid INT(1),/* Compte valide or not */
-type VARCHAR(255) NOT NULL,/* user, assoc, comp */
-token VARCHAR(255) NULL
-)";
-$db->query($sql);
+$pdodbimport = new PDODbImporter();
 
-$sql = "CREATE TABLE IF NOT EXISTS assoc_comp (
-id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,/* id */
-name VARCHAR(255) NOT NULL,/* name of the comp or assoc */
-email VARCHAR(255) NOT NULL,/* email */
-password VARCHAR(255) NOT NULL,/* password */
-message TEXT(255) NOT NULL,/* presentation message */
-picture_first VARCHAR(255),/* presentation picture */
-picture_other VARCHAR(255),/* other picture */
-rate INT(11),/* rate of the assoc */
-valid INT(1),/* Compte valide or not */
-type VARCHAR(255) NOT NULL/* user, assoc, comp */
-)";
-$db->query($sql);
+$sql = file_get_contents("../app/sql/villes_france.sql");
+$pdodbimport->importSQL("../app/sql/db.sql", $db);
 
-$sql = "CREATE TABLE IF NOT EXISTS event (
-id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,/* id */
-name VARCHAR(255) NOT NULL,/* Name of the event */
-message TEXT(255) NOT NULL,/* presentation message of the event */
-date_time TEXT(255) NOT NULL,/* range of date and time in format text with serialize */
-picture_first VARCHAR(255),/* presentation picture */
-assoc_comp_id INT(11) NOT NULL,/* id of the assoc or comp who create the event */
-coor_lat INT(11) NOT NULL,/* coor_lat */
-coor_lng INT(11) NOT NULL,/* coor_lng */
-comment_autorize INT(1),/* comment autorize or not */
-category_of VARCHAR(255) NOT NULL,/* child, teenager, adult, tout public */
-type_id INT(11) NOT NULL/* musique, art, danse, sport ... */
-)";
-$db->query($sql);
-
-$sql = "CREATE TABLE IF NOT EXISTS comment (
-id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,/* id */
-event_id INT(11) NOT NULL,/* id of the event */
-users_id INT(11),/* id of the user who write the comment */
-assoc_comp_id INT(11),/* id of the assoc or comp who write the comment */
-comment_id INT(11),/* id of the comment who was first create */
-message TEXT(255) NOT NULL,/* message */
-title VARCHAR(255),/* title of the comment when it is the first comment */
-created_at INT(11) NOT NULL,/* timestamp */
-comment_value INT(11)/* timestamp */
-)";
-$db->query($sql);
-
-$sql = "CREATE TABLE IF NOT EXISTS rate_event (
-id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,/* id */
-event_id INT(11) NOT NULL,/* id of the event */
-users_id INT(11) NOT NULL,/* id of the user */
-rate_value INT(11) NOT NULL/* between 1 and 4 */
-)";
-$db->query($sql);
-
-$sql = "CREATE TABLE IF NOT EXISTS rate_comment (
-id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,/* id */
-comment_id INT(11) NOT NULL,/* id of the event */
-users_id INT(11) NOT NULL/* id of the user */
-)";
-$db->query($sql);
-
-$sql = "CREATE TABLE IF NOT EXISTS type (
-id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,/* id */
-name VARCHAR(255) NOT NULL/* id of the event */
-)";
-$db->query($sql);
-
-
+$sql = file_get_contents("../app/sql/villes_france.sql");
+$pdodbimport->importSQL("../app/sql/villes_france.sql", $db);
 
 ?>
