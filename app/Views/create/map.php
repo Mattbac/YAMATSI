@@ -12,7 +12,7 @@
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('script_content') ?>
-<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+<script src="<?= $this->assetUrl('js/jquery-3.1.1.min.js') ?>"></script>
 <script type="text/javascript" src="<?= $this->assetUrl('js/create_event_map.js') ?>"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHheo_U6zgBrVvqV61I6tMkA40Tkblc7w&callback=initMap"></script>
 <?php $this->stop('script_content') ?>

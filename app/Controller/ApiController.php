@@ -3,6 +3,7 @@
 namespace Controller;
 
 use \W\Controller\Controller;
+use Model\Villes_franceModel as Villes_franceModel;
 
 class ApiController extends Controller
 {
@@ -11,6 +12,8 @@ class ApiController extends Controller
 
     public function search_city($slug)
     {
-        echo $slug;
+        $Villes_franceModel = new Villes_franceModel();
+
+        echo json_encode($Villes_franceModel->findBySlug($slug));
     }
 }

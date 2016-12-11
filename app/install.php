@@ -66,18 +66,24 @@ class PDODbImporter{
     }
 }
 
-$db = new PDO('mysql:host='.$w_config['db_host'].';dbname=', $w_config['db_user'], $w_config['db_pass']);
+mysql_connect($w_config['db_host'], $w_config['db_user'], $w_config['db_pass']);
 
-$db->query("CREATE DATABASE IF NOT EXISTS ".$w_config['db_name']);
+if (!mysql_select_db($w_config['db_name'])) {
 
-$db = new PDO('mysql:host='.$w_config['db_host'].';dbname='.$w_config['db_name'], $w_config['db_user'], $w_config['db_pass']);
+    $db = new PDO('mysql:host='.$w_config['db_host'].';dbname=', $w_config['db_user'], $w_config['db_pass']);
 
-$pdodbimport = new PDODbImporter();
+    $db->query("CREATE DATABASE IF NOT EXISTS ".$w_config['db_name']);
 
-$sql = file_get_contents("../app/sql/villes_france.sql");
-$pdodbimport->importSQL("../app/sql/db.sql", $db);
+    $db = new PDO('mysql:host='.$w_config['db_host'].';dbname='.$w_config['db_name'], $w_config['db_user'], $w_config['db_pass']);
 
-$sql = file_get_contents("../app/sql/villes_france.sql");
-$pdodbimport->importSQL("../app/sql/villes_france.sql", $db);
+    $pdodbimport = new PDODbImporter();
+
+    $sql = file_get_contents("../app/sql/villes_france.sql");
+    $pdodbimport->importSQL("../app/sql/db.sql", $db);
+
+    $sql = file_get_contents("../app/sql/villes_france.sql");
+    $pdodbimport->importSQL("../app/sql/villes_france.sql", $db);
+
+}
 
 ?>

@@ -1,7 +1,7 @@
 html, body {
 	font-family: Consolas, monaco, monospace;
 	background-color: #272822;
-	color: #F8F8F2;
+	color: #000000;
 }
 
 .container {
@@ -23,4 +23,8 @@ h1 {
 
 h2 {
 	color: #66D9EF;
+}
+
+p{
+	color: #000000;
 }
