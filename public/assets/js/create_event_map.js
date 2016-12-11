@@ -1,5 +1,4 @@
 var map, zoom = 15;
-marker = 10;
 
 var mapOptions = {
   zoom: zoom,
@@ -30,32 +29,40 @@ var mapOptions = {
 ]
 };
 
-var compteurGlobal = 0;
-function lookup(compteur){
-    if(compteur == compteurGlobal){
-        recherche();
-    }
-}
-
 $(function() {
-  $('#search_city').on("change", compteur());
 
-  function compteur(){
-    compteurGlobal++;
-    setTimeout("lookup("+compteurGlobal+")", 800);
-  }
+	valide = 0;
+	time = 0;
+	$('#search_city').on("input", function(){
+		valide++;
+		time = new Date().getTime();
+	});
 
-  recherche = function(){
-    console.log($('#search_city').val());
+	setInterval(function(){
+		if(time + 800 < new Date().getTime() && valide > 0){
+			valide = 0;
+			recherche();
+		}
+	}, 400);
 
-    $.ajax({
-      url: "http://localhost/YAMATSI/public/api/search_city/f"+$('#search_city').val()
-    }).done(function(data){
-      console.log(data);
-
-    });
+  function recherche(){
+	if($('#search_city').val() != ''){
+		$.ajax({
+			type: "GET",
+			dataType: 'json',
+			url: "http://localhost/YAMATSI/public/api/search_city/"+$('#search_city').val()
+		}).done(function(datas){
+			$('#result_search').empty();
+			for(key in datas){
+				console.log(datas[key]);
+				$('#result_search').append("<p style='color:black;'>"+datas[key]['ville_nom_reel']+' '+datas[key]['ville_population_2012']+"</p>");
+			}
+		});
+	}
   }
 });
+
+marker = null;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), mapOptions );
@@ -64,19 +71,18 @@ function initMap() {
     var lat = event.latLng.lat();
     var lng = event.latLng.lng();
 
-    if(marker !== new google.maps.Marker()){
+    if(marker === null){
       marker = new google.maps.Marker({
         position: {lat, lng},
         map: map,
         icon: 'http://localhost/YAMATSI/public/assets/img/music_icon.png',
-        message: 'dfhgsdfg',
         title: 'Hello World!'});
-
+        
     }else{
+
       marker.setPosition({lat, lng});
     }
   });
-
 }
 
 /* ----------------------------------------- */
