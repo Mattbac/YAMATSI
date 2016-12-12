@@ -3,31 +3,78 @@
 <?php $this->start('main_content') ?>
 
 	<h1>Inscription</h1>
-	<h2><?= $message ?></h2>
 
-	<hr>
+	<h2 class="subtitle">Plus qu'une étape !</h2>
+	
+    <form action="" method="post">
+        
+        <div class="inputbox">
+            <select name="users" id="users">
+                <option value="">Qui êtes vous ?</option>
+                <option value="user">Particulier</option>
+                <option value="assoc">Association</option>
+                <option value="comp">Entreprise</option>
+            </select>
+        </div>
+        
+        <div class="inputbox">
+            <input type="text" name="nickname" id="nickname" required>
+            <label for="nickname">Pseudo</label>
+        </div>
+        
+        <div class="inputbox">        
+            <input type="email" name="email" id="email" required>
+            <label for="email">E-mail</label>
+        </div>  
+              
+        <div class="inputbox">
+            <input type="email" id="confirmmail" required>
+            <label for="confirmmail">Confirmez votre e-mail</label>
+        </div>
+        
+        <div class="inputbox">
+            <input type="password" name="password" id="password" required>
+            <label for="password">Mot de passe</label>
+        </div>
 
-	<section>
-	    <form action="" method="post">
+        <div class="alert">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            <p>Le mot de passe doit contenir <strong>au moins une lettre et un chiffre</strong>.</p>
+        </div>
 
-          <label for="nickname">Pseudo</label>
-	        <input type="text" name="nickname" id="nickname">
+        <div class="alert">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            <p>Le mot de passe requiert <strong>8 caractères minimum</strong>.</p>
+        </div>
+        
+        <div class="inputbox">
+            <input type="password" id="confirmpassword" required>
+            <label for="confirmpassword">Confirmez votre mot de passe</label>
+        </div>
 
-	        <label for="email">E-mail</label>
-	        <input type="email" name="email" id="email">
+       <div class="orga">
+            <div class="inputbox inputassoc">
 
-	        <label for="confirmmail">Confirmez votre e-mail</label>
-	        <input type="email" name="confirmmail" id="confirmmail">
+                <input type="text" name="rna" id="rna">
+                <label for="rna">Numéro d'inscription au RNA</label>
 
-	        <label for="password">Mot de passe</label>
-	        <input type="password" name="password" id="password" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;">
+            </div>
+            <div class="inputbox inputcomp">
 
-	        <label for="confirmpassword">Confirmez votre mot de passe</label>
-	        <input type="password" name="confirmpassword" id="confirmpassword" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;">
+            <input type="text" name="siret" id="siret">
+            <label for="rna">Numéro SIRET</label>
 
-	        <input type="submit" name="submit" value="S'inscrire">
+            </div>
+            <div class="inputbox">
+                
+                <label for="userpic">Photo</label>
+                <input type="file" name="userpic" id="userpic" class="picfile">
 
-	    </form>
-	</section>
+            </div>
+       </div>
+       
+        <input type="submit" value="S'inscrire">
+
+    </form>
 
 <?php $this->stop('main_content') ?>
