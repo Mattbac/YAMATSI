@@ -1,9 +1,5 @@
 <?php $this->layout('layoutmap', ['title' => $title]) ?>
 
-<?php $this->start('link_content') ?>
-    <link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
-<?php $this->stop('link_content') ?>
-
 <?php $this->start('main_content') ?>
         <select name="category" id="category">
             <option value="0">Tout Public</option>
@@ -24,9 +20,3 @@
         <input type="text" name="search" placeholder="Dans quelle ville ?">
         
 <?php $this->stop('main_content') ?>
-
-<?php $this->start('script_content') ?>
-<script type="text/javascript" src="<?= $this->assetUrl('js/map.js') ?>"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHheo_U6zgBrVvqV61I6tMkA40Tkblc7w&callback=initMap">
-</script>
-<?php $this->stop('script_content') ?>

@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class Assoc_compModel extends \W\Model\Model {
+class Assoc_compModel extends \W\Model\UsersModel {
 
 }
 
