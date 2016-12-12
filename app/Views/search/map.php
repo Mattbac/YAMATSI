@@ -1,9 +1,5 @@
 <?php $this->layout('layoutmap', ['title' => $title]) ?>
 
-<?php $this->start('link_content') ?>
-    <link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
-<?php $this->stop('link_content') ?>
-
 <?php $this->start('main_content') ?>
         <select name="category" id="category">
             <option value="0">Tout Public</option>

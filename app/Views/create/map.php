@@ -1,14 +1,12 @@
 <?php $this->layout('layoutmap', ['title' => $title]) ?>
 
-<?php $this->start('link_content') ?>
-    <link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
-<?php $this->stop('link_content') ?>
-
 <?php $this->start('main_content') ?>
+
         <p style="color:black;">Ou souhaitez vous faire votre evenement ?</p>
         <input id="search_city" type="text" name="search_city">
         <div id='result_search'></div>
         <div><button id="send_position">Envoyer la localisation !</button></div>
+
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('script_content') ?>

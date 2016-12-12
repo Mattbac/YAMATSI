@@ -7,15 +7,15 @@
 <h2>Comment souhaitez-vous utiliser OutLooker ?</h2>
 
 <section>
-    <div><a href="register/user/">
+    <div><a href="#">
         <p>En tant que</p>
         <h3>Particulier</h3>
     </div></a>
-    <div><a href="register/assoc/">
+    <div><a href="#">
         <p>En tant qu'</p>
         <h3>Association</h3>
     </div></a>
-    <div><a href="register/comp/">
+    <div><a href="#">
         <p>En tant qu'</p>
         <h3>Entreprise</h3>
     </div></a>

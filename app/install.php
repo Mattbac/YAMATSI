@@ -85,5 +85,4 @@ if (!mysql_select_db($w_config['db_name'])) {
     $pdodbimport->importSQL("../app/sql/villes_france.sql", $db);
 
 }
-
 ?>
