@@ -1,26 +1,236 @@
-html, body {
-	font-family: Consolas, monaco, monospace;
-	background-color: #272822;
-	color: #F8F8F2;
+/* ################################### FONTS ################################### */
+
+@font-face {
+    font-family: "Roboto";
+    src: url('../fonts/Roboto-Regular.ttf');
+}
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url('../fonts/Roboto-Bold.ttf');
+}
+@font-face {
+    font-family: "Roboto";
+    font-weight: thin;
+    src: url('../fonts/Roboto-Thin.ttf');
 }
 
-.container {
-	margin: 50px;
+@font-face {
+    font-family: "OpenSans";
+    src: url('../fonts/OpenSans-Regular.ttf');
+}
+@font-face {
+    font-family: "OpenSans";
+    font-weight: bold;
+    src: url('../fonts/OpenSans-Bold.ttf');
+}
+@font-face {
+    font-family: "OpenSans";
+    font-weight: thin;
+    src: url('../fonts/OpenSans-Light.ttf');
+}
+
+/* ################################### GLOBAL ################################### */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+}
+
+.subtitle {
+    text-indent: 5rem;
+    font-size: 3.5rem;
+    padding: 1rem 0 2rem 0;
+    margin: 0 0 0 0;
+    border-bottom:0.5rem solid #332532;
+    color:#F77A52;
 }
 
 a {
-	text-decoration: none;
-	color: #A6E22E;
+    text-decoration: none;
 }
 
 a:hover {
-	color: #F92672;
+    cursor: pointer;
 }
 
-h1 {
-	color: #F92672;
+body {
+    background:#FFF;
+    font-family: 'OpenSans', sans-serif;
+    color:#332532;
+    font-size: 2rem;
 }
 
-h2 {
-	color: #66D9EF;
+container {
+    width: 100%;
+}
+
+section {
+    width: 95%;
+    margin: 0 auto;
+}
+
+/* ################################### HEADER ################################### */
+
+header {
+    width: 100%;
+    height: 8rem;
+    background:#332532;
+    border-bottom: 0.25rem solid #F77A52;
+    margin: 0 0 1.5rem 0;
+}
+
+header #logo {
+    height: 100%;
+    width: 50%;
+    margin: 0 auto;
+}
+
+header #logo a {
+    
+}
+
+header #logo a img {
+    height: 90%;
+    width: 100%;
+    padding: 2.5% 0 0 0;
+    object-fit: contain;
+}
+
+/* ################################### FOOTER ################################### */
+
+footer {
+    width: 100%;
+    height: 7.5rem;
+    position: fixed;
+    bottom:0;
+    font-size: 2rem;
+    background:#332532;
+    border-top:0.25rem solid #F77A52;
+}
+
+footer p {
+    margin: 2rem 0 0 0;
+    text-align: center;
+    color:#FFF;
+}
+
+footer p a {
+    color:#FF974F;
+}
+
+footer p a:focus {
+    color:#FFF;
+}
+
+/* ################################### FORMS ################################### */
+
+form {
+    width: 100%;
+    height: auto;
+}
+
+form .inputbox {
+    position: relative;
+    padding: 1.5rem 0 0 0;
+}
+
+form .inputbox select {
+    width: 100%;
+    height: 5rem;
+    color:#332532;
+    font-size: 2.5rem;
+    font-weight: 600;
+    padding: 0 0 0 2rem;
+    border-radius: 1rem;
+    border:none;
+    background: #FF974F;
+}
+
+form .inputbox option {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color:#332532;
+    background:#FFF;
+}
+
+form .inputbox label {
+    position: absolute;
+    left:2rem;
+    top:5.5rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    transition: all 0.5s;
+}
+
+form .inputbox input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 5rem;
+    border-radius: 1rem;
+    border:none;
+    color:#332532;
+    font-size: 2rem;
+    background:#FF974F;
+    margin: 3rem 0 0 0;
+    padding: 0 0 0 2rem;
+}
+
+form .inputbox input:hover ~ label, 
+form .inputbox input:valid ~ label {
+    top:1rem;
+}
+
+form input[type=submit] {
+    width: 100%;
+    height: 8rem;
+    border-radius: 1rem;
+    font-size: 3rem;
+    font-weight: 100;
+    margin: 2rem 0 9.5rem 0;
+    color:#FFF;
+    background:#332532;
+}
+
+form input[type=submit]:focus {
+    color:#332532;
+    background:#FFF;
+    border: 0.25rem solid #332532;
+}
+
+form .orga {
+   display:none;
+}
+
+form .orga .inputassoc {
+    display:none;
+}
+form .orga .inputcomp {
+    display:none;
+}
+
+.inputbox .picfile {
+    padding: 1.25rem 2rem 0 11rem;
+}
+
+.alert {
+    display:none;
+    position: relative;
+    border-radius: 1rem;
+    margin: 2rem 0 0 0;
+    padding: 1rem 5rem 1rem 2rem;
+    font-size: 1.5rem;
+    color:#FFF;
+    background:#e84c3d;
+}
+
+.alert i {
+    font-size: 2rem;
+    position: absolute;
+    top:1rem;
+    right:1.5rem;
 }
