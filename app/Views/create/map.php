@@ -8,7 +8,7 @@
         <p style="color:black;">Ou souhaitez vous faire votre evenement ?</p>
         <input id="search_city" type="text" name="search_city">
         <div id='result_search'></div>
-        <div><a href="">Envoyer la localisation !</a></div>
+        <div><button id="send_position">Envoyer la localisation !</button></div>
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('script_content') ?>

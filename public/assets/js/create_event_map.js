@@ -46,24 +46,34 @@ $(function() {
 	}, 400);
 
   function recherche(){
-	if($('#search_city').val() != ''){
-		$.ajax({
-			type: "GET",
-			dataType: 'json',
-			url: "http://localhost/YAMATSI/public/api/search_city/"+$('#search_city').val()
-		}).done(function(datas){
-			$('#result_search').empty();
-			for(key in datas){
-				console.log(datas[key]);
-				$('#result_search').append("<p style='color:black;'>"+datas[key]['ville_nom_reel']+' '+datas[key]['ville_population_2012']+"</p>");
-			}
-		});
-	}
+    if($('#search_city').val() != ''){
+      $.ajax({
+        type: "GET",
+        dataType: 'json',
+        url: "http://localhost/YAMATSI/public/api/search_city/"+$('#search_city').val()
+      }).done(function(datas){
+        $('#result_search').empty();
+        for(key in datas){
+          $('#result_search').append("<button class='searchresult' style='color:black;' data-lat='"+datas[key]['ville_latitude_deg']+"' data-lng='"+datas[key]['ville_longitude_deg']+"'>"+datas[key]['ville_nom_reel']+' '+datas[key]['ville_code_postal'].substr(0,5)+"</button>");
+        }
+      });
+    }
   }
+
+	$(document).on("click",".searchresult",function(e){
+		map.setCenter(new google.maps.LatLng($(this).data("lat"),$(this).data("lng")));
+		$('#result_search').empty();
+	});
+
+	$("#send_position").click(function(e){
+		var root = (window.location.href).substr(0,(window.location.href).length-3)
+		window.location.replace(root+'event/'+marker.getPosition().lat()+'/'+marker.getPosition().lng());
+	});
+
 });
 
 marker = null;
-
+map = null;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), mapOptions );
 

@@ -6,8 +6,8 @@
 		['GET', 		'/[home]?[/]?'						, 'Default#home'				, 'default_home'],
 
 		['GET', 		'/map[/]?[]?[/]?'					, 'Search#map'					, 'search_map'],
-		['GET', 		'/map/[i:lat]/[i:lng][/]?'			, 'Search#mapPosition'			, 'search_mapposition'],
-		['GET', 		'/map/[i:lat]/[i:lng]/[i:id][/]?'	, 'Search#mapPositionEvent'		, 'search_mapPositionEvent'],
+		['GET', 		'/map/[*:lat]/[*:lng][/]?'			, 'Search#mapPosition'			, 'search_mapposition'],
+		['GET', 		'/map/[*:lat]/[*:lng]/[i:id][/]?'	, 'Search#mapPositionEvent'		, 'search_mapPositionEvent'],
 
 		['GET',			'/register[/]?'						, 'Register#type'				, 'register_type'], //liste de tout les membres
 		['GET|POST',	'/register/user[/]?'				, 'Register#user'				, 'register_user'], //creation d'un user de base
@@ -15,7 +15,7 @@
 		['GET|POST',	'/register/company[/]?'				, 'Register#company'			, 'register_company'], // creation d'une entreprise
 
 		['GET|POST',	'/create/map[/]?'					, 'Create#map'					, 'create_map'],
-		['GET|POST',	'/create/event/[i:lat]/[i:lng][/]?'	, 'Create#event'				, 'create_event'],
+		['GET|POST',	'/create/event/[*:lat]/[*:lng][/]?'	, 'Create#event'				, 'create_event'],
 
 		['GET',			'/page/user[/]?[i:id]?[/]?'			, 'Page#user'					, 'page_user'],
 		['GET',			'/page/assoc[/]?[i:id]?[/]?'		, 'Page#assoc'					, 'page_assoc'],

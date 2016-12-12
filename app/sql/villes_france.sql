@@ -6,7 +6,7 @@ CREATE TABLE `villes_france` (
   `ville_population_2012` mediumint(10) UNSIGNED DEFAULT NULL COMMENT 'approximatif',
   `ville_longitude_deg` float DEFAULT NULL,
   `ville_latitude_deg` float DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `villes_france` (`ville_id`, `ville_departement`, `ville_nom_reel`, `ville_code_postal`, `ville_population_2012`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
 (1, '01', 'Ozan', '01190', 500, 4.91667, 46.3833),
@@ -36752,3 +36752,13 @@ INSERT INTO `villes_france` (`ville_id`, `ville_departement`, `ville_nom_reel`, 
 (36827, '971', 'Saint-Barthélemy', '97133', 8938, -62.8333, 17.9167),
 (36828, '971', 'Saint-Martin', '97150', 36979, 18.0913, -63.0829),
 (36830, '975', 'Saint-Pierre-et-Miquelon', '97500', 6080, 46.7107, 1.71819);
+
+ALTER TABLE `villes_france`
+  ADD PRIMARY KEY (`ville_id`),
+  ADD KEY `ville_departement` (`ville_departement`),
+  ADD KEY `ville_nom_reel` (`ville_nom_reel`),
+  ADD KEY `ville_code_postal` (`ville_code_postal`),
+  ADD KEY `ville_longitude_latitude_deg` (`ville_longitude_deg`,`ville_latitude_deg`);
+
+ALTER TABLE `villes_france`
+  MODIFY `ville_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36831;

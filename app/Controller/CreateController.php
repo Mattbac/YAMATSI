@@ -20,7 +20,7 @@ class CreateController extends Controller
 
         }
 
-        $this->show('create/event', ['title' => 'OutLooker - Créer un évènement']);
+        $this->show('create/event', ['title' => 'OutLooker - Créer un évènement', 'lat' => $lat, 'lng' => $lng]);
 
     }
 

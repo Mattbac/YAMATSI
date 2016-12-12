@@ -1,7 +1,5 @@
 <?php
 
-$db->query($sql);
-
 class PDODbImporter{
     private static $keywords = array(
         'ALTER', 'CREATE', 'DELETE', 'DROP', 'INSERT',

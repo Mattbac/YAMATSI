@@ -21,7 +21,8 @@
             <option value="6">Cirque</option>
         </select>
         <input type="date">
-        <input type="text" name="search" placeholder="Dans quelle ville ?">
+        <input id="search_city" type="text" name="search_city">
+        <div id='result_search'></div>
         
 <?php $this->stop('main_content') ?>
 

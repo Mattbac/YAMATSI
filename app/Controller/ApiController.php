@@ -13,7 +13,10 @@ class ApiController extends Controller
     public function search_city($slug)
     {
         $Villes_franceModel = new Villes_franceModel();
-
-        echo json_encode($Villes_franceModel->findBySlug($slug));
+        if(is_numeric($slug)){
+            echo json_encode($Villes_franceModel->findBySlug(intval($slug), 'ville_code_postal'));
+        }else{
+            echo json_encode($Villes_franceModel->findBySlug($slug, 'ville_nom_reel'));
+        }
     }
 }
