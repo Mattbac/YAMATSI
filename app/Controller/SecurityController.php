@@ -38,11 +38,9 @@ class SecurityController extends Controller
 
    public function forget()
   {
-  
 
+  }
 
-   }
- }
 }
 
 ?>
