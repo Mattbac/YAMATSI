@@ -58,6 +58,10 @@ a:hover {
     cursor: pointer;
 }
 
+.smaller {
+    font-size: 1.75rem;
+}
+
 body {
     background:#FFF;
     font-family: 'OpenSans', sans-serif;
@@ -148,7 +152,7 @@ form .inputbox select {
     padding: 0 0 0 2rem;
     border-radius: 1rem;
     border:none;
-    background: #FF974F;
+    background: #e4d6d9;
 }
 
 form .inputbox option {
@@ -167,7 +171,7 @@ form .inputbox label {
     transition: all 0.5s;
 }
 
-form .inputbox input {
+form .inputbox input, form .inputbox textarea {
     box-sizing: border-box;
     width: 100%;
     height: 5rem;
@@ -175,31 +179,88 @@ form .inputbox input {
     border:none;
     color:#332532;
     font-size: 2rem;
-    background:#FF974F;
+    background:#e4d6d9;
     margin: 3rem 0 0 0;
     padding: 0 0 0 2rem;
 }
 
 form .inputbox input:hover ~ label, 
 form .inputbox input:valid ~ label {
-    top:1rem;
+    top:0.75rem;
 }
 
-form input[type=submit] {
+form .inputbox .toplabel,
+form .timetable label,
+form .inputbox .filetitle {
+    top:0.75rem;
+}
+
+form .inputbox textarea {
+    resize:vertical;
+    height: 15rem;
+    padding: 2rem;
+}
+
+form .radiobox {
+    display: flex;
+    justify-content:space-between;
+    margin: 0 5rem 7rem 5rem;
+}
+
+form .radiobox label {
+    top:0.25rem;
+    left: -2rem;
+}
+
+form .oneradiobox {
+    position: relative;
+}
+
+form .radiobox .oneradiobox input:valid ~ label {
+    text-align: center;
+    font-size: 2rem;
+    -webkit-transform: translate(-50%, -50%); 
+    top:11rem;
+    left:1rem;
+}
+
+form .radiobox .oneradiobox input[type=radio] {
+    width: 3rem;
+}
+
+form .timetable .adddates {
     width: 100%;
-    height: 8rem;
-    border-radius: 1rem;
-    font-size: 3rem;
-    font-weight: 100;
-    margin: 2rem 0 9.5rem 0;
+    height: 6.5rem;
+    margin: 2rem 0;
     color:#FFF;
+    font-size: 2rem;
+    font-weight: 600;
+    border-radius: 1rem;
+    border:none;
     background:#332532;
 }
 
-form input[type=submit]:focus {
+form .timetable .adddates p {
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+form .timetable .adddates:focus {
     color:#332532;
-    background:#FFF;
-    border: 0.25rem solid #332532;
+    background: #FFF;
+}
+
+form .timetable .datesup {
+    display:none;
+}
+
+form .bool {
+    justify-content: space-around;
+    margin: 1rem 5rem 5rem 5rem;
+}
+
+form .nbplaces {
+    display:none;
 }
 
 form .orga {
@@ -213,8 +274,8 @@ form .orga .inputcomp {
     display:none;
 }
 
-.inputbox .picfile {
-    padding: 1.25rem 2rem 0 11rem;
+form .inputbox .picfile {
+    padding: 1.25rem 2rem 0 2rem;
 }
 
 .alert {
@@ -233,4 +294,21 @@ form .orga .inputcomp {
     position: absolute;
     top:1rem;
     right:1.5rem;
+}
+
+form input[type=submit] {
+    width: 100%;
+    height: 8rem;
+    border-radius: 1rem;
+    font-size: 3rem;
+    font-weight: 100;
+    margin: 2rem 0 9.5rem 0;
+    color:#FFF;
+    background:#332532;
+}
+
+form input[type=submit]:focus {
+    color:#332532;
+    background:#FFF;
+    border: 0.25rem solid #332532;
 }
