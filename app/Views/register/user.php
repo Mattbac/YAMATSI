@@ -8,10 +8,19 @@
 	<hr>
 
 	<section>
-	    <form action="" method="post">
+	    <form action="" method="post" enctype="multipart/form-data">
 
-          <label for="nickname">Pseudo</label>
+          <label for="nickname">Nom</label>
 	        <input type="text" name="nickname" id="nickname">
+
+					<label>Avatar</label>
+			 		<input type="file" name="file">
+
+					<select id="type" name="type">
+						<option value="outlooker">Outlooker</option>
+ 						<option value="comp">Entreprise</option>
+ 						<option value="assoc">Association</option>
+					</select>
 
 	        <label for="email">E-mail</label>
 	        <input type="email" name="email" id="email">

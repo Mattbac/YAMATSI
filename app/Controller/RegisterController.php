@@ -5,75 +5,10 @@ namespace Controller;
 use \W\Controller\Controller;
 use \W\Security\AuthentificationModel as Auth;
 use \Model\UsersModel as User;
-use \Model\Assoc_compModel as Assoc_comp;
+
 
 class RegisterController extends Controller
 {
-
-    // Register Type
-    public function type()
-    {
-        $this->show('register/selector', ['title' => 'OutLooker - Inscription']);
-    }
-
-    // Register Assoc
-    public function assoc()
-    {
-      $message = '';
-      if(isset($_POST['submit']))
-      {
-        $comp = new Assoc_comp();
-        $auth = new Auth();
-
-        if($_POST['email'] == $_POST['confirmmail'] && $_POST['password'] == $_POST['confirmpassword'] && !$comp->emailExists($_POST['email']) && !$comp->usernameExists($_POST['name']) && !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['message']))
-        {
-          $comp->insert([
-            'name'     => $_POST['name'],
-            'email'    => $_POST['email'],
-            'message'  => $_POST['message'],
-            'password' => $auth->hashPassword($_POST['password']),
-            'type'     =>'assoc'
-          ]);
-
-          $message = '<div>Félicitation vous êtes bien inscrit</div>';
-        }
-        else
-        {
-          $message = '<div>Vérifiez les champs, merci</div>';
-        }
-
-      }
-        $this->show('register/assoc', ['title' => 'OutLooker - Inscription', 'message' => $message]);
-    }
-
-    // Register Company
-    public function company()
-    {
-      $message = '';
-      if(isset($_POST['submit']))
-      {
-        $comp = new Assoc_comp();
-        $auth = new Auth();
-
-        if($_POST['email'] == $_POST['confirmmail'] && $_POST['password'] == $_POST['confirmpassword'] && !$comp->emailExists($_POST['email']) && !$comp->usernameExists($_POST['name']) && !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['message']))
-        {
-          $comp->insert([
-            'name'     => $_POST['name'],
-            'email'    => $_POST['email'],
-            'message'  => $_POST['message'],
-            'password' => $auth->hashPassword($_POST['password']),
-            'type'     =>'company'
-          ]);
-
-          $message = '<div>Félicitation vous êtes bien inscrit</div>';
-        }
-        else
-        {
-          $message = '<div>Vérifiez les champs, merci</div>';
-        }
-      }
-        $this->show('register/company', ['title' => 'OutLooker - Inscription', 'message' => $message]);
-    }
 
     // Register User
     public function user()
@@ -86,12 +21,37 @@ class RegisterController extends Controller
 
         if($_POST['email'] == $_POST['confirmmail'] && $_POST['password'] == $_POST['confirmpassword'] && !$user->emailExists($_POST['email']) && !$user->usernameExists($_POST['nickname']) && !empty($_POST['nickname']) && !empty($_POST['email']) && !empty($_POST['password']))
         {
-          $user->insert([
-            'nickname' => $_POST['nickname'],
-            'email'    => $_POST['email'],
-            'password' => $auth->hashPassword($_POST['password']),
-            'type'     =>'user'
-          ]);
+   			 ## EXTENSIONS DE FICHIERS ACCEPTES ### */
+
+   							 $extensions = ["image/png", "image/gif", "image/jpg", "image/jpeg"];
+
+   			 /* ### CLASSE LES AVATARS PAR USER ### */
+   						 if (isset($_FILES['file']))
+               {
+   							 if(in_array($_FILES['file']['type'], $extensions))
+                 {
+   								 move_uploaded_file($_FILES['file']['tmp_name'],"assets/img/avatar/".$_FILES['file']['name']);
+   							 }
+   							 if($_FILES['file']['name'] == "")
+                 {
+   								 // RIEN SI AUCUN FICHIER CHARGE
+   							 }
+                 else
+                 {
+  	                $avatar = '';
+   							 }
+   						 }
+               $datas = [
+                 'nickname' => $_POST['nickname'],
+                 'email'    => $_POST['email'],
+                 'password' => $auth->hashPassword($_POST['password']),
+                 'type'     => $_POST['type'],
+               ];
+               if (isset($_FILES['file']))
+               {
+                 $datas['pictures_profile'] = $_FILES['file']['name'];
+               }
+               $user->insert($datas);
 
           $message = '<div>Félicitation vous êtes bien inscrit</div>';
         }
