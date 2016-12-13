@@ -1,8 +1,9 @@
 <?php
 
 	$w_routes = array(
-		['GET', 		'/api/search_city/[a:slug][/]?'		, 'Api#search_city'				, 'api_search_city'],
+		['GET', 		'/api/search_city/[:slug][/]?'		, 'Api#search_city'				, 'api_search_city'],
 		['GET', 		'/api/search_event[/]?'				, 'Api#search_event'			, 'api_search_event'],
+		['GET', 		'/api/search_event_element/[i:id][/]?'	, 'Api#search_event_element'			, 'api_search_event_element'],
 
 		['GET|POST', 	'/login'							, 'Security#login'				, 'security_login'],
 		['GET', 		'/logout'							, 'Security#logout'				, 'security_logout'],

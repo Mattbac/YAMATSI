@@ -27,6 +27,10 @@
 				<?= $this->section('main_content') ?>
 		</section>
 
+		<section id='event_view'>
+
+		</section>
+
 		<?= $this->section('script_content') ?>
 	</body>
 </html>

@@ -234,3 +234,15 @@ form .orga .inputcomp {
     top:1rem;
     right:1.5rem;
 }
+
+/* ################################### MAP ################################### */
+
+#event_view{
+    height: 100%;
+    width: 500px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background-color: white;
+}

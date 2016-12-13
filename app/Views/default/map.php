@@ -12,18 +12,19 @@
             <option value="3">Adulte</option>
         </select>
         <select name="type" id="type">
-            <option value="0">Musique</option>
-            <option value="1">Dance</option>
-            <option value="2">Festival</option>
-            <option value="3">Sport</option>
-            <option value="4">Brocante</option>
-            <option value="5">Exposition</option>
-            <option value="6">Cirque</option>
+            <option value="0">Tout type</option>
+            <option value="1">Musique</option>
+            <option value="2">Dance</option>
+            <option value="3">Festival</option>
+            <option value="4">Sport</option>
+            <option value="5">Brocante</option>
+            <option value="6">Exposition</option>
+            <option value="7">Cirque</option>
         </select>
         <input type="date">
         <input id="search_city" type="text" name="search_city">
         <div id='result_search'></div>
-        
+
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('script_content') ?>
