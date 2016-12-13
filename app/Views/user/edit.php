@@ -8,21 +8,22 @@
 	<hr>
 
 	<section>
-	    <form action="" method="post">
+	    <form action="" method="post" enctype="multipart/form-data">
 
           <!-- Edition du pseudo -->
 
           <label for="nickname">Pseudo</label>
 	        <input type="text" name="nickname" id="nickname" value="<?= $compFormulaire['nickname'] ?>">
 
+					<label>Avatar</label>
+					<input type="file" name="file">
 
-          <!-- Edition de l'email plus confimation -->
+          <!-- Edition de l'email -->
 
 	        <label for="email">E-mail</label>
 	        <input type="email" name="email" id="email" value="<?= $compFormulaire['email'] ?>">
 
-	        <label for="confirmmail">Confirmez votre e-mail</label>
-	        <input type="email" name="confirmmail" id="confirmmail">
+
 
           <!-- Edition du mdp plus confimation -->
 
@@ -35,7 +36,7 @@
           <!-- Envoi du form -->
 
 	        <input type="submit" name="edit" value="Modifier">
-
+					<a onclick="return confirm('Etes-vous sur de vouloir supprimer votre compte ?');">Supprimer votre profil</a>
 	    </form>
 	</section>
 

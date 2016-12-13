@@ -4,7 +4,7 @@ nickname VARCHAR(255) NOT NULL,/* nickname */
 email VARCHAR(255) NOT NULL,/* email */
 password VARCHAR(255) NOT NULL,/* Password */
 message TEXT(255),/* Presentation message */
-pictures_profile VARCHAR(255),/* presentation picture */
+pictures_profile VARCHAR(255) NULL,/* presentation picture */
 picture_other VARCHAR(255),/* other picture */
 rate INT(11),/* rate of the assoc */
 valid INT(1),/* Compte valide or not */

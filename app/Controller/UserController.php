@@ -16,60 +16,113 @@ class UserController extends Controller
 
     public function edit($value='')
     {
-        $message = '';
-        $user = new User;
-        $auth = new Auth;
-        $id = $this->getUser(); // recuperation de l'ID
 
-          if(isset($_POST['edit']))
+          $message = '';
+          $user = new User;
+          $auth = new Auth;
+          $id = $this->getUser(); // recuperation de l'ID
 
-          // FAIRE CAS D'ERREURS
+            if(isset($_POST['edit']))
 
-          {
-            $user->update([
-              'nickname' => $_POST['nickname'],
-              'email'    => $_POST['email'],
-              'password' => $auth->hashPassword($_POST['password']),
-              'type'     =>'assoc'
-            ],$id['id']);
+            // FAIRE CAS D'ERREURS
+            ## EXTENSIONS DE FICHIERS ACCEPTES ### */
+
+              $extensions = ["image/png", "image/gif", "image/jpg", "image/jpeg"];
+
+            /* ### CLASSE LES AVATARS PAR USER ### */
+              if (isset($_FILES['file']))
+                {
+                  if(in_array($_FILES['file']['type'], $extensions))
+                  {
+                    move_uploaded_file($_FILES['file']['tmp_name'],"assets/img/avatar/".$_FILES['file']['name']);
+                  }
+                  if($_FILES['file']['name'] == "")
+                  {
+                      // RIEN SI AUCUN FICHIER CHARGE
+                  }
+                  else
+                  {
+                      $avatar = '';
+                  }
+
+              $datas = [
+                'nickname' => $_POST['nickname'],
+                'email'    => $_POST['email'],
+                'password' => $auth->hashPassword($_POST['password'])
+              ];
+
+              if (isset($_FILES['file']))
+              {
+                $datas['pictures_profile'] = $_FILES['file']['name'];
+              }
+              $user->update($datas, $id['id']);
 
               $auth->refreshUser($user); // on utilise la sesison pour afficher les champs donc il faut l'actualiser lors de l'envoi de la requete Update
 
               $message = '<div>Félicitation vous êtes bien inscrit</div>';
-          }
-            else
-            {
-              $message = '<div>Vérifiez les champs, merci</div>';
-            }
+              }
+              else
+              {
+                $message = '<div>Vérifiez les champs, merci</div>';
+              }
 
-        $this->show('user/edit', ['title' => 'edit user', 'message'=> $message, 'compFormulaire' => $this->getUser()]);
-    }
+          $this->show('user/edit', ['title' => 'edit user', 'message'=> $message, 'compFormulaire' => $this->getUser()]);
+      }
+
 
     public function register($value='')
     {
+      // Register User
+
+
         $message = '';
-      if(isset($_POST['submit']))
-      {
-        $user = new User();
-        $auth = new Auth();
-
-        if($_POST['email'] == $_POST['confirmmail'] && $_POST['password'] == $_POST['confirmpassword'] && !$user->emailExists($_POST['email']) && !$user->usernameExists($_POST['nickname']) && !empty($_POST['nickname']) && !empty($_POST['email']) && !empty($_POST['password']))
+        if(isset($_POST['submit']))
         {
-          $user->insert([
-            'nickname' => $_POST['nickname'],
-            'email'    => $_POST['email'],
-            'password' => $auth->hashPassword($_POST['password']),
-            'type'     =>'user'
-          ]);
+          $user = new User();
+          $auth = new Auth();
 
-          $message = '<div>Félicitation vous êtes bien inscrit</div>';
-        }
-        else
-        {
-          $message = '<div>Vérifiez les champs, merci</div>';
-        }
+          if($_POST['email'] == $_POST['confirmmail'] && $_POST['password'] == $_POST['confirmpassword'] && !$user->emailExists($_POST['email']) && !$user->usernameExists($_POST['nickname']) && !empty($_POST['nickname']) && !empty($_POST['email']) && !empty($_POST['password']))
+          {
+     			 ## EXTENSIONS DE FICHIERS ACCEPTES ### */
 
+     							 $extensions = ["image/png", "image/gif", "image/jpg", "image/jpeg"];
+
+     			 /* ### CLASSE LES AVATARS PAR USER ### */
+     						 if (isset($_FILES['file']))
+                 {
+     							 if(in_array($_FILES['file']['type'], $extensions))
+                   {
+     								 move_uploaded_file($_FILES['file']['tmp_name'],"assets/img/avatar/".$_FILES['file']['name']);
+     							 }
+     							 if($_FILES['file']['name'] == "")
+                   {
+     								 // RIEN SI AUCUN FICHIER CHARGE
+     							 }
+                   else
+                   {
+    	                $avatar = '';
+     							 }
+     						 }
+                 $datas = [
+                   'nickname' => $_POST['nickname'],
+                   'email'    => $_POST['email'],
+                   'password' => $auth->hashPassword($_POST['password']),
+                   'type'     => $_POST['type'],
+                 ];
+                 if (isset($_FILES['file']))
+                 {
+                   $datas['pictures_profile'] = $_FILES['file']['name'];
+                 }
+                 $user->insert($datas);
+
+            $message = '<div>Félicitation vous êtes bien inscrit</div>';
+          }
+          else
+          {
+            $message = '<div>Vérifiez les champs, merci</div>';
+          }
+
+        }
+          $this->show('user/register', ['title' => 'OutLooker - Inscription', 'message' => $message]);
       }
-        $this->show('user/register', ['title' => 'OutLooker - Inscription', 'message' => $message]);
-    }
 }
