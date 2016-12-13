@@ -5,6 +5,7 @@
 <?php $this->stop('link_content') ?>
 
 <?php $this->start('main_content') ?>
+
     <section id="header">   
         <div class="navbar">
             <select name="category" id="category">

@@ -107,10 +107,6 @@ header #logo {
     margin: 0 auto;
 }
 
-header #logo a {
-    
-}
-
 header #logo a img {
     height: 90%;
     width: 100%;
@@ -434,4 +430,16 @@ form input[type=submit]:focus, #send_position:focus {
     left:50%;
     width: 90%;
     z-index: 1;
+}
+
+/* ################################### MAP ################################### */
+
+#event_view{
+    height: 100%;
+    width: 500px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background-color: white;
 }
