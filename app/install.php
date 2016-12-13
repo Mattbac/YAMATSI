@@ -66,15 +66,21 @@ class PDODbImporter{
     }
 }
 
+$option = [
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
+        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
+        ];
+
 mysql_connect($w_config['db_host'], $w_config['db_user'], $w_config['db_pass']);
 
 if (!mysql_select_db($w_config['db_name'])) {
 
-    $db = new PDO('mysql:host='.$w_config['db_host'].';dbname=', $w_config['db_user'], $w_config['db_pass']);
+    $db = new PDO('mysql:host='.$w_config['db_host'].';dbname=', $w_config['db_user'], $w_config['db_pass'], $option);
 
     $db->query("CREATE DATABASE IF NOT EXISTS ".$w_config['db_name']);
 
-    $db = new PDO('mysql:host='.$w_config['db_host'].';dbname='.$w_config['db_name'], $w_config['db_user'], $w_config['db_pass']);
+    $db = new PDO('mysql:host='.$w_config['db_host'].';dbname='.$w_config['db_name'], $w_config['db_user'], $w_config['db_pass'], $option);
 
     $pdodbimport = new PDODbImporter();
 

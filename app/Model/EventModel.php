@@ -2,8 +2,8 @@
 
 namespace Model;
 
-class ForgetModel extends \W\Model\Model {
-
+class EventModel extends \W\Model\Model {
+    
 }
 
 ?>

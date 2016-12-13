@@ -67,7 +67,7 @@ $(function() {
 
 	$("#send_position").click(function(e){
 		var root = (window.location.href).substr(0,(window.location.href).length-3)
-		window.location.replace(root+'event/'+marker.getPosition().lat()+'/'+marker.getPosition().lng());
+		window.location.replace(root+'create/'+marker.getPosition().lat()+'/'+marker.getPosition().lng());
 	});
 
 });

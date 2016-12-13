@@ -4,6 +4,7 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use Model\Villes_franceModel as Villes_franceModel;
+use Model\EventModel as EventModel;
 
 class ApiController extends Controller
 {
@@ -18,5 +19,12 @@ class ApiController extends Controller
         }else{
             echo json_encode($Villes_franceModel->findBySlug($slug, 'ville_nom_reel'));
         }
+    }
+
+    public function search_event()
+    {
+        $EventModel = new EventModel();
+
+        echo json_encode($EventModel->findAll());
     }
 }
