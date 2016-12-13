@@ -26,32 +26,33 @@
             <label for="category">Catégorie :</label>
             
             <div class="oneradiobox">
-                <input type="radio" id="categoryall" name="category" value="all" checked> <label for="categoryall">Tout public</label>
+                <input type="radio" id="categoryall" name="category" value="0" checked> <label for="categoryall">Tout public</label>
             </div>
             
             <div class="oneradiobox">
-                <input type="radio" id="categorychild" name="category" value="child"> <label for="categorychild">Enfants</label>
+                <input type="radio" id="categorychild" name="category" value="1"> <label for="categorychild">Enfants</label>
             </div>
             
             <div class="oneradiobox">
-                <input type="radio" id="categoryteenager" name="category" value="teenager">
+                <input type="radio" id="categoryteenager" name="category" value="2">
                 <label for="categoryteenager">Adolescents</label>
             </div>
             
             <div class="oneradiobox">
-                <input type="radio" id="categoryadult" name="category" value="adult"> <label for="categoryadult">Adultes</label>
+                <input type="radio" id="categoryadult" name="category" value="3"> <label for="categoryadult">Adultes</label>
             </div>
         </div>
         
         <div class="inputbox">
             <select id="type" name="type" size="1">
                 <option value="">Type d'évènement ?</option>
-                <option value="1">Danse</option>
-                <option value="2">Loisir</option>
-                <option value="3">Musique</option>
-                <option value="4">Peinture</option>
-                <option value="5">Promenade</option>
-                <option value="6">Sport</option>
+                <option value="0">Musique</option>
+                <option value="1">Dance</option>
+                <option value="2">Festival</option>
+                <option value="3">Sport</option>
+                <option value="4">Brocante</option>
+                <option value="5">Exposition</option>
+                <option value="6">Cirque</option>
             </select>
         </div>
         

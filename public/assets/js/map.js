@@ -6,6 +6,7 @@ var mapOptions = {
   zoomControl: false,
   center: {lat: 50.632210, lng: 3.060658},
   mapTypeControlOptions: { mapTypeIds: [] },
+  fullscreenControl: false,
   styles: [
   {
     featureType: "road",
@@ -55,7 +56,7 @@ $(function() {
       }).done(function(datas){
         $('#result_search').empty();
         for(key in datas){
-          $('#result_search').append("<button class='searchresult' style='color:black;' data-lat='"+datas[key]['ville_latitude_deg']+"' data-lng='"+datas[key]['ville_longitude_deg']+"'>"+datas[key]['ville_nom_reel']+' '+datas[key]['ville_code_postal'].substr(0,5)+"</button>");
+          $('#result_search').append("<button class='searchresult' data-lat='"+datas[key]['ville_latitude_deg']+"' data-lng='"+datas[key]['ville_longitude_deg']+"'>"+datas[key]['ville_nom_reel']+' '+datas[key]['ville_code_postal'].substr(0,5)+"</button>");
         }
       });
     }
