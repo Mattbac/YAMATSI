@@ -29,7 +29,11 @@ var mapOptions = {
 ]
 };
 
+locationPage = document.location.href.split('public');
+
 $(function() {
+
+  $('#event_view').remove();
 
 	valide = 0;
 	time = 0;
@@ -50,7 +54,7 @@ $(function() {
       $.ajax({
         type: "GET",
         dataType: 'json',
-        url: "http://localhost/YAMATSI/public/api/search_city/"+$('#search_city').val()
+        url: locationPage[0]+"public/api/search_city/"+$('#search_city').val()
       }).done(function(datas){
         $('#result_search').empty();
         for(key in datas){
@@ -85,7 +89,7 @@ function initMap() {
       marker = new google.maps.Marker({
         position: {lat, lng},
         map: map,
-        icon: 'http://localhost/YAMATSI/public/assets/img/music_icon.png',
+        icon: locationPage[0]+"public/assets/img/music_icon.png",
         title: 'Hello World!'});
         
     }else{
