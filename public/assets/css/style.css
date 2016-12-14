@@ -58,7 +58,24 @@ a:hover {
     cursor: pointer;
 }
 
+.smaller {
+    font-size: 1.75rem;
+}
+
+button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
+
+html {
+    height: 100%;
+    width:100%;
+}
+
 body {
+    height: 100%;
+    width:100%;
+    position: relative;
     background:#FFF;
     font-family: 'OpenSans', sans-serif;
     color:#332532;
@@ -76,7 +93,7 @@ section {
 
 /* ################################### HEADER ################################### */
 
-header {
+header, #header {
     width: 100%;
     height: 8rem;
     background:#332532;
@@ -88,10 +105,6 @@ header #logo {
     height: 100%;
     width: 50%;
     margin: 0 auto;
-}
-
-header #logo a {
-    
 }
 
 header #logo a img {
@@ -148,7 +161,7 @@ form .inputbox select {
     padding: 0 0 0 2rem;
     border-radius: 1rem;
     border:none;
-    background: #FF974F;
+    background: #e4d6d9;
 }
 
 form .inputbox option {
@@ -167,7 +180,7 @@ form .inputbox label {
     transition: all 0.5s;
 }
 
-form .inputbox input {
+form .inputbox input, form .inputbox textarea {
     box-sizing: border-box;
     width: 100%;
     height: 5rem;
@@ -175,31 +188,88 @@ form .inputbox input {
     border:none;
     color:#332532;
     font-size: 2rem;
-    background:#FF974F;
+    background:#e4d6d9;
     margin: 3rem 0 0 0;
     padding: 0 0 0 2rem;
 }
 
 form .inputbox input:hover ~ label, 
 form .inputbox input:valid ~ label {
-    top:1rem;
+    top:0.75rem;
 }
 
-form input[type=submit] {
+form .inputbox .toplabel,
+form .timetable label,
+form .inputbox .filetitle {
+    top:0.75rem;
+}
+
+form .inputbox textarea {
+    resize:vertical;
+    height: 15rem;
+    padding: 2rem;
+}
+
+form .radiobox {
+    display: flex;
+    justify-content:space-between;
+    margin: 0 5rem 7rem 5rem;
+}
+
+form .radiobox label {
+    top:0.25rem;
+    left: -2rem;
+}
+
+form .oneradiobox {
+    position: relative;
+}
+
+form .radiobox .oneradiobox input:valid ~ label {
+    text-align: center;
+    font-size: 2rem;
+    -webkit-transform: translate(-50%, -50%); 
+    top:11rem;
+    left:1rem;
+}
+
+form .radiobox .oneradiobox input[type=radio] {
+    width: 3rem;
+}
+
+form .timetable .adddates {
     width: 100%;
-    height: 8rem;
-    border-radius: 1rem;
-    font-size: 3rem;
-    font-weight: 100;
-    margin: 2rem 0 9.5rem 0;
+    height: 6.5rem;
+    margin: 2rem 0;
     color:#FFF;
+    font-size: 2rem;
+    font-weight: 600;
+    border-radius: 1rem;
+    border:none;
     background:#332532;
 }
 
-form input[type=submit]:focus {
+form .timetable .adddates p {
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+form .timetable .adddates:focus {
     color:#332532;
-    background:#FFF;
-    border: 0.25rem solid #332532;
+    background: #FFF;
+}
+
+form .timetable .datesup {
+    display:none;
+}
+
+form .bool {
+    justify-content: space-around;
+    margin: 1rem 5rem 5rem 5rem;
+}
+
+form .nbplaces {
+    display:none;
 }
 
 form .orga {
@@ -213,8 +283,8 @@ form .orga .inputcomp {
     display:none;
 }
 
-.inputbox .picfile {
-    padding: 1.25rem 2rem 0 11rem;
+form .inputbox .picfile {
+    padding: 1.25rem 2rem 0 2rem;
 }
 
 .alert {
@@ -233,4 +303,143 @@ form .orga .inputcomp {
     position: absolute;
     top:1rem;
     right:1.5rem;
+}
+
+form input[type=submit], #send_position  {
+    width: 100%;
+    height: 8rem;
+    border: none;
+    border-radius: 1rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3rem;
+    font-weight: 600;
+    margin: 2rem 0 9.5rem 0;
+    color:#FFF;
+    background:#332532;
+    border: 0.25rem solid #FFF;
+}
+
+form input[type=submit]:focus, #send_position:focus {
+    color:#332532;
+    background:#FFF;
+    border: 0.25rem solid #332532;
+}
+
+/* ################################### MAP ################################### */
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+#header{
+    position: absolute;
+    top:0;
+    z-index: 1;
+}
+
+#header .navbar {
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content:space-between;
+    padding: 1rem;
+}
+
+#header .navbar select, #header .navbar input {
+    box-sizing: border-box;
+    height: 100%;
+    width: 25%;
+    padding: 1rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color:#332532;
+    border: none;
+    margin: 0 0.25rem;
+}
+
+#header .navbar select:first-child {
+    border-radius: 1rem 0 0 1rem;
+}
+
+#header .navbar input:last-child {
+    border-radius: 0 1rem 1rem 0;
+}
+
+#header #result_search {
+    width: 90%;
+    height: auto;
+    margin: 2rem auto;
+}
+
+#header #result_search .searchresult {
+    width: 100%;
+    height:8rem;
+    font-size: 2.5rem;
+    text-align: left;
+    padding: 0 0 0 2rem;
+    color:#212121;
+    border-bottom:0.2rem solid #332532;
+    border-left:0.2rem solid #332532;
+    border-right:0.2rem solid #332532;
+    background:#FFF;
+}
+
+#header #result_search .searchresult:nth-child(even) {
+    background:#e6e6e6;
+}
+
+#header #result_search .searchresult:first-child {
+    border-radius: 1rem 1rem 0 0;
+    border-top:0.2rem solid #332532;
+}
+
+#header #result_search .searchresult:last-child {
+    border-radius: 0 0 1rem 1rem;
+}
+
+#header #result_search .searchresult:focus {
+    color:#FFF;
+    background:#332532;
+}
+
+/* ################################ CREATE :: MAP ################################ */
+
+#header h1 {
+    margin: 1rem 0 0.5rem 0;
+    color:#FFF;
+    text-align: center;
+    font-weight: 300;
+}
+
+#search_city {
+    box-sizing: border-box;
+    width: 90%;
+    height: 5rem;
+    margin: 0 5%;
+    padding: 1rem;
+    font-size: 2rem;
+    border:0.125rem solid #332532;
+    border-radius: 1rem;
+}
+
+#send_position {
+    position: absolute;
+    -webkit-transform: translate(-50%, -50%); 
+    top: 105rem;
+    left:50%;
+    width: 90%;
+    z-index: 1;
+}
+
+/* ################################### MAP ################################### */
+
+#event_view{
+    height: 100%;
+    width: 500px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background-color: white;
 }

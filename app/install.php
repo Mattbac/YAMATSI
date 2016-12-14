@@ -84,11 +84,8 @@ if (!mysql_select_db($w_config['db_name'])) {
 
     $pdodbimport = new PDODbImporter();
 
-    $sql = file_get_contents("../app/sql/villes_france.sql");
     $pdodbimport->importSQL("../app/sql/db.sql", $db);
-
-    $sql = file_get_contents("../app/sql/villes_france.sql");
     $pdodbimport->importSQL("../app/sql/villes_france.sql", $db);
-
+    $pdodbimport->importSQL("../app/sql/data.sql", $db);
 }
 ?>

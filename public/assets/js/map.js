@@ -1,4 +1,4 @@
-var map, zoom = 15;
+var map, zoom = 5;
 
 var mapOptions = {
   zoom: zoom,
@@ -6,6 +6,7 @@ var mapOptions = {
   zoomControl: false,
   center: {lat: 50.632210, lng: 3.060658},
   mapTypeControlOptions: { mapTypeIds: [] },
+  fullscreenControl: false,
   styles: [
   {
     featureType: "road",
@@ -32,6 +33,8 @@ var markers = [];
 
 $(function() {
 
+  $('#event_view').hide();
+
 	valide = 0;
 	time = 0;
 	$('#search_city').on("input", function(){
@@ -55,7 +58,7 @@ $(function() {
       }).done(function(datas){
         $('#result_search').empty();
         for(key in datas){
-          $('#result_search').append("<button class='searchresult' style='color:black;' data-lat='"+datas[key]['ville_latitude_deg']+"' data-lng='"+datas[key]['ville_longitude_deg']+"'>"+datas[key]['ville_nom_reel']+' '+datas[key]['ville_code_postal'].substr(0,5)+"</button>");
+          $('#result_search').append("<button class='searchresult' data-lat='"+datas[key]['ville_latitude_deg']+"' data-lng='"+datas[key]['ville_longitude_deg']+"'>"+datas[key]['ville_nom_reel']+' '+datas[key]['ville_code_postal'].substr(0,5)+"</button>");
         }
       });
     }
@@ -66,6 +69,7 @@ $(function() {
 		window.location.hash = '/'+map.getCenter().lat()+'/'+map.getCenter().lng();
 
 		$('#result_search').empty();
+    $('#search_city').val('');
 	});
 
 });
@@ -81,11 +85,8 @@ function initMap() {
     }).done(function(datas){
 
 		for(key in datas){
-			console.log(datas[key]);
-			infowindow = new google.maps.InfoWindow({});
-
 			marker = new google.maps.Marker({
-				contenthtml: '<div>'+datas[key]['message']+'</div>',
+				content: datas[key]['id'],
 				position: new google.maps.LatLng(datas[key]['coor_lat'],datas[key]['coor_lng']),
 				map: map,
 				icon: 'http://localhost/YAMATSI/public/assets/img/music_icon.png',
@@ -93,8 +94,18 @@ function initMap() {
 			});
 
 			google.maps.event.addListener(marker, "click", function(event){
-				infowindow.setContent(this.contenthtml);
-				infowindow.open(this.getMap(), this);
+        $('#event_view').empty();
+        $('#event_view').show();
+        $.ajax({
+            dataType: 'html',
+            url: "http://localhost/YAMATSI/public/api/search_event_element/"+this.content
+        }).done(function(html){
+            $('#event_view').append(html);
+        });
+			});
+
+      google.maps.event.addListener(map, "click", function(event){
+        $('#event_view').hide();
 			});
 
 		}

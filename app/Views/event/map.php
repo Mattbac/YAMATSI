@@ -5,11 +5,12 @@
 <?php $this->stop('link_content') ?>
 
 <?php $this->start('main_content') ?>
-
-        <p style="color:black;">Ou souhaitez vous faire votre evenement ?</p>
+    <section id="header">
+        <h1>Où se situera votre évènement ?</h1>
         <input id="search_city" type="text" name="search_city">
         <div id='result_search'></div>
-        <div><button id="send_position">Envoyer la localisation !</button></div>
+        <button id="send_position">Envoyer la localisation</button>
+    </section>
 
 <?php $this->stop('main_content') ?>
 

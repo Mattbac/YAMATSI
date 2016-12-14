@@ -67,7 +67,7 @@
             </div>
             <div class="inputbox">
                 
-                <label for="userpic">Photo</label>
+                <label for="userpic" class="filetitle">Photo <i class="fa fa-file-image-o" aria-hidden="true"></i></label>
                 <input type="file" name="userpic" id="userpic" class="picfile">
 
             </div>
