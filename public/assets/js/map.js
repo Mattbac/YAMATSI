@@ -54,7 +54,7 @@ $(function() {
       $.ajax({
         type: "GET",
         dataType: 'json',
-        url: "http://localhost/YAMATSI/public/api/search_city/"+$('#search_city').val()
+        url: "http://localhost/wf3/YAMATSI/public/api/search_city/"+$('#search_city').val()
       }).done(function(datas){
         $('#result_search').empty();
         for(key in datas){
@@ -81,7 +81,7 @@ function initMap() {
 
     $.ajax({
         dataType: 'json',
-        url: "http://localhost/YAMATSI/public/api/search_event/"
+        url: "http://localhost/wf3/YAMATSI/public/api/search_event/"
     }).done(function(datas){
 
 		for(key in datas){
@@ -89,7 +89,7 @@ function initMap() {
 				content: datas[key]['id'],
 				position: new google.maps.LatLng(datas[key]['coor_lat'],datas[key]['coor_lng']),
 				map: map,
-				icon: 'http://localhost/YAMATSI/public/assets/img/music_icon.png',
+				icon: 'http://localhost/wf3/YAMATSI/public/assets/img/music_icon.png',
 				title: datas[key]['name']
 			});
 
@@ -98,7 +98,7 @@ function initMap() {
         $('#event_view').show();
         $.ajax({
             dataType: 'html',
-            url: "http://localhost/YAMATSI/public/api/search_event_element/"+this.content
+            url: "http://localhost/wf3/YAMATSI/public/api/search_event_element/"+this.content
         }).done(function(html){
             $('#event_view').append(html);
         });
@@ -111,4 +111,3 @@ function initMap() {
 		}
     });
 }
-
