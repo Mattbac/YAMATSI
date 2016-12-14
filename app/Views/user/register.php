@@ -5,9 +5,9 @@
 	<h1>Inscription</h1>
 
 	<h2 class="subtitle">Plus qu'une étape !</h2>
-	
+
     <form action="" method="post">
-        
+
         <div class="inputbox">
             <select name="users" id="users">
                 <option value="">Qui êtes vous ?</option>
@@ -16,22 +16,22 @@
                 <option value="comp">Entreprise</option>
             </select>
         </div>
-        
+
         <div class="inputbox">
             <input type="text" name="nickname" id="nickname" required>
             <label for="nickname">Pseudo</label>
         </div>
-        
-        <div class="inputbox">        
+
+        <div class="inputbox">
             <input type="email" name="email" id="email" required>
             <label for="email">E-mail</label>
-        </div>  
-              
+        </div>
+
         <div class="inputbox">
             <input type="email" id="confirmmail" required>
             <label for="confirmmail">Confirmez votre e-mail</label>
         </div>
-        
+
         <div class="inputbox">
             <input type="password" name="password" id="password" required>
             <label for="password">Mot de passe</label>
@@ -46,10 +46,10 @@
             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             <p>Le mot de passe requiert <strong>8 caractères minimum</strong>.</p>
         </div>
-        
+
         <div class="inputbox">
             <input type="password" id="confirmpassword" required>
-            <label for="confirmpassword">Confirmez votre mot de passe</label>
+            <label for="confirmpassword">Confirmez le mot de passe</label>
         </div>
 
        <div class="orga">
@@ -66,13 +66,13 @@
 
             </div>
             <div class="inputbox">
-                
+
                 <label for="userpic" class="filetitle">Photo <i class="fa fa-file-image-o" aria-hidden="true"></i></label>
                 <input type="file" name="userpic" id="userpic" class="picfile">
 
             </div>
        </div>
-       
+
         <input type="submit" value="S'inscrire">
 
     </form>

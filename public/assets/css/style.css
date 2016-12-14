@@ -42,12 +42,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .subtitle {
-    text-indent: 5rem;
-    font-size: 3.5rem;
-    padding: 1rem 0 2rem 0;
+    text-indent: 2.5rem;
+    font-size: 1.5rem;
+    padding: 0.5rem 0 1rem 0;
     margin: 0 0 0 0;
-    border-bottom:0.5rem solid #332532;
+    border-bottom:0.25rem solid #332532;
     color:#F77A52;
+}
+
+:focus {
+    outline: none;
 }
 
 a {
@@ -59,12 +63,22 @@ a:hover {
 }
 
 .smaller {
-    font-size: 1.75rem;
+    font-size: 0.75rem;
 }
 
 button {
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
+}
+
+.lane-space-around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.lane-space-between {
+  display: flex;
+  justify-content: space-between;;
 }
 
 html {
@@ -79,14 +93,14 @@ body {
     background:#FFF;
     font-family: 'OpenSans', sans-serif;
     color:#332532;
-    font-size: 2rem;
+    font-size: 1rem;
 }
 
-container {
+.container {
     width: 100%;
 }
 
-section {
+.globalforms {
     width: 95%;
     margin: 0 auto;
 }
@@ -95,45 +109,43 @@ section {
 
 header, #header {
     width: 100%;
-    height: 8rem;
+    height: 5rem;
     background:#332532;
     border-bottom: 0.25rem solid #F77A52;
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 0.75rem 0;
 }
 
-header #logo {
+header #longlogo {
     height: 100%;
     width: 50%;
     margin: 0 auto;
 }
 
-header #logo a {
-    
+header #longlogo a {
+
 }
 
-header #logo a img {
-    height: 90%;
+header #longlogo a img {
+    height: 100%;
     width: 100%;
-    padding: 2.5% 0 0 0;
     object-fit: contain;
 }
 
 /* ################################### FOOTER ################################### */
 
 footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    height: 7.5rem;
+    height: 2.5rem;
     position: fixed;
     bottom:0;
-    font-size: 2rem;
+    color:#FFF;
+    font-size: 0.7em;
     background:#332532;
     border-top:0.25rem solid #F77A52;
-}
-
-footer p {
-    margin: 2rem 0 0 0;
-    text-align: center;
-    color:#FFF;
+    z-index: 5;
 }
 
 footer p a {
@@ -142,6 +154,131 @@ footer p a {
 
 footer p a:focus {
     color:#FFF;
+}
+
+/* ##################################### HP ##################################### */
+
+#jumbo {
+  width: 100%;
+  height: 100%;
+  background:linear-gradient(45deg,#F77A52,#FF974F), url('../img/bg-map.png') center no-repeat;
+  background-blend-mode: multiply;
+}
+
+#hplogo {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#hplogo img {
+  width: 80%;
+}
+
+#go {
+  width: 60%;
+  height: 10rem;
+  padding: 0 0 1rem 0;
+  font-size: 6rem;
+  color:#332532;
+  border-radius: 2.5rem;
+  border:0.75rem solid #332532;
+  box-shadow: inset 0 0 1rem rgba(0,0,0,0.25);
+  background:#B58B94;
+}
+
+#go:focus {
+  color:#FFF;
+  border:0.75rem solid #FFF;
+  box-shadow: inset 0 0 1rem rgba(0,0,0,0.5);
+  background:#F77A52;
+}
+
+.userbar {
+  width: 80%;
+  height: 3rem;
+  margin: 10% 0 0 0;
+  font-size: 0;
+}
+
+.userbar button {
+  width: 50%;
+  height: 100%;
+  font-size: 1.25rem;
+  color:#332532;
+  border-top:0.125rem solid #332532;
+  border-bottom:0.125rem solid #332532;
+  border-left:0.125rem solid #332532;
+  border-right:none;
+  background:none;
+}
+
+.userbar button:focus {
+  background:rgba(255,255,255,0.5);
+}
+
+.userbar button:first-child {
+  border-radius: 1rem 0 0 1rem;
+}
+
+.userbar button:last-child {
+  border-right:0.125rem solid #332532;
+  border-radius: 0 1rem 1rem 0;
+}
+
+.downarrow {
+  margin: 0.8rem 0 0 0;
+  font-size: 2rem;
+  color:#e4d6d9;
+}
+
+#service {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  color:#FFF;
+  background:linear-gradient(135deg,#B58B94,#332532);
+  background-blend-mode: multiply;
+}
+
+#service h1 {
+
+}
+
+#service h2 {
+  font-weight: 300;
+  text-indent: 1rem;
+}
+
+#service .photolane {
+  width: 100%;
+  height: 16rem;
+  position: relative;
+}
+
+#service .photolane .showpic {
+  position: absolute;
+  width: 70%;
+  height: 8rem;
+  padding: 1rem;
+  z-index: 2;
+}
+
+#service .photolane .showpic:last-child {
+  top:6rem;
+  left:4rem;
+  z-index: 1;
+}
+
+#service .showpic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.25);
 }
 
 /* ################################### FORMS ################################### */
@@ -153,16 +290,16 @@ form {
 
 form .inputbox {
     position: relative;
-    padding: 1.5rem 0 0 0;
+    padding: 1rem 0 0 0;
 }
 
 form .inputbox select {
     width: 100%;
-    height: 5rem;
+    height: 2.5rem;
     color:#332532;
-    font-size: 2.5rem;
+    font-size: 1.25rem;
     font-weight: 600;
-    padding: 0 0 0 2rem;
+    padding: 0 0 0 1rem;
     border-radius: 1rem;
     border:none;
     background: #e4d6d9;
@@ -177,9 +314,9 @@ form .inputbox option {
 
 form .inputbox label {
     position: absolute;
-    left:2rem;
-    top:5.5rem;
-    font-size: 2.5rem;
+    left:1rem;
+    top:2.75rem;
+    font-size: 1.25rem;
     font-weight: 600;
     transition: all 0.5s;
 }
@@ -187,66 +324,80 @@ form .inputbox label {
 form .inputbox input, form .inputbox textarea {
     box-sizing: border-box;
     width: 100%;
-    height: 5rem;
+    height: 2.5rem;
     border-radius: 1rem;
     border:none;
     color:#332532;
-    font-size: 2rem;
+    font-size: 1rem;
     background:#e4d6d9;
-    margin: 3rem 0 0 0;
-    padding: 0 0 0 2rem;
+    margin: 1.5rem 0 0 0;
+    padding: 0 1rem;
 }
 
-form .inputbox input:hover ~ label, 
-form .inputbox input:valid ~ label {
-    top:0.75rem;
-}
-
+form .inputbox input:hover ~ label,
+form .inputbox input:valid ~ label,
 form .inputbox .toplabel,
 form .timetable label,
 form .inputbox .filetitle {
-    top:0.75rem;
+    top:0.5rem;
 }
 
 form .inputbox textarea {
     resize:vertical;
-    height: 15rem;
-    padding: 2rem;
+    height: 7.5rem;
+    padding: 1rem;
+    font-family: 'OpenSans', sans-serif;
 }
 
 form .radiobox {
+    margin: 0 2rem 4rem 2rem;
+}
+
+form .radiobox .radiolane {
     display: flex;
-    justify-content:space-between;
-    margin: 0 5rem 7rem 5rem;
+    justify-content:space-around;
+    margin: 0 0 2.5rem 0;
 }
 
 form .radiobox label {
-    top:0.25rem;
-    left: -2rem;
+    top:0;
+    left: -1.5rem;
 }
 
 form .oneradiobox {
     position: relative;
 }
 
+form .bool {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 2.5rem 2.5rem 2.5rem;
+}
+
+form .bool .oneradiobox input {
+    margin-top: 2.5rem;
+}
+
 form .radiobox .oneradiobox input:valid ~ label {
     text-align: center;
-    font-size: 2rem;
-    -webkit-transform: translate(-50%, -50%); 
-    top:11rem;
+    font-size: 1rem;
+    -webkit-transform: translate(-50%, -50%);
+    top:6rem;
     left:1rem;
 }
 
 form .radiobox .oneradiobox input[type=radio] {
-    width: 3rem;
+    width: 2rem;
 }
-
 form .timetable .adddates {
+    display:flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 6.5rem;
-    margin: 2rem 0;
+    height: 3.5rem;
+    margin: 1rem 0;
     color:#FFF;
-    font-size: 2rem;
+    font-size: 1em;
     font-weight: 600;
     border-radius: 1rem;
     border:none;
@@ -255,7 +406,6 @@ form .timetable .adddates {
 
 form .timetable .adddates p {
     text-align: center;
-    padding: 1.5rem 0;
 }
 
 form .timetable .adddates:focus {
@@ -265,11 +415,6 @@ form .timetable .adddates:focus {
 
 form .timetable .datesup {
     display:none;
-}
-
-form .bool {
-    justify-content: space-around;
-    margin: 1rem 5rem 5rem 5rem;
 }
 
 form .nbplaces {
@@ -288,45 +433,45 @@ form .orga .inputcomp {
 }
 
 form .inputbox .picfile {
-    padding: 1.25rem 2rem 0 2rem;
+    padding: 0.5rem 1rem;
 }
 
 .alert {
     display:none;
     position: relative;
     border-radius: 1rem;
-    margin: 2rem 0 0 0;
-    padding: 1rem 5rem 1rem 2rem;
-    font-size: 1.5rem;
+    margin: 1rem 0 0 0;
+    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    font-size: 1rem;
     color:#FFF;
     background:#e84c3d;
 }
 
 .alert i {
-    font-size: 2rem;
+    font-size: 1.5rem;
     position: absolute;
     top:1rem;
-    right:1.5rem;
+    right:1rem;
 }
 
 form input[type=submit], #send_position  {
     width: 100%;
-    height: 8rem;
+    height: 5rem;
     border: none;
     border-radius: 1rem;
     font-family: 'Roboto', sans-serif;
-    font-size: 3rem;
+    font-size: 1.5em;
     font-weight: 600;
-    margin: 2rem 0 9.5rem 0;
+    margin: 1rem 0 3.5rem 0;
     color:#FFF;
     background:#332532;
-    border: 0.25rem solid #FFF;
+    border: 0.125rem solid #FFF;
 }
 
 form input[type=submit]:focus, #send_position:focus {
     color:#332532;
     background:#FFF;
-    border: 0.25rem solid #332532;
+    border: 0.125rem solid #332532;
 }
 
 /* ################################### MAP ################################### */
@@ -334,6 +479,7 @@ form input[type=submit]:focus, #send_position:focus {
 #map {
     height: 100%;
     width: 100%;
+    font-size: 2rem;
 }
 
 #header{
@@ -347,15 +493,15 @@ form input[type=submit]:focus, #send_position:focus {
     box-sizing: border-box;
     display: flex;
     justify-content:space-between;
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
 #header .navbar select, #header .navbar input {
     box-sizing: border-box;
     height: 100%;
     width: 25%;
-    padding: 1rem;
-    font-size: 1.75rem;
+    padding: 0.25rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color:#332532;
     border: none;
@@ -378,28 +524,18 @@ form input[type=submit]:focus, #send_position:focus {
 
 #header #result_search .searchresult {
     width: 100%;
-    height:8rem;
-    font-size: 2.5rem;
+    height:3rem;
+    font-size: 1rem;
     text-align: left;
-    padding: 0 0 0 2rem;
+    padding: 0 0 0 1rem;
     color:#212121;
-    border-bottom:0.2rem solid #332532;
-    border-left:0.2rem solid #332532;
-    border-right:0.2rem solid #332532;
+    border:0.125rem solid #b58b94;
+    border-radius: 1rem;
     background:#FFF;
 }
 
 #header #result_search .searchresult:nth-child(even) {
     background:#e6e6e6;
-}
-
-#header #result_search .searchresult:first-child {
-    border-radius: 1rem 1rem 0 0;
-    border-top:0.2rem solid #332532;
-}
-
-#header #result_search .searchresult:last-child {
-    border-radius: 0 0 1rem 1rem;
 }
 
 #header #result_search .searchresult:focus {
@@ -410,10 +546,11 @@ form input[type=submit]:focus, #send_position:focus {
 /* ################################ CREATE :: MAP ################################ */
 
 #header h1 {
-    margin: 1rem 0 0.5rem 0;
+    margin: 0.5rem 0 0.25rem 0;
     color:#FFF;
     text-align: center;
     font-weight: 300;
+    font-size: 1.5rem;
 }
 
 #search_city {
@@ -428,9 +565,10 @@ form input[type=submit]:focus, #send_position:focus {
 }
 
 #send_position {
-    position: absolute;
-    -webkit-transform: translate(-50%, -50%); 
-    top: 105rem;
+    position: fixed;
+    -webkit-transform: translate(-50%, -50%);
+    margin: 0;
+    bottom:0;
     left:50%;
     width: 90%;
     z-index: 1;
