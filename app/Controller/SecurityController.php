@@ -4,7 +4,7 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \W\Security\AuthentificationModel as Auth;
-use \Model\UserModel as User;
+use \Model\UsersModel as User;
 
 class SecurityController extends Controller
 {

@@ -18,7 +18,8 @@ message TEXT NOT NULL,/* presentation message of the event */
 date_time TEXT NOT NULL,/* range of date and time in format text with serialize */
 picture_first VARCHAR(255),/* presentation picture */
 users_id INT(11) NOT NULL,/* id of the assoc or comp who create the event */
-guest_part_id INT(11) NOT NULL,/* id of the guest or partenaire*/
+guest_part_id TEXT NULL,/* serialize array with the id of the guest or part ['guest' => [1,58,63,778], 'part' => [922,42,766,1588]]*/
+user_come_id TEXT NULL,/* serialize array with the id users who will come */
 coor_lat float NOT NULL,/* coor_lat */
 coor_lng float NOT NULL,/* coor_lng */
 comment_autorize TINYINT(1) NOT NULL,/* comment autorize or not */

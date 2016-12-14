@@ -10,7 +10,7 @@
 		['GET|POST', 	'/forget'							, 'Security#forget'				, 'security_forget'],
 
 	
-		['GET|',		'/user[/]?[i:id]?[/]?'							, 'User#profil'					, 'user_profil'], //liste de tout les membres
+		['GET|',		'/user[/]?[i:id]?[/]?'				, 'User#profil'					, 'user_profil'], //liste de tout les membres
 		['GET|POST',	'/user/edit[/]?'					, 'User#edit'					, 'user_edit'], //liste de tout les membres
 		['GET|POST',	'/user/register[/]?'				, 'User#register'				, 'user_register'], //liste de tout les membres
 
