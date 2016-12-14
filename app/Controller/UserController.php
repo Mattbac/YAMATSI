@@ -12,11 +12,12 @@ class UserController extends Controller
     public function profil($id = 0)
     {
         $user = new User;
-        if ($id = 0 && !is_null($user->getUser())) {
+        if($id == 0 && isset($this->getUser()['id'])) {
+            /*var_dump($this->getUser());*/
+            $this->show('user/profilUser', ['title' => 'page user perso '.$id, 'user' => $this->getUser()]);
+        }else{
             $this->show('user/profil', ['title' => 'page user '.$id, 'user' => $user->find($id)]);
         }
-
-        $this->show('user/profil', ['title' => 'page user '.$id, 'user' => $user->find($id)]);
     }
 
     public function edit()

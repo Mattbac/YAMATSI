@@ -8,14 +8,13 @@
 		['GET|POST', 	'/login'							, 'Security#login'				, 'security_login'],
 		['GET', 		'/logout'							, 'Security#logout'				, 'security_logout'],
 		['GET|POST', 	'/forget'							, 'Security#forget'				, 'security_forget'],
-
 	
 		['GET|',		'/user[/]?[i:id]?[/]?'				, 'User#profil'					, 'user_profil'], //liste de tout les membres
 		['GET|POST',	'/user/edit[/]?'					, 'User#edit'					, 'user_edit'], //liste de tout les membres
 		['GET|POST',	'/user/register[/]?'				, 'User#register'				, 'user_register'], //liste de tout les membres
 
-		['GET|',		'/event[/]?'						, 'Event#page'					, 'event_page'], //liste de tout les membres
-		['GET|POST',	'/event/edit[/]?'					, 'Event#edit'					, 'event_edit'], //liste de tout les membres
+		['GET|',		'/event[/]?[i:id]?[/]?'				, 'Event#page'					, 'event_page'], //liste de tout les membres
+		['GET|POST',	'/event/edit/[i:id][/]?'			, 'Event#edit'					, 'event_edit'], //liste de tout les membres
 		['GET|POST',	'/event/create/[*:lat]/[*:lng][/]?'	, 'Event#create'				, 'event_create'], //liste de tout les membres
 		['GET',			'/event/map[/]?'					, 'Event#map'					, 'event_map'], //liste de tout les membres
 

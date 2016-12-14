@@ -35,12 +35,6 @@ message TEXT NOT NULL,/* message */
 title VARCHAR(255) NULL,/* title of the comment when it is the first comment */
 created_at INT(11) NOT NULL/* timestamp */) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS rate_event (
-id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,/* id */
-event_id INT(11) NOT NULL,/* id of the event */
-users_id INT(11) NOT NULL,/* id of the user */
-rate_value INT(1) NOT NULL/* between 1 and 4 */) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE IF NOT EXISTS rate_comment (
 id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,/* id */
 comment_id INT(11) NOT NULL,/* id of the event */
@@ -50,3 +44,9 @@ rate_value INT(1) NOT NULL/* id of the user */) ENGINE=InnoDB DEFAULT CHARSET=ut
 CREATE TABLE IF NOT EXISTS type (
 id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,/* id */
 name VARCHAR(255) NOT NULL/* id of the event */) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS register_event (
+event_id INT(11) NOT NULL,/* id of the event */
+user_id INT(11) NOT NULL,/* id of the event */
+date_time INT(11) NOT NULL,/* Timestamp of register */
+rate_value INT(1) NOT NULL/* between 1 and 4 */) ENGINE=InnoDB DEFAULT CHARSET=utf8;
