@@ -28,21 +28,25 @@
 
             <label for="category">Catégorie :</label>
 
-            <div class="oneradiobox">
-                <input type="radio" id="categoryall" name="category" value="0" checked> <label for="categoryall">Tout public</label>
+            <div class="radiolane">
+                <div class="oneradiobox">
+                    <input type="radio" id="categoryall" name="category" value="0" checked> <label for="categoryall">Tout public</label>
+                </div>
+
+                <div class="oneradiobox">
+                    <input type="radio" id="categorychild" name="category" value="1"> <label for="categorychild">Enfants</label>
+                </div>
             </div>
 
-            <div class="oneradiobox">
-                <input type="radio" id="categorychild" name="category" value="1"> <label for="categorychild">Enfants</label>
-            </div>
+            <div class="radiolane">
+                <div class="oneradiobox">
+                    <input type="radio" id="categoryteenager" name="category" value="2">
+                    <label for="categoryteenager">Adolescents</label>
+                </div>
 
-            <div class="oneradiobox">
-                <input type="radio" id="categoryteenager" name="category" value="2">
-                <label for="categoryteenager">Adolescents</label>
-            </div>
-
-            <div class="oneradiobox">
-                <input type="radio" id="categoryadult" name="category" value="3"> <label for="categoryadult">Adultes</label>
+                <div class="oneradiobox">
+                    <input type="radio" id="categoryadult" name="category" value="3"> <label for="categoryadult">Adultes</label>
+                </div>
             </div>
         </div>
 
@@ -140,13 +144,13 @@
 
             <label for="comment">Autoriser les commentaires ?</label>
 
-            <div class="oneradiobox">
-            <input type="radio" name="comment" value="1" checked id="comment1">
+            <div class="oneradiobox comment">
+            <input type="radio" name="comment" value="1" id="comment1" checked>
             <label for="comment1">Oui</label>
             </div>
 
-            <div class="oneradiobox">
-            <input type="radio" name="comment" value="0">
+            <div class="oneradiobox comment">
+            <input type="radio" name="comment" value="0" id="commen21">
             <label for="comment2">Non</label>
             </div>
 
