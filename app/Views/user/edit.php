@@ -23,8 +23,6 @@
 	        <label for="email">E-mail</label>
 	        <input type="email" name="email" id="email" value="<?= $compFormulaire['email'] ?>">
 
-
-
           <!-- Edition du mdp plus confimation -->
 
 	        <label for="password">Nouveau mot de passe</label>

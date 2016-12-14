@@ -4,17 +4,22 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \W\Security\AuthentificationModel as Auth;
-use \Model\UsersModel as User;
+use \Model\UserModel as User;
 
 class UserController extends Controller
 {
 
     public function profil($id = 0)
     {
-        $this->show('user/profil', ['title' => 'page user '.$id]);
+        $user = new User;
+        if ($id = 0 && !is_null($user->getUser())) {
+            $this->show('user/profil', ['title' => 'page user '.$id, 'user' => $user->find($id)]);
+        }
+
+        $this->show('user/profil', ['title' => 'page user '.$id, 'user' => $user->find($id)]);
     }
 
-    public function edit($value='')
+    public function edit()
     {
 
           $message = '';
@@ -22,7 +27,7 @@ class UserController extends Controller
           $auth = new Auth;
           $id = $this->getUser(); // recuperation de l'ID
 
-            if(isset($_POST['edit']))
+            if(isset($_POST['edit'])){
 
             // FAIRE CAS D'ERREURS
             ## EXTENSIONS DE FICHIERS ACCEPTES ### */
@@ -51,7 +56,7 @@ class UserController extends Controller
                 'password' => $auth->hashPassword($_POST['password'])
               ];
 
-              if (isset($_FILES['file']))
+              if (isset($_FILES['file']['tmp_name']))
               {
                 $datas['pictures_profile'] = $_FILES['file']['name'];
               }
@@ -59,22 +64,19 @@ class UserController extends Controller
 
               $auth->refreshUser($user); // on utilise la sesison pour afficher les champs donc il faut l'actualiser lors de l'envoi de la requete Update
 
-              $message = '<div>Félicitation vous êtes bien inscrit</div>';
+              $message = '<div>Profil modifié</div>';
               }
               else
               {
-                $message = '<div>Vérifiez les champs, merci</div>';
+                $message = '<div></div>';
               }
-
+            }
           $this->show('user/edit', ['title' => 'edit user', 'message'=> $message, 'compFormulaire' => $this->getUser()]);
       }
 
 
-    public function register($value='')
+    public function register()
     {
-      // Register User
-
-
         $message = '';
         if(isset($_POST['submit']))
         {
@@ -104,10 +106,11 @@ class UserController extends Controller
      							 }
      						 }
                  $datas = [
+                   'type'     => $_POST['type'],
                    'nickname' => $_POST['nickname'],
                    'email'    => $_POST['email'],
-                   'password' => $auth->hashPassword($_POST['password']),
-                   'type'     => $_POST['type'],
+                   'password' => $auth->hashPassword($_POST['password'])
+
                  ];
                  if (isset($_FILES['file']))
                  {

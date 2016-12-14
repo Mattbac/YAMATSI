@@ -107,6 +107,7 @@ header #logo {
     margin: 0 auto;
 }
 
+
 header #logo a img {
     height: 90%;
     width: 100%;
@@ -193,7 +194,7 @@ form .inputbox input, form .inputbox textarea {
     padding: 0 0 0 2rem;
 }
 
-form .inputbox input:hover ~ label, 
+form .inputbox input:hover ~ label,
 form .inputbox input:valid ~ label {
     top:0.75rem;
 }
@@ -228,7 +229,7 @@ form .oneradiobox {
 form .radiobox .oneradiobox input:valid ~ label {
     text-align: center;
     font-size: 2rem;
-    -webkit-transform: translate(-50%, -50%); 
+    -webkit-transform: translate(-50%, -50%);
     top:11rem;
     left:1rem;
 }
@@ -273,7 +274,7 @@ form .nbplaces {
 }
 
 form .orga {
-   display:none;
+   display:;
 }
 
 form .orga .inputassoc {
@@ -425,7 +426,7 @@ form input[type=submit]:focus, #send_position:focus {
 
 #send_position {
     position: absolute;
-    -webkit-transform: translate(-50%, -50%); 
+    -webkit-transform: translate(-50%, -50%);
     top: 105rem;
     left:50%;
     width: 90%;
