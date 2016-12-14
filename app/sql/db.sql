@@ -14,6 +14,7 @@ token VARCHAR(255) NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE IF NOT EXISTS event (
 id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,/* id */
 name VARCHAR(255) NOT NULL,/* Name of the event */
+adress VARCHAR(255) NOT NULL,/* Adress of the event */
 message TEXT NOT NULL,/* presentation message of the event */
 date_time TEXT NOT NULL,/* range of date and time in format text with serialize */
 picture_first VARCHAR(255),/* presentation picture */
@@ -22,7 +23,7 @@ guest_part_id INT(11) NOT NULL,/* id of the guest or partenaire*/
 coor_lat float NOT NULL,/* coor_lat */
 coor_lng float NOT NULL,/* coor_lng */
 comment_autorize TINYINT(1) NOT NULL,/* comment autorize or not */
-category_of INT(11) NOT NULL,/* child, teenager, adult, tout public */
+category_of VARCHAR(255) NOT NULL,/* child, teenager, adult, tout public */
 type_id INT(11) NOT NULL/* musique, art, danse, sport ... */) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS comment (

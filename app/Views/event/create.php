@@ -5,7 +5,7 @@
     <h1>Créer un évènement</h1>
     <h2 class="subtitle">Dernière étape</h2>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
 
         <div class="inputbox">
             <input type="text" name="name" id="name" required>
@@ -62,12 +62,12 @@
         <div class="timetable">
             <div class="inputbox">
                 <label for="start1">Horaire de début</label>
-                <input type="time" step="1800" id="start1">
+                <input type="time" step="1800" id="start1" name="start1">
             </div>
 
             <div class="inputbox">
                 <label for="stop1">Horaire de fin</label>
-                <input type="time" step="1800" id="stop1">
+                <input type="time" step="1800" id="stop1" name="stop1">
             </div>
 
             <div class="inputbox">
@@ -121,8 +121,8 @@
         </div>
 
         <div class="inputbox">
-            <label for="eventpic" class="filetitle">Ajouter des photos <i class="fa fa-file-image-o" aria-hidden="true"></i></label>
-            <input name="eventpic" id="eventpic" type="file" class="picfile">
+            <label for="file" class="filetitle">Ajouter des photos <i class="fa fa-file-image-o" aria-hidden="true"></i></label>
+            <input name="file" id="eventpic" type="file" class="picfile">
         </div>
 
         <div class="inputbox">
