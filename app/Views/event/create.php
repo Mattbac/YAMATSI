@@ -5,7 +5,7 @@
     <h1>Créer un évènement</h1>
     <h2 class="subtitle">Dernière étape</h2>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
 
         <div class="inputbox">
             <input type="text" name="name" id="name" required>
@@ -28,21 +28,25 @@
 
             <label for="category">Catégorie :</label>
 
-            <div class="oneradiobox">
-                <input type="radio" id="categoryall" name="category" value="0" checked> <label for="categoryall">Tout public</label>
+            <div class="radiolane">
+                <div class="oneradiobox">
+                    <input type="radio" id="categoryall" name="category" value="0" checked> <label for="categoryall">Tout public</label>
+                </div>
+
+                <div class="oneradiobox">
+                    <input type="radio" id="categorychild" name="category" value="1"> <label for="categorychild">Enfants</label>
+                </div>
             </div>
 
-            <div class="oneradiobox">
-                <input type="radio" id="categorychild" name="category" value="1"> <label for="categorychild">Enfants</label>
-            </div>
+            <div class="radiolane">
+                <div class="oneradiobox">
+                    <input type="radio" id="categoryteenager" name="category" value="2">
+                    <label for="categoryteenager">Adolescents</label>
+                </div>
 
-            <div class="oneradiobox">
-                <input type="radio" id="categoryteenager" name="category" value="2">
-                <label for="categoryteenager">Adolescents</label>
-            </div>
-
-            <div class="oneradiobox">
-                <input type="radio" id="categoryadult" name="category" value="3"> <label for="categoryadult">Adultes</label>
+                <div class="oneradiobox">
+                    <input type="radio" id="categoryadult" name="category" value="3"> <label for="categoryadult">Adultes</label>
+                </div>
             </div>
         </div>
 
@@ -62,12 +66,12 @@
         <div class="timetable">
             <div class="inputbox">
                 <label for="start1">Horaire de début</label>
-                <input type="time" step="1800" id="start1">
+                <input type="time" step="1800" id="start1" name="start1">
             </div>
 
             <div class="inputbox">
                 <label for="stop1">Horaire de fin</label>
-                <input type="time" step="1800" id="stop1">
+                <input type="time" step="1800" id="stop1" name="stop1">
             </div>
 
             <div class="inputbox">
@@ -121,8 +125,8 @@
         </div>
 
         <div class="inputbox">
-            <label for="eventpic" class="filetitle">Ajouter des photos <i class="fa fa-file-image-o" aria-hidden="true"></i></label>
-            <input name="eventpic" id="eventpic" type="file" class="picfile">
+            <label for="file" class="filetitle">Ajouter des photos <i class="fa fa-file-image-o" aria-hidden="true"></i></label>
+            <input name="file" id="eventpic" type="file" class="picfile">
         </div>
 
         <div class="inputbox">
@@ -140,13 +144,13 @@
 
             <label for="comment">Autoriser les commentaires ?</label>
 
-            <div class="oneradiobox">
-            <input type="radio" name="comment" value="1" checked id="comment1">
+            <div class="oneradiobox comment">
+            <input type="radio" name="comment" value="1" id="comment1" checked>
             <label for="comment1">Oui</label>
             </div>
 
-            <div class="oneradiobox">
-            <input type="radio" name="comment" value="0">
+            <div class="oneradiobox comment">
+            <input type="radio" name="comment" value="0" id="commen21">
             <label for="comment2">Non</label>
             </div>
 

@@ -15,20 +15,26 @@ class EventController extends Controller
         $this->show('event/page', ['title' => 'page event '.$id]);
     }
 
-    public function edit($id = 0)
+    public function edit($id=0)
     {
+        if(isset($_POST['submitformcreate']))
+        {
+          $event = new Event();
+          $event->update([
+            'name'             => $_POST['name'],
+            'adress'           => $_POST['adress'],
+            'message'          => $_POST['description']
+          ],$id, false);
+        }
+
          $this->show('event/edit', ['title' => 'edit event'.$id]);
     }
 
-
-
-
-
-
     public function create($lat, $lng)
     {
-        if(isset($_POST['submitformcreate'])){// if the form is send
+        if(isset($_POST['submitformcreate'])){// if the form is send // && is_numeric($lat) && is_numeric($lng)
           $event = new Event();
+          var_dump($_POST);
           $extensions = ["image/png", "image/gif", "image/jpg", "image/jpeg"];
 
           /* ### CLASSE LES AVATARS PAR USER ### */
@@ -48,16 +54,26 @@ class EventController extends Controller
                 }
 
             $datas = [
-              'name'          => $_POST['name'],
-              'message'       => $_POST['description'],
+              'name'             => $_POST['name'],
+              'adress'           => $_POST['adress'],
+              'message'          => $_POST['description'],
+              'category_of'      => $_POST['category'],
+              'type_id'          => $_POST['type'],
+              'date_time'        => '549841', // matt ICIIIIIIIII
+              'comment_autorize' => $_POST['comment'],
+              'guest_part_id'    => '1', // matt ICIIIIIIIII
+              'coor_lat'         => $lat,
+              'coor_lng'         => $lng,
+              'users_id'         => '1' // matt ICIIIIIIIII
+
             ];
 
             if (isset($_FILES['file']))
             {
-              $datas['pictures_picture_first'] = $_FILES['file']['name'];
+              $datas['picture_first'] = $_FILES['file']['name'];
             }
-            $user->insert($datas);
 
+            $event->insert($datas);
         }
       }
         $types = new Type();

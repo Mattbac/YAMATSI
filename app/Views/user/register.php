@@ -5,6 +5,7 @@
 	<h1>Inscription</h1>
 
 	<h2 class="subtitle">Plus qu'une étape !</h2>
+
   <?= $message ?>
     <form action="" method="post" enctype="multipart/form-data">
 
@@ -48,8 +49,10 @@
         </div>
 
         <div class="inputbox">
+
             <input type="password"  name="confirmpassword" id="confirmpassword" required>
             <label for="confirmpassword">Confirmez votre mot de passe</label>
+
         </div>
 
        <div class="orga">
@@ -66,7 +69,7 @@
 
             </div>
             <div class="inputbox">
-							         
+
                 <label for="userpic" class="filetitle">Photo <i class="fa fa-file-image-o" aria-hidden="true"></i></label>
                 <input type="file" name="file" id="userpic" class="picfile">
 
