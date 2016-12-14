@@ -7,6 +7,6 @@
   <p><?= $user['email'] ?></p>
   <img src="<?= $this->assetUrl('img/avatar/'.$user['pictures_profile']) ?>" alt="imageProfil" height="150" >
 
-  
+    <a href="<?= $this->url('user_edit', ['user' => $this->getUser()]) ?>">Modifier</a>
 
 <?php $this->stop('main_content') ?>

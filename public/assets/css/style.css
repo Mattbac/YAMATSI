@@ -91,7 +91,7 @@ header #logo {
 }
 
 header #logo a {
-    
+
 }
 
 header #logo a img {
@@ -180,7 +180,7 @@ form .inputbox input {
     padding: 0 0 0 2rem;
 }
 
-form .inputbox input:hover ~ label, 
+form .inputbox input:hover ~ label,
 form .inputbox input:valid ~ label {
     top:1rem;
 }
@@ -203,7 +203,7 @@ form input[type=submit]:focus {
 }
 
 form .orga {
-   display:none;
+   display:;
 }
 
 form .orga .inputassoc {

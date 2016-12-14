@@ -5,33 +5,33 @@
 	<h1>Inscription</h1>
 
 	<h2 class="subtitle">Plus qu'une étape !</h2>
-	
-    <form action="" method="post">
-        
+  <?= $message ?>
+    <form action="" method="post" enctype="multipart/form-data">
+
         <div class="inputbox">
-            <select name="users" id="users">
+            <select name="type" id="type">
                 <option value="">Qui êtes vous ?</option>
                 <option value="user">Particulier</option>
                 <option value="assoc">Association</option>
                 <option value="comp">Entreprise</option>
             </select>
         </div>
-        
+
         <div class="inputbox">
             <input type="text" name="nickname" id="nickname" required>
             <label for="nickname">Pseudo</label>
         </div>
-        
-        <div class="inputbox">        
+
+        <div class="inputbox">
             <input type="email" name="email" id="email" required>
             <label for="email">E-mail</label>
-        </div>  
-              
+        </div>
+
         <div class="inputbox">
-            <input type="email" id="confirmmail" required>
+            <input type="email" name="confirmmail" id="confirmmail" required>
             <label for="confirmmail">Confirmez votre e-mail</label>
         </div>
-        
+
         <div class="inputbox">
             <input type="password" name="password" id="password" required>
             <label for="password">Mot de passe</label>
@@ -46,9 +46,9 @@
             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             <p>Le mot de passe requiert <strong>8 caractères minimum</strong>.</p>
         </div>
-        
+
         <div class="inputbox">
-            <input type="password" id="confirmpassword" required>
+            <input type="password"  name="confirmpassword" id="confirmpassword" required>
             <label for="confirmpassword">Confirmez votre mot de passe</label>
         </div>
 
@@ -66,14 +66,14 @@
 
             </div>
             <div class="inputbox">
-                
-                <label for="userpic">Photo</label>
-                <input type="file" name="userpic" id="userpic" class="picfile">
+
+                <label for="file">Photo</label>
+                <input type="file" name="file" id="userpic" class="picfile">
 
             </div>
        </div>
-       
-        <input type="submit" value="S'inscrire">
+
+        <input type="submit" name="submit" value="S'inscrire">
 
     </form>
 
