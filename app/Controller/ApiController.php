@@ -53,7 +53,7 @@ class ApiController extends Controller
             $element['guest_part'] = ['guest' => '', 'part' => ''];
         }
 
-        $this->show('default/event_map', [  'event'     => $element['event'], 
+        $this->show('default/event_map', [  'event'     => $element['event'],
                                             'coms'      => $element['com'],
                                             'guests'    => $element['guest_part']['guest'],
                                             'parts'     => $element['guest_part']['part'],

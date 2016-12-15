@@ -81,6 +81,10 @@ button {
   justify-content: space-between;;
 }
 
+.hidden {
+  display: none;
+}
+
 html {
     height: 100%;
     width:100%;
@@ -174,15 +178,17 @@ footer p a:focus {
 }
 
 #go{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 7rem;
   width: 60%;
   height: 10rem;
-  padding: 0 0 1rem 0;
-  font-size: 6rem;
-  color:#332532;
+  color: #332532;
   border-radius: 2.5rem;
-  border:0.75rem solid #332532;
+  border: 0.75rem solid #332532;
   box-shadow: inset 0 0 1rem rgba(0,0,0,0.25);
-  background:#B58B94;
+  background: #B58B94;
 }
 
 #go:focus {
@@ -230,51 +236,57 @@ footer p a:focus {
   color:#e4d6d9;
 }
 
-#service {
+#service, #corporate {
   box-sizing: border-box;
   width: 100%;
-  height: 100%;
-  padding: 0.5rem;
+  height: auto;
+  padding: 0.5rem 0.5rem 2rem 0.5rem;
   color:#FFF;
   background:linear-gradient(135deg,#B58B94,#332532);
   background-blend-mode: multiply;
 }
 
-#service h1 {
-
-}
-
-#service h2 {
+#service h2,
+#corporate h2 {
   font-weight: 300;
   text-indent: 1rem;
 }
 
-#service .photolane {
+#service .photolane,
+#corporate .photolane {
   width: 100%;
-  height: 16rem;
-  position: relative;
+  height: 18rem;
 }
 
-#service .photolane .showpic {
-  position: absolute;
-  width: 70%;
+#service .photolane .showpic,
+#corporate .photolane .showpic {
+  width: 90%;
   height: 8rem;
-  padding: 1rem;
-  z-index: 2;
+  margin: 1rem auto;
 }
 
-#service .photolane .showpic:last-child {
-  top:6rem;
-  left:4rem;
-  z-index: 1;
-}
-
-#service .showpic img {
+#service .showpic img,
+#corporate .showpic img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 1rem;
+  border-radius: 1rem 0 0 0;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.25);
+}
+
+#service .photolane .showpic:last-child img,
+#corporate .photolane .showpic:last-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 0 1rem 0;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.25);
+}
+
+#corporate {
+  color:#FFF;
+  background:linear-gradient(65deg,#F77A52,#FF974F);
+  padding: 0.5rem 0.5rem 3.5rem 0.5rem;
 }
 
 /* ################################### FORMS ################################### */
@@ -418,7 +430,7 @@ form .nbplaces {
 }
 
 form .orga {
-   display:;
+   display:none;
 }
 
 form .orga .inputassoc {
@@ -471,16 +483,6 @@ form input[type=submit]:focus, #send_position:focus {
 }
 
 /* ################################### MAP ################################### */
-
-#event_view{
-    height: 100%;
-    width: 500px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 999;
-    background-color: white;
-}
 
 #map {
     height: 100%;
@@ -547,6 +549,211 @@ form input[type=submit]:focus, #send_position:focus {
 #header #result_search .searchresult:focus {
     color:#FFF;
     background:#332532;
+}
+
+/* ############################### MAP :: EVENTVIEW ############################### */
+
+#event_view{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    color:#332532;
+    font-size: 2rem;
+    background-color: #e6e6e6;
+}
+
+#event_view a {
+  color:#F77A52;
+}
+
+#event_view .cancelling-cross {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 1rem;
+  right: 1rem;
+  z-index: 5;
+  background: #332532;
+  width: 3rem;
+  height: 3rem;
+  border: 0.25rem solid #FFF;
+  border-radius: 1rem;
+  color: #FFF;
+  font-size: 2rem;
+}
+
+#event_view .cancelling-cross:focus {
+  background: #F77A52;
+}
+
+#event_view .eventview-header {
+  width: 100%;
+  height: 24rem;
+  position: relative;
+  border-bottom: 0.25rem solid #FF974F;
+}
+
+#event_view .eventview-header h1,
+#event_view .eventview-header p,
+#event_view .eventview-header .eventview-interact,
+#event_view .eventview-header .eventview-interact button,
+#event_view .eventview-header .eventview-interact .rating {
+  position: absolute;
+}
+
+#event_view .eventview-header h1,
+#event_view .eventview-header p {
+  padding: 0 1%;
+  background:#FFF;
+}
+
+#event_view .eventview-header h1 {
+  top: 15%;
+  left: 10%;
+  text-transform: capitalize;
+}
+
+#event_view .eventview-header p {
+  top: 36.5%;
+  left: 10%;
+}
+
+#event_view .eventview-header p:nth-child(2) {
+  top: 51.5%;
+  left: 10%;
+}
+
+#event_view .eventview-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#event_view .eventview-interact {
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  padding: 0 10%;
+  bottom: 3rem;
+}
+
+#event_view .eventview-header .eventview-interact button {
+  height: 4rem;
+  width: 40%;
+  bottom: 0.25rem;
+  font-size: 1.5rem;
+  color: #FFF;
+  border: 0.25rem solid #FFF;
+  border-radius: 1rem;
+  background: #332532;
+}
+
+#event_view .eventview-header .eventview-interact button:focus {
+  background: #F77A52;
+}
+
+#event_view .eventview-header .eventview-interact .rating {
+  right: 10%;
+  bottom: 1rem;
+  color: #FFF;
+  letter-spacing: 0.5rem;
+}
+
+#event_view .eventview-infos,
+#event_view .eventview-comments {
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  padding: 1rem;
+  font-size: 1.5rem;
+  background: #FFF;
+  border-bottom: 0.125rem dotted #FF974F;
+}
+
+#event_view .eventview-infos .eventview-organiszer a {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #332532;
+}
+
+#event_view .eventview-infos .eventview-guests,
+#event_view .eventview-infos .eventview-partners {
+  font-size: 1rem;
+}
+
+#event_view .eventview-infos .eventview-guests a,
+#event_view .eventview-infos .eventview-partners a {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+#event_view .eventview-infos .eventview-text p:nth-child(2) {
+  margin: 1rem 0 0 0;
+  font-weight: 600;
+}
+
+#event_view .eventview-infos .eventview-text table {
+  width: 60%;
+  height: auto;
+  margin: 0 auto;
+}
+
+#event_view .eventview-infos .eventview-text tr {
+  display: flex;
+  justify-content: space-between;
+}
+
+#event_view .eventview-infos .eventview-text p:last-child {
+  margin: 1rem 0 0 0;
+}
+
+#event_view .eventview-infos .who {
+  width: 100%;
+  border: 0.125rem solid #e6e6e6;
+  border-radius: 1rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+#event_view .eventview-infos .who h3 {
+  font-size: 1.75rem;
+}
+
+#event_view .eventview-infos .who a {
+  font-size: 1rem;
+}
+
+#event_view .eventview-comments {
+  border:none;
+}
+
+#event_view .eventview-comments h2 {
+  font-size: 1.75rem;
+  color: #FFF;
+  background: #332532;
+  text-align: center;
+  margin: 0 0 0.5rem 0
+}
+
+#event_view .eventview-comments .comment {
+  padding: 0.5rem 0;
+}
+
+#event_view .eventview-comments .comment h3 {
+  font-size: 1.5rem;
+  text-indent: 2rem;
+}
+
+#event_view .eventview-comments .comment p {
+  background: #e4d6d9;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  margin: 0.5rem 0 0 0;
 }
 
 /* ################################ CREATE :: MAP ################################ */
