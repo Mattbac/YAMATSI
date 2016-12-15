@@ -9,8 +9,8 @@
 		</div>
 
 		<div class="lane-space-around">
-			<a href="<?= $this->url('default_map') ?>">
-				<button id="go"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+			<a href="<?= $this->url('default_map') ?>" id="go">
+				<i class="fa fa-arrow-right" aria-hidden="true"></i>
 			</a>
 		</div>
 

@@ -1,12 +1,13 @@
 <?php $this->layout('layoutmap', ['title' => $title]) ?>
 
 <?php $this->start('link_content') ?>
+<link rel="stylesheet" href="<?= $this->assetUrl('css/font-awesome.min.css') ?>">
 <link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 <?php $this->stop('link_content') ?>
 
 <?php $this->start('main_content') ?>
 
-    <section id="header">   
+    <section id="header">
         <div class="navbar">
             <select name="category" id="category">
                 <option value="0">Tous Publics</option>
@@ -27,10 +28,10 @@
             <input type="date">
             <input id="search_city" type="text" name="search_city" placeholder="Ville et/ou CP...">
         </div>
-           
+
         <div id='result_search'></div>
     </section>
-        
+
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('script_content') ?>

@@ -1,6 +1,7 @@
 <?php $this->layout('layoutmap', ['title' => $title]) ?>
 
 <?php $this->start('link_content') ?>
+<link rel="stylesheet" href="<?= $this->assetUrl('css/font-awesome.min.css') ?>">
 <link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 <?php $this->stop('link_content') ?>
 

@@ -47,7 +47,7 @@ class ApiController extends Controller
 
         file_put_contents('test.txt', json_encode($element['event']['guest_part_id']));
 
-        $this->show('default/event_map', [  'event'     => $element['event'], 
+        $this->show('default/event_map', [  'event'     => $element['event'],
                                             'coms'      => $element['com'],
                                             'guests'     => $element['guest_part']['guest'],
                                             'parts'      => $element['guest_part']['part'],
