@@ -230,51 +230,57 @@ footer p a:focus {
   color:#e4d6d9;
 }
 
-#service {
+#service, #corporate {
   box-sizing: border-box;
   width: 100%;
-  height: 100%;
-  padding: 0.5rem;
+  height: auto;
+  padding: 0.5rem 0.5rem 2rem 0.5rem;
   color:#FFF;
   background:linear-gradient(135deg,#B58B94,#332532);
   background-blend-mode: multiply;
 }
 
-#service h1 {
-
-}
-
-#service h2 {
+#service h2,
+#corporate h2 {
   font-weight: 300;
   text-indent: 1rem;
 }
 
-#service .photolane {
+#service .photolane,
+#corporate .photolane {
   width: 100%;
-  height: 16rem;
-  position: relative;
+  height: 18rem;
 }
 
-#service .photolane .showpic {
-  position: absolute;
-  width: 70%;
+#service .photolane .showpic,
+#corporate .photolane .showpic {
+  width: 90%;
   height: 8rem;
-  padding: 1rem;
-  z-index: 2;
+  margin: 1rem auto;
 }
 
-#service .photolane .showpic:last-child {
-  top:6rem;
-  left:4rem;
-  z-index: 1;
-}
-
-#service .showpic img {
+#service .showpic img,
+#corporate .showpic img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 1rem;
+  border-radius: 1rem 0 0 0;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.25);
+}
+
+#service .photolane .showpic:last-child img,
+#corporate .photolane .showpic:last-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 0 1rem 0;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.25);
+}
+
+#corporate {
+  color:#FFF;
+  background:linear-gradient(65deg,#F77A52,#FF974F);
+  padding: 0.5rem 0.5rem 3.5rem 0.5rem;
 }
 
 /* ################################### FORMS ################################### */
