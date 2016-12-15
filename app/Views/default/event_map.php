@@ -13,12 +13,17 @@
     <a href="<?php echo '/YAMATSI/public/user/'.$event['users_id'] ?>">Assoc/comp</a>
     </div>
     <div>
-    <?php foreach ($guests as $guest) {?>
-    <a href="<?php echo '/YAMATSI/public/user/'.$guest['id'] ?>"><?php echo $guest['nickname'] ?></a>
-    <?php } 
-    foreach ($parts as $part) {?>
-    <a href="<?php echo '/YAMATSI/public/user/'.$part['id'] ?>"><?php echo $part['nickname'] ?></a>
-    <?php }?>
+    <?php
+    if($guests != ''){
+        foreach ($guests as $guest) {
+            echo "<a href=\"/YAMATSI/public/user/".$guest['id']."\">".$guest['nickname']."</a>";
+        }
+    }
+    if($parts != ''){
+        foreach ($parts as $part) {
+            echo "<a href=\"/YAMATSI/public/user/".$part['id']."\">".$part['nickname']."</a>";
+        }
+    }?>
     </div>
 </div>
 <div>
@@ -36,6 +41,7 @@
     <div>
         <h3>Titre : <?php echo $com['title']?></h3>
         <p><?php echo $com['message']?></p>
+        <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
     </div>
     <?php }?>
     <div>

@@ -10,7 +10,7 @@ class CommentModel extends \W\Model\Model {
 			return false;
 		}
 
-		$sql = 'SELECT * FROM ' . $this->table . ' WHERE event_id = :id LIMIT 3';
+		$sql = 'SELECT c.*, u.nickname FROM '.$this->table.' AS c, users AS u WHERE c.event_id = :id AND u.id = c.users_id';
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':id', $id);
 		$sth->execute();

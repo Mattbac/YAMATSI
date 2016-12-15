@@ -5,6 +5,9 @@ namespace Controller;
 use \W\Controller\Controller;
 use \Model\EventModel as EventModel;
 use \Model\TypeModel as TypeModel;
+use Model\CommentModel as CommentModel;
+use Model\UsersModel as UsersModel;
+
 class EventController extends Controller
 {
 
@@ -12,20 +15,49 @@ class EventController extends Controller
 
     public function page($id = 0)
     {
-        $this->show('event/page', ['title' => 'page event '.$id]);
+        $element = [];
+        $CommentModel = new CommentModel();
+        $EventModel = new EventModel();
+        $TypeModel = new TypeModel();
+        $UsersModel = new UsersModel();
+
+        $element['event']           = $EventModel->find($id);
+        $element['com']             = $CommentModel->findAllComWithId($id);
+        $element['type']            = $TypeModel->find($element['event']['type_id']);
+        if($element['event']['guest_part_id'] != ''){
+            $element['guest_part']      = $UsersModel->findGuestPart($element['event']['guest_part_id']);
+        }else{
+            $element['guest_part'] = ['guest' => '', 'part' => ''];
+        }
+
+        $this->show('event/page', [  'event'     => $element['event'], 
+                                            'coms'      => $element['com'],
+                                            'guests'    => $element['guest_part']['guest'],
+                                            'parts'     => $element['guest_part']['part'],
+                                            'type'      => $element['type']['name']]);
     }
 
-    public function edit($id=0)
+    public function edit($id = 0)
     {
-        if(isset($_POST['submitformcreate']))
-        {
-        }
-        $eventModel = new EventModel();
-        $typesModel = new TypeModel();
-        $type = $typesModel->findAll();
-        $event = $eventModel->find($id);
-        var_dump($event);
-        $this->show('event/edit', ['event' => $event, 'types' => $type]);
+		$eventModel = new EventModel();
+		$event = $eventModel->find($id);
+
+		if($id != 0 && $this->getUser()['id'] == $event['users_id']){
+			if(isset($_POST['submitformcreate']))
+			{
+
+			}
+			$typesModel = new TypeModel();
+			$type = $typesModel->findAll();
+			var_dump($event);
+			$this->show('event/edit', ['event' => $event, 'types' => $type]);
+
+		}elseif($id != 0){
+			$this->redirectToRoute('event_page', ['id' => $id]);
+
+		}else{
+			$this->redirectToRoute('default_map');
+		}
     }
 
     public function create($lat, $lng)

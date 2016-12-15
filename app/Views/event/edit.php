@@ -44,7 +44,7 @@
                 <?php
                   foreach ($types as $type)
                   {
-                    $selected = ($event['type_id'] + 2 == $type['id']) ? 'selected ' : '';
+                    $selected = ($event['type_id'] == $type['id']) ? 'selected ' : '';
                     echo "<option ".$selected."value=\"".$type['id']."\">".$type['name']."</option> ";
                   }
 
@@ -130,21 +130,17 @@
 
 
         <div class="inputbox radiobox bool">
-
             <label for="comment">Autoriser les commentaires ?</label>
-
             <div class="oneradiobox comment">
-            <input type="radio" name="comment" value="1" id="comment1" checked>
-            <label for="comment1">Oui</label>
+                <input type="radio" name="comment" value="1" id="comment1" <?php echo ($event['comment_autorize'] == 1) ? 'checked' : '' ; ?>>
+                <label for="comment1">Oui</label>
             </div>
-
             <div class="oneradiobox comment">
-            <input type="radio" name="comment" value="0" id="commen21">
-            <label for="comment2">Non</label>
+                <input type="radio" name="comment" value="0" id="commen21" <?php echo ($event['comment_autorize'] == 0) ? 'checked' : '' ; ?>>
+                <label for="comment2">Non</label>
             </div>
 
         </div>
-
         <input type="submit" name="submitformcreate" value="Créer">
 
     </form>

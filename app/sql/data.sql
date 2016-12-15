@@ -1,19 +1,19 @@
-INSERT INTO `event` (`id`, `name`, `message`, `date_time`, `picture_first`, `users_id`, 'guest_part_id', `coor_lat`, `coor_lng`, `comment_autorize`, `category_of`, `type_id`) VALUES
-(1, 'yanis', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 'a:2:{s:5:"guest";a:1:{i:0;i:1;}s:4:"part";a:2:{i:0;i:3;i:1;i:4;}}', 56, 4, 0, '0', 0),
-(2, 'event de fou', 'c''est un evenement de fou prevu pour cette hiver, le 28 decembre !', '2645533', NULL, 2, 'a:2:{s:5:"guest";a:1:{i:0;i:1;}s:4:"part";a:2:{i:0;i:3;i:1;i:4;}}', 49, 2, 1, '1', 4),
-(3, 'event bleu', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 'a:2:{s:5:"guest";a:1:{i:0;i:1;}s:4:"part";a:2:{i:0;i:3;i:1;i:5;}}', 56, 4, 0, '0', 0),
-(4, 'event vert', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 'a:2:{s:5:"guest";a:1:{i:0;i:5;}s:4:"part";a:2:{i:0;i:3;i:1;i:4;}}', 56, 4, 0, '0', 0),
-(5, 'event marron', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 'a:2:{s:5:"guest";a:1:{i:0;i:1;}s:4:"part";a:2:{i:0;i:3;i:1;i:4;}}', 56, 4, 0, '0', 0),
-(6, 'event black', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 'a:2:{s:5:"guest";a:1:{i:0;i:1;}s:4:"part";a:2:{i:0;i:3;i:1;i:4;}}', 56, 4, 0, '0', 0),
-(7, 'event white', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 'a:2:{s:5:"guest";a:1:{i:0;i:5;}s:4:"part";a:2:{i:0;i:3;i:1;i:5;}}', 56, 4, 0, '0', 0),
-(8, 'event green', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 'a:2:{s:5:"guest";a:1:{i:0;i:1;}s:4:"part";a:2:{i:0;i:3;i:1;i:4;}}', 56, 4, 0, '0', 0),
-(9, 'event orange', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 'a:2:{s:5:"guest";a:1:{i:0;i:6;}s:4:"part";a:2:{i:0;i:6;i:1;i:4;}}', 56, 4, 0, '0', 0),
-(10, 'event red', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 'a:2:{s:5:"guest";a:1:{i:0;i:1;}s:4:"part";a:2:{i:0;i:3;i:1;i:4;}}', 56, 4, 0, '0', 0),
-(11, 'event violet', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 'a:2:{s:5:"guest";a:1:{i:0;i:1;}s:4:"part";a:2:{i:0;i:3;i:1;i:4;}}', 56, 4, 0, '0', 0),
-(12, 'event gris', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 'a:2:{s:5:"guest";a:1:{i:0;i:1;}s:4:"part";a:2:{i:0;i:3;i:1;i:4;}}', 56, 4, 0, '0', 0),
-(13, 'event prune', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 'a:2:{s:5:"guest";a:1:{i:0;i:6;}s:4:"part";a:2:{i:0;i:3;i:1;i:6;}}', 56, 4, 0, '0', 0),
-(14, 'event super', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 'a:2:{s:5:"guest";a:1:{i:0;i:1;}s:4:"part";a:2:{i:0;i:3;i:1;i:4;}}', 56, 4, 0, '0', 0),
-(15, 'Tortuga', 'événement sur les tortues', '654654654', NULL, 3, 'a:2:{s:5:"guest";a:1:{i:0;i:1;}s:4:"part";a:2:{i:0;i:3;i:1;i:4;}}', 43, 6, 1, '1', 4);
+INSERT INTO `event` (`id`, `name`, `message`, `date_time`, `picture_first`, `users_id`, `coor_lat`, `coor_lng`, `comment_autorize`, `category_of`, `type_id`) VALUES
+(1, 'yanis', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
+(2, 'event de fou', 'c''est un evenement de fou prevu pour cette hiver, le 28 decembre !', '2645533', NULL, 2, 49, 2, 1, '1', 4),
+(3, 'event bleu', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
+(4, 'event vert', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
+(5, 'event marron', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
+(6, 'event black', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
+(7, 'event white', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
+(8, 'event green', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
+(9, 'event orange', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
+(10, 'event red', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
+(11, 'event violet', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
+(12, 'event gris', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
+(13, 'event prune', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
+(14, 'event super', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
+(15, 'Tortuga', 'événement sur les tortues', '654654654', NULL, 3, 43, 6, 1, '1', 4);
 
 INSERT INTO `comment` (`id`, `event_id`, `users_id`, `comment_id`, `message`, `title`, `created_at`) VALUES
 (1, 1, 1, NULL, 'Ceci est un commentaire', 'Commentaire', 55668444),
