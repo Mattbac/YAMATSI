@@ -1,10 +1,9 @@
-<?php $this->layout('layout', ['title' => $title]) ?>
+<?php $this->layout('layout', ['title' => 'Event edition '.$title]) ?>
 
 <?php $this->start('main_content') ?>
 
     <h1>Créer un évènement</h1>
     <h2 class="subtitle">Dernière étape</h2>
-
     <form action="" method="post" enctype="multipart/form-data">
 
         <div class="inputbox">

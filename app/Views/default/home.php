@@ -9,13 +9,15 @@
 		</div>
 
 		<div class="lane-space-around">
-			<button id="go"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+			<a href="<?= $this->url('default_map') ?>">
+				<button id="go"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+			</a>
 		</div>
 
 		<div class="lane-space-around">
 			<div class="userbar">
-				<button>Inscription</button>
-				<button>Connexion</button>
+				<a href="<?= $this->url('user_register') ?>"><button>Inscription</button></a>
+				<a href="<?= $this->url('security_login') ?>"><button>Connexion</button></a>
 			</div>
 		</div>
 

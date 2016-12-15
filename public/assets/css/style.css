@@ -173,7 +173,7 @@ footer p a:focus {
   width: 80%;
 }
 
-#go {
+#go{
   width: 60%;
   height: 10rem;
   padding: 0 0 1rem 0;
@@ -215,11 +215,11 @@ footer p a:focus {
   background:rgba(255,255,255,0.5);
 }
 
-.userbar button:first-child {
+.userbar a:first-child button {
   border-radius: 1rem 0 0 1rem;
 }
 
-.userbar button:last-child {
+.userbar a:last-child button {
   border-right:0.125rem solid #332532;
   border-radius: 0 1rem 1rem 0;
 }

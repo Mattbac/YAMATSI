@@ -11,10 +11,57 @@
 </div>
 <div>
     <div id="futur_event">
-        <div><p>Futur event</p></div>
+        <h2>Futur event</h2>
+        <div>
+            <img src="" alt="">
+            <p>Titre</p>
+            <p>Description</p>
+            <p>Type</p>
+            <p>Catégory</p>
+            <p>Date : Horraire</p>
+        </div>
+        <div>
+            <img src="" alt="">
+            <p>Titre</p>
+            <p>Description</p>
+            <p>Type</p>
+            <p>Catégory</p>
+            <p>Date : Horraire</p>
+        </div>
     </div>
     <div id="paste_event">
-        <div><p>Paste event</p></div>
+        <h2>Paste event</h2>
+        <div>
+            <img src="" alt="">
+            <p>Titre</p>
+            <p>Description</p>
+            <p>Type</p>
+            <p>Catégory</p>
+            <p>Note</p>
+        </div>
+        <div>
+            <img src="" alt="">
+            <p>Titre</p>
+            <p>Description</p>
+            <p>Type</p>
+            <p>Catégory</p>
+            <p>Note</p>
+        </div>
+    </div>
+</div>
+<div>
+    <h2>Commentaire</h2>
+    <div>
+        <p>Comm</p>
+        <a href="">Lien de l'event du commentaire</a>
+    </div>
+    <div>
+        <p>Comm</p>
+        <a href="">Lien de l'event du commentaire</a>
+    </div>
+    <div>
+        <p>Comm</p>
+        <a href="">Lien de l'event du commentaire</a>
     </div>
 </div>
 <?php $this->stop('main_content') ?>

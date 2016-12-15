@@ -15,8 +15,10 @@ class UserController extends Controller
         if($id == 0 && isset($this->getUser()['id'])) {
             /*var_dump($this->getUser());*/
             $this->show('user/profilUser', ['title' => 'page user perso '.$id, 'user' => $this->getUser()]);
-        }else{
+        }elseif($id != 0){
             $this->show('user/profil', ['title' => 'page user '.$id, 'user' => $user->find($id)]);
+        }else{
+            $this->redirectToRoute('security_login');
         }
     }
 

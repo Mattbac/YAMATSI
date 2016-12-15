@@ -8,29 +8,36 @@ use \Model\UsersModel as User;
 
 class SecurityController extends Controller
 {
-  public function login()
-  {
-      if(isset($_POST['login']))
-      {
-          $auth = new Auth();
-          $userCheck = $auth->isValidLoginInfo($_POST['email'], $_POST['password']);
-            var_dump($userCheck);
-          if($userCheck)
-          {
-            $user = new User();
-            $currentUser = $user->find($userCheck);
-            $auth->logUserIn($currentUser);
-            $this->redirectToRoute('default_home');
-          }
+    public function login()
+    {
+        if(!isset($this->getUser()['id'])){
+            if(isset($_POST['login']))
+            {
+                $auth = new Auth();
+                $userCheck = $auth->isValidLoginInfo($_POST['email'], $_POST['password']);
+                if($userCheck)
+                {
+                    $user = new User();
+                    $currentUser = $user->find($userCheck);
+                    $auth->logUserIn($currentUser);
+                    $this->redirectToRoute('user_profil');
+                }
+            }
+            $this->show('security/login');
+      }else{
+          $this->redirectToRoute('user_profil');
       }
-      $this->show('security/login');
   }
 
   public function logout()
-   {
-     $auth = new Auth();
-     $auth->logUserOut();
-     $this->redirectToRoute('default_home');
+    {
+       if(isset($this->getUser()['id'])){
+            $auth = new Auth();
+            $auth->logUserOut();
+            $this->redirectToRoute('default_home');
+       }else{
+            $this->redirectToRoute('default_home');
+       }
    }
 
 

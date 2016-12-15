@@ -3,8 +3,8 @@
 namespace Controller;
 
 use \W\Controller\Controller;
-use \Model\EventModel as Event;
-use \Model\TypeModel as Type;
+use \Model\EventModel as EventModel;
+use \Model\TypeModel as TypeModel;
 class EventController extends Controller
 {
 
@@ -19,15 +19,13 @@ class EventController extends Controller
     {
         if(isset($_POST['submitformcreate']))
         {
-          $event = new Event();
-          $event->update([
-            'name'             => $_POST['name'],
-            'adress'           => $_POST['adress'],
-            'message'          => $_POST['description']
-          ],$id, false);
         }
-
-         $this->show('event/edit', ['title' => 'edit event'.$id]);
+        $eventModel = new EventModel();
+        $typesModel = new TypeModel();
+        $type = $typesModel->findAll();
+        $event = $eventModel->find($id);
+        var_dump($event);
+        $this->show('event/edit', ['event' => $event, 'types' => $type]);
     }
 
     public function create($lat, $lng)
@@ -76,7 +74,7 @@ class EventController extends Controller
             $event->insert($datas);
         }
       }
-        $types = new Type();
+        $types = new TypeModel();
         $arrayType = $types->findAll();
         $this->show('event/create', ['title' => 'OutLooker - Créer un évènement', 'lat' => $lat, 'lng' => $lng, 'types' => $arrayType]);
     }
