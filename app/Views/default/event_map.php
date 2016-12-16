@@ -9,6 +9,7 @@
     <p>Type: <strong><?php echo $type ?></strong></p>
 
     <div class="eventview-interact">
+
         <?php
         if(!$is_connect){
             echo '<a id="not_connection" href="'.$this->url('security_login').'">Se connecter</a>';
@@ -22,11 +23,12 @@
             }
         }
         ?>
+
         <div class="rating"><i class="fa fa-square" aria-hidden="true"></i><i class="fa fa-square" aria-hidden="true"></i><i class="fa fa-square" aria-hidden="true"></i><i class="fa fa-square" aria-hidden="true"></i></div>
 
     </div>
 
-    <img src="<?= $this->assetUrl('img/eventsample.jpg') ?>" alt="<?php echo $event['name']?>">
+    <img src="<?= $this->assetUrl('img/default_event.jpg') ?>" alt="<?php echo $event['name']?>">
 
 </div>
 
@@ -45,7 +47,7 @@
     </div>
     <div class="eventview-partners">
     Partenaire(s) :
-    <?php 
+    <?php
     if($parts != ''){
         foreach ($parts as $part) {
             echo "<a href=\"/YAMATSI/public/user/".$part['id']."\">".$part['nickname']."</a>";

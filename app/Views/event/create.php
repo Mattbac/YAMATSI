@@ -155,7 +155,7 @@
 
         </div>
 
-        <input type="submit" name="submitformcreate" value="Créer">
+        <input class="endform" type="submit" name="submitformcreate" value="Créer">
 
     </form>
 

@@ -2,64 +2,79 @@
 
 <?php $this->start('main_content') ?>
 
-<!-- SIMON A TOI DE JOUER -->
-<div id="user_information">
-    <img src="<?= $this->assetUrl('img/avatar/'.$user['pictures_profile']) ?>" alt="imageProfil" height="150" >
-    <a href="<?= $this->url('user_edit', $user) ?>">Modifier</a>
-    <p><?= $user['nickname'] ?></p>
-    <p><?= $user['email'] ?></p>
-    <p><?= $user['message'] ?></p>
-</div>
-<div>
-    <div id="suggestion">
-        <h2>Suggestion</h2>
-        <div>
-            <img src="" alt="">
-            <p>Titre</p>
-            <p>Description</p>
+<div id="profile">
+
+  <div id="user_information">
+      <div class="avatar">
+        <img src="<?= $this->assetUrl('img/avatar/'.$user['pictures_profile']) ?>" alt="Avatar de <?= $user['nickname'] ?>">
+      </div>
+      <div class="edit-profile lane-space-around">
+        <p>Votre profil :</p>
+        <a href="<?= $this->url('user_edit', $user) ?>"><button><i class="fa fa-pencil" aria-hidden="true"></i> Modifier </button></a>
+      </div>
+      <div class="info-field">
+        <h1><?= $user['nickname'] ?></h1>
+        <p><?= $user['email'] ?></p>
+        <p><?= $user['message'] ?></p>
+      </div>
+  </div>
+  <div class="content">
+      <div id="suggestion">
+          <h2>Evènements suggérés</h2>
+          <div class="showevent lane-space-between">
+              <div class="blocinfo lane-space-between">
+                <h3>Titre</h3>
+                <p>Type</p>
+                <p>Catégorie</p>
+                <p>Date(s) : Horaire(s)</p>
+              </div>
+              <img src="<?= $this->assetUrl('img/default_event.jpg') ?>" alt="">
+          </div>
+          <div class="showevent lane-space-between">
+              <div class="blocinfo lane-space-between">
+                <h3>Titre</h3>
+                <p>Type</p>
+                <p>Catégorie</p>
+                <p>Date(s) : Horaire(s)</p>
+              </div>
+              <img src="<?= $this->assetUrl('img/default_event.jpg') ?>" alt="">
+          </div>
+      </div>
+      <div id="futur_event">
+          <h2>Evènements à venir</h2>
+          <div class="showevent lane-space-between">
+              <div class="blocinfo lane-space-between">
+                <h3>Titre</h3>
+                <p>Type</p>
+                <p>Catégorie</p>
+                <p>Date(s) : Horaire(s)</p>
+              </div>
+              <img src="<?= $this->assetUrl('img/default_event.jpg') ?>" alt="">
+          </div>
+          <div class="showevent lane-space-between">
+              <div class="blocinfo lane-space-between">
+                <h3>Titre</h3>
+                <p>Type</p>
+                <p>Catégorie</p>
+                <p>Date(s) : Horaire(s)</p>
+              </div>
+              <img src="<?= $this->assetUrl('img/default_event.jpg') ?>" alt="">
+          </div>
+      </div>
+  </div>
+  <div id="paste_event">
+    	<h2>Evènements passés</h2>
+      <div class="showevent lane-space-between">
+          <div class="blocinfo lane-space-between">
+            <h3>Titre</h3>
             <p>Type</p>
-            <p>Catégory</p>
-            <p>Date : Horraire</p>
-        </div>
-        <div>
-            <img src="" alt="">
-            <p>Titre</p>
-            <p>Description</p>
-            <p>Type</p>
-            <p>Catégory</p>
-            <p>Date : Horraire</p>
-        </div>
-    </div>
-    <div id="futur_event">
-        <h2>Futur event</h2>
-        <div>
-            <img src="" alt="">
-            <p>Titre</p>
-            <p>Description</p>
-            <p>Type</p>
-            <p>Catégory</p>
-            <p>Date : Horraire</p>
-        </div>
-        <div>
-            <img src="" alt="">
-            <p>Titre</p>
-            <p>Description</p>
-            <p>Type</p>
-            <p>Catégory</p>
-            <p>Date : Horraire</p>
-        </div>
-    </div>
-</div>
-<div id="paste_event">
-  	<h2>Paste event</h2>
-    <div>
-        <img src="" alt="">
-        <p>Titre</p>
-        <p>Description</p>
-        <p>Type</p>
-        <p>Catégory</p>
-        <p>Note</p>
-    </div>
+            <p>Catégorie</p>
+            <p>Date(s) : Horaire(s)</p>
+          </div>
+          <img src="<?= $this->assetUrl('img/default_event.jpg') ?>" alt="">
+      </div>
+  </div>
+
 </div>
 
 <?php $this->stop('main_content') ?>

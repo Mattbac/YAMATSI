@@ -10,8 +10,8 @@
 
 		['GET|POST', 	'/login'							, 'Security#login'				, 'security_login'],
 		['GET', 		'/logout'							, 'Security#logout'				, 'security_logout'],
-		['GET|POST', 	'/forget[/]?[:token]?'				, 'Security#forget'				, 'security_forget'],
-	
+		['GET|POST', 	'/forget[/]?[:token]?[/]?'			, 'Security#forget'				, 'security_forget'],
+
 		['GET|',		'/user[/]?[i:id]?[/]?'				, 'User#profil'					, 'user_profil'], //liste de tout les membres
 		['GET|POST',	'/user/edit[/]?'					, 'User#edit'					, 'user_edit'], //liste de tout les membres
 		['GET|POST',	'/user/register[/]?'				, 'User#register'				, 'user_register'], //liste de tout les membres
