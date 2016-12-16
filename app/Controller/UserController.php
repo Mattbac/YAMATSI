@@ -13,7 +13,7 @@ class UserController extends Controller
     {
         $user = new User;
         if($id == 0 && isset($this->getUser()['id'])) {
-            /*var_dump($this->getUser());*/
+            var_dump($user->find($this->getUser()['id']));
             $this->show('user/profilUser', ['title' => 'page user perso '.$id, 'user' => $this->getUser()]);
         }elseif($id != 0){
             $this->show('user/profil', ['title' => 'page user '.$id, 'user' => $user->find($id)]);
