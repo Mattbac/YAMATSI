@@ -9,8 +9,19 @@
     <p>Type: <?php echo $type ?></p>
 </div>
 <div>
-    <button id="registeration_event">Participer</button>
-    <button id="cancel_registeration_event">Se désincrire</button>
+    <?php
+    if(!$is_connect){
+        echo '<a id="not_connection" href="'.$this->url('security_login').'">Se connecter</a>';
+    }else{
+        if($is_register_event){
+            echo '<button style="display:none;" id="registeration_event" data-event-id="'.$event['id'].'">Participer</button>';
+            echo '<button id="cancel_registeration_event" data-event-id="'.$event['id'].'">Se désincrire</button>';
+        }else{
+            echo '<button id="registeration_event" data-event-id="'.$event['id'].'">Participer</button>';
+            echo '<button style="display:none;" id="cancel_registeration_event" data-event-id="'.$event['id'].'">Se désincrire</button>';
+        }
+    }
+    ?>
     <p>Ratio</p>
 </div>
 <div>
@@ -44,13 +55,9 @@
     <h3>Qui participe ?</h3>
     <a href="<?php echo $this->url('user_profil', ['id' => $event['guest_part_id']]) ?>">Guest</a>
 </div>
-<button>Ajouter un commentaire</button>
-<div id="add_new_comment">
-    <label for="title">Titre de votre commentaire</label>
-    <input id="title" type="text" name="title">
-    <label for="com">Contenu de votre commentaire</label>
-    <textarea name="com" id="com"></textarea>
-    <button>Envoyer votre message</button>
+<button id="add_comment">Ajouter un commentaire</button>
+<div id="add_new_comment" data-event-id="<?php echo $event['id']?>">
+
 </div>
 <div>
     <h2>Commentaire</h2>
@@ -59,8 +66,8 @@
         <h3>Titre : <?php echo $com['title']?></h3>
         <p><?php echo $com['message']?></p>
         <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
-        <button>Repondre</button>
-        <div id="answer_comment">
+        <button class="add_answer_comment">Repondre</button>
+        <div class="answer_comment" data-com-id="<?php echo $com['id']?>">
 
         </div>
         <div>

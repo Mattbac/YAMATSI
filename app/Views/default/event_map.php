@@ -9,9 +9,19 @@
     <p>Type: <strong><?php echo $type ?></strong></p>
 
     <div class="eventview-interact">
-
-        <button>Je participe <i class="fa fa-check" aria-hidden="true"></i></button>
-        <button class="hidden">Je n'y participe plus <i class="fa fa-times" aria-hidden="true"></i></button>
+        <?php
+        if(!$is_connect){
+            echo '<a id="not_connection" href="'.$this->url('security_login').'">Se connecter</a>';
+        }else{
+            if($is_register_event){
+                echo '<button style="display:none;" id="registeration_event" data-event-id="'.$event['id'].'">Je participe <i class="fa fa-check" aria-hidden="true"></i></button>';
+                echo '<button id="cancel_registeration_event" data-event-id="'.$event['id'].'">Je n\'y participe plus <i class="fa fa-check" aria-hidden="true"></i></button>';
+            }else{
+                echo '<button id="registeration_event" data-event-id="'.$event['id'].'">Je participe <i class="fa fa-check" aria-hidden="true"></i></button>';
+                echo '<button style="display:none;" id="cancel_registeration_event" data-event-id="'.$event['id'].'">Je n\'y participe plus <i class="fa fa-check" aria-hidden="true"></i></button>';
+            }
+        }
+        ?>
         <div class="rating"><i class="fa fa-square" aria-hidden="true"></i><i class="fa fa-square" aria-hidden="true"></i><i class="fa fa-square" aria-hidden="true"></i><i class="fa fa-square" aria-hidden="true"></i></div>
 
     </div>

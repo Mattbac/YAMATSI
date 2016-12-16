@@ -5,36 +5,50 @@ namespace Controller;
 use \W\Controller\Controller;
 use \Model\EventModel as EventModel;
 use \Model\TypeModel as TypeModel;
-use Model\CommentModel as CommentModel;
-use Model\UsersModel as UsersModel;
+use \Model\CommentModel as CommentModel;
+use \Model\UsersModel as UsersModel;
+use \Model\Register_eventModel as Register_eventModel;
 
 class EventController extends Controller
 {
 
     // Creation Event Form
 
-    public function page($id = 0)
+    public function page($id)
     {
         $element = [];
-        $CommentModel = new CommentModel();
-        $EventModel = new EventModel();
-        $TypeModel = new TypeModel();
-        $UsersModel = new UsersModel();
+        $commentModel = new CommentModel();
+        $eventModel = new EventModel();
+        $typeModel = new TypeModel();
+        $usersModel = new UsersModel();
+        $register_eventModel = new Register_eventModel();
 
-        $element['event']           = $EventModel->find($id);
-        $element['com']             = $CommentModel->findAllComWithId($id);
-        $element['type']            = $TypeModel->find($element['event']['type_id']);
-        if($element['event']['guest_part_id'] != ''){
-            $element['guest_part']      = $UsersModel->findGuestPart($element['event']['guest_part_id']);
-        }else{
-            $element['guest_part'] = ['guest' => '', 'part' => ''];
-        }
+        $element['event']           			= $eventModel->find($id);
+		if($element['event']){
+			$element['com']             		= $commentModel->findAllComWithId($id);
+			$element['type']            		= $typeModel->find($element['event']['type_id']);
+			$element['is_connect']          	= !empty($this->getUser()['id']);
 
-        $this->show('event/page', [  'event'     => $element['event'], 
-                                            'coms'      => $element['com'],
-                                            'guests'    => $element['guest_part']['guest'],
-                                            'parts'     => $element['guest_part']['part'],
-                                            'type'      => $element['type']['name']]);
+			if($element['is_connect']){
+				$element['is_register_event']   = !empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $id));
+			}
+
+			if($element['event']['guest_part_id'] != ''){
+				$element['guest_part']      	= $usersModel->findGuestPart($element['event']['guest_part_id']);
+			}else{
+				$element['guest_part'] 			= ['guest' => '', 'part' => ''];
+			}
+			
+			$this->show('event/page', [   'is_connect'			=> $element['is_connect'],
+										'is_register_event'	=> $element['is_register_event'],
+										'event'     			=> $element['event'], 
+										'coms'      			=> $element['com'],
+										'guests'    			=> $element['guest_part']['guest'],
+										'parts'     			=> $element['guest_part']['part'],
+										'type'      			=> $element['type']['name']]);
+		}else{
+			$this->showNotFound();
+		}
     }
 
     public function edit($id = 0)
