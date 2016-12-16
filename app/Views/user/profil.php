@@ -44,7 +44,6 @@
             <h3>Titre</h3>
             <p>Type</p>
             <p>Catégorie</p>
-            <p>Date(s) : Horaire(s)</p>
           </div>
           <img src="<?= $this->assetUrl('img/default_event.jpg') ?>" alt="">
       </div>

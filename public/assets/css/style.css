@@ -704,50 +704,50 @@ input[type=submit]:focus, #send_position:focus, button:focus {
   background:#ff614c;
 }
 
-#event_view .eventview-header {
+.eventview-header {
   width: 100%;
   height: 24rem;
   position: relative;
   border-bottom: 0.25rem solid #FF974F;
 }
 
-#event_view .eventview-header h1,
-#event_view .eventview-header p,
-#event_view .eventview-header .eventview-interact,
-#event_view .eventview-header .eventview-interact button,
-#event_view .eventview-header .eventview-interact .rating {
+.eventview-header h1,
+.eventview-header p,
+.eventview-header .eventview-interact,
+.eventview-header .eventview-interact button,
+.eventview-header .eventview-interact .rating {
   position: absolute;
 }
 
-#event_view .eventview-header h1,
-#event_view .eventview-header p {
+.eventview-header h1,
+.eventview-header p {
   padding: 0 3%;
   background:#FFF;
 }
 
-#event_view .eventview-header h1 {
+.eventview-header h1 {
   top: 15%;
   left: 10%;
   text-transform: capitalize;
 }
 
-#event_view .eventview-header p {
+.eventview-header p {
   top: 36.5%;
   left: 10%;
 }
 
-#event_view .eventview-header p:nth-child(2) {
+.eventview-header p:nth-child(2) {
   top: 51.5%;
   left: 10%;
 }
 
-#event_view .eventview-header img {
+.eventview-header img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-#event_view .eventview-interact {
+.eventview-interact {
   box-sizing: border-box;
   width: 100%;
   height: 6rem;
@@ -755,7 +755,7 @@ input[type=submit]:focus, #send_position:focus, button:focus {
   bottom: 2rem;
 }
 
-#event_view .eventview-header .eventview-interact button {
+.eventview-header .eventview-interact button {
   height: 4rem;
   width: 40%;
   margin: 0;
@@ -767,11 +767,11 @@ input[type=submit]:focus, #send_position:focus, button:focus {
   background: #332532;
 }
 
-#event_view .eventview-header .eventview-interact button:focus {
+.eventview-header .eventview-interact button:focus {
   background: #F77A52;
 }
 
-#event_view .eventview-header .eventview-interact .rating {
+.eventview-header .eventview-interact .rating {
   right: 10%;
   bottom: 1rem;
   color: #FFF;
@@ -779,8 +779,8 @@ input[type=submit]:focus, #send_position:focus, button:focus {
   letter-spacing: 0.5rem;
 }
 
-#event_view .eventview-infos,
-#event_view .eventview-comments {
+.eventview-infos,
+.eventview-comments {
   box-sizing: border-box;
   width: 100%;
   height: auto;
@@ -790,44 +790,44 @@ input[type=submit]:focus, #send_position:focus, button:focus {
   border-bottom: 0.125rem dotted #FF974F;
 }
 
-#event_view .eventview-infos .eventview-organiszer a {
+.eventview-infos .eventview-organiszer a {
   font-size: 2rem;
   font-weight: 600;
   color: #332532;
 }
 
-#event_view .eventview-infos .eventview-guests,
-#event_view .eventview-infos .eventview-partners {
+.eventview-infos .eventview-guests,
+.eventview-infos .eventview-partners {
   font-size: 1rem;
 }
 
-#event_view .eventview-infos .eventview-guests a,
-#event_view .eventview-infos .eventview-partners a {
+.eventview-infos .eventview-guests a,
+.eventview-infos .eventview-partners a {
   font-size: 1.5rem;
   font-weight: 600;
 }
 
-#event_view .eventview-infos .eventview-text p:nth-child(2) {
+.eventview-infos .eventview-text p:nth-child(2) {
   margin: 1rem 0 0 0;
   font-weight: 600;
 }
 
-#event_view .eventview-infos .eventview-text table {
+.eventview-infos .eventview-text table {
   width: 80%;
   height: auto;
   margin: 0 auto;
 }
 
-#event_view .eventview-infos .eventview-text tr {
+.eventview-infos .eventview-text tr {
   display: flex;
   justify-content: space-between;
 }
 
-#event_view .eventview-infos .eventview-text p:last-child {
+.eventview-infos .eventview-text p:last-child {
   margin: 1rem 0 0 0;
 }
 
-#event_view .eventview-infos .who {
+.eventview-infos .who {
   width: 100%;
   border: 0.125rem solid #e6e6e6;
   border-radius: 1rem;
@@ -836,19 +836,19 @@ input[type=submit]:focus, #send_position:focus, button:focus {
   box-sizing: border-box;
 }
 
-#event_view .eventview-infos .who h3 {
+.eventview-infos .who h3 {
   font-size: 1.75rem;
 }
 
-#event_view .eventview-infos .who a {
+.eventview-infos .who a {
   font-size: 1rem;
 }
 
-#event_view .eventview-comments {
+.eventview-comments {
   border:none;
 }
 
-#event_view .eventview-comments h2 {
+.eventview-comments h2 {
   font-size: 1.75rem;
   color: #FFF;
   background: #332532;
@@ -856,20 +856,54 @@ input[type=submit]:focus, #send_position:focus, button:focus {
   margin: 0 0 0.5rem 0
 }
 
-#event_view .eventview-comments .comment {
+.eventview-comments .comment {
   padding: 0.5rem 0;
+  border-bottom:0.125rem solid #F77A52;
+  font-size: 1rem;
 }
 
-#event_view .eventview-comments .comment h3 {
+.eventview-comments .comment:last-child {
+  border-bottom:none;
+}
+
+.eventview-comments .comment h3 {
   font-size: 1.5rem;
   text-indent: 2rem;
 }
 
-#event_view .eventview-comments .comment p {
+.eventview-comments .comment .comment-content {
   background: #e4d6d9;
   padding: 0.5rem;
   border-radius: 1rem;
   margin: 0.5rem 0 0 0;
+}
+
+/* ################################ EVENT :: PAGE ################################ */
+
+.eventpage-header {
+  height: 18rem;
+}
+
+.eventpage-header-lane {
+  bottom:1.5rem;
+}
+
+#add_comment {
+  font-size: 1.25rem;
+  height: 4rem;
+  background: #F77A52;
+  margin: 0 0 1rem 0;
+}
+
+#add_comment:focus {
+  color:#FFF;
+  background: #332532;
+}
+
+.add_answer_comment {
+  margin: 0.5rem 0 0 0;
+  height: 2rem;
+  font-size: 1rem;
 }
 
 /* ################################ CREATE :: MAP ################################ */

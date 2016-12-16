@@ -16,10 +16,10 @@
         }else{
             if($is_register_event){
                 echo '<button style="display:none;" id="registeration_event" data-event-id="'.$event['id'].'">Je participe <i class="fa fa-check" aria-hidden="true"></i></button>';
-                echo '<button id="cancel_registeration_event" data-event-id="'.$event['id'].'">Je n\'y participe plus <i class="fa fa-check" aria-hidden="true"></i></button>';
+                echo '<button id="cancel_registeration_event" data-event-id="'.$event['id'].'">Se désinscrire</button>';
             }else{
                 echo '<button id="registeration_event" data-event-id="'.$event['id'].'">Je participe <i class="fa fa-check" aria-hidden="true"></i></button>';
-                echo '<button style="display:none;" id="cancel_registeration_event" data-event-id="'.$event['id'].'">Je n\'y participe plus <i class="fa fa-check" aria-hidden="true"></i></button>';
+                echo '<button style="display:none;" id="cancel_registeration_event" data-event-id="'.$event['id'].'">Se désinscrire</button>';
             }
         }
         ?>
@@ -38,10 +38,11 @@
     par <a href="<?php echo '/YAMATSI/public/user/'.$event['users_id'] ?>"></a>
     </div>
     <div class="eventview-guests">
+    Guest(s) :
     <?php
     if($guests != ''){
         foreach ($guests as $guest) {
-            echo "<a href=\"/YAMATSI/public/user/".$guest['id']."\">".$guest['nickname']."</a>";
+            echo "<a href=\"/YAMATSI/public/user/".$guest['id']."\">".$guest['nickname']."</a> ";
         }
     }?>
     </div>
@@ -50,7 +51,7 @@
     <?php
     if($parts != ''){
         foreach ($parts as $part) {
-            echo "<a href=\"/YAMATSI/public/user/".$part['id']."\">".$part['nickname']."</a>";
+            echo "<a href=\"/YAMATSI/public/user/".$part['id']."\">".$part['nickname']."</a> ";
         }
     }?>
     </div>
@@ -81,9 +82,11 @@
     <?php foreach ($coms as $com) {?>
 
     <div class="comment">
-        <h3>Titre : <?php echo $com['title']?></h3>
+      <h3>Titre : <?php echo $com['title']?></h3>
+      <div class="comment-content">
+        <p><strong><a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></strong> a écrit :</p>
         <p><?php echo $com['message']?></p>
-        <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
+      </div>
     </div>
 
     <?php }?>
