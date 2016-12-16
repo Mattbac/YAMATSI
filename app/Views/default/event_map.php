@@ -11,12 +11,12 @@
     <div class="eventview-interact">
 
         <button>Je participe <i class="fa fa-check" aria-hidden="true"></i></button>
-        <button class="hidden">Je n'y participe plus <i class="fa fa-times" aria-hidden="true"></i></button>
+        <button class="hidden canceller">Je n'y participe plus <i class="fa fa-times" aria-hidden="true"></i></button>
         <div class="rating"><i class="fa fa-square" aria-hidden="true"></i><i class="fa fa-square" aria-hidden="true"></i><i class="fa fa-square" aria-hidden="true"></i><i class="fa fa-square" aria-hidden="true"></i></div>
 
     </div>
 
-    <img src="<?= $this->assetUrl('img/eventsample.jpg') ?>" alt="<?php echo $event['name']?>">
+    <img src="<?= $this->assetUrl('img/default_event.jpg') ?>" alt="<?php echo $event['name']?>">
 
 </div>
 

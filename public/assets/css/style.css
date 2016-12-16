@@ -55,6 +55,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
+    color:#F77A52;
     text-decoration: none;
 }
 
@@ -83,6 +84,10 @@ button {
 
 .hidden {
   display: none;
+}
+
+.canceller {
+  background:#ff614c;
 }
 
 html {
@@ -289,11 +294,106 @@ footer p a:focus {
   padding: 0.5rem 0.5rem 3.5rem 0.5rem;
 }
 
+/* ############################### USER PROFILE ############################### */
+
+#profile {
+  margin: 0 0 2.5rem 0
+}
+
+#profile > h1 {
+  margin: 0 0 0.75rem 0;
+}
+
+#profile h2 {
+  text-align: center;
+  border-bottom:0.1rem solid #F77A52;
+  padding: 0 0 0.25rem 0;
+  margin: 1rem 0;
+}
+
+#user_information {
+  width: 100%;
+  height: auto;
+  margin: 0 0 1.5rem 0;
+}
+
+#user_information .avatar {
+  width: 8rem;
+  height: 8rem;
+  margin: 0.5rem auto;
+  overflow: hidden;
+  border: 0.2rem solid #332532;
+  border-radius: 4.5rem;
+}
+
+#user_information .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#user_information .edit-profile {
+  align-items: center;
+  border: 0.125rem dotted #FF974F;
+  border-radius: 1rem;
+  margin: 1rem 0;
+  padding: 0.5rem;
+}
+
+#user_information .edit-profile button {
+  width: 10rem;
+  height: 3.5rem;
+  font-size: 1rem;
+  margin: 0;
+}
+
+#user_information h1 {
+  text-indent: 2rem;
+  margin: 0 0 0.25rem 0;
+}
+
+#user_information .info-field {
+  border: 0.1rem solid #F77A52;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+#user_information .info-field p {
+  margin: 0.5rem 0;
+}
+
+#user_information .delete-profile {
+  margin: 0 0 1rem 0;
+}
+
+.showevent {
+  height: 8rem;
+  margin: 1rem 0 0 0;
+  border-bottom: 0.1rem dotted #332532;
+  padding: 0 0 1rem 0;
+}
+
+.showevent .blocinfo {
+  flex-direction: column;
+}
+
+.showevent img {
+  width: 40%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 1rem 1rem 0;
+}
+
 /* ################################### FORMS ################################### */
 
 form {
     width: 100%;
     height: auto;
+}
+
+form .forget {
+  font-size: 0.85rem;
+  margin: 1rem 0 0 1rem;
 }
 
 form .inputbox {
@@ -329,7 +429,7 @@ form .inputbox label {
     transition: all 0.5s;
 }
 
-form .inputbox input, form .inputbox textarea {
+form .inputbox input, form .inputbox textarea, form .picspec {
     box-sizing: border-box;
     width: 100%;
     height: 2.5rem;
@@ -340,6 +440,11 @@ form .inputbox input, form .inputbox textarea {
     background:#e4d6d9;
     margin: 1.5rem 0 0 0;
     padding: 0 1rem;
+}
+
+form .picspec {
+  margin: 0;
+  padding: 0.5rem;
 }
 
 form .inputbox input:hover ~ label,
@@ -462,7 +567,7 @@ form .inputbox .picfile {
     right:1rem;
 }
 
-form input[type=submit], #send_position  {
+input[type=submit], #send_position, button  {
     width: 100%;
     height: 5rem;
     border: none;
@@ -470,13 +575,22 @@ form input[type=submit], #send_position  {
     font-family: 'Roboto', sans-serif;
     font-size: 1.5em;
     font-weight: 600;
-    margin: 1rem 0 3.5rem 0;
+    margin: 1rem 0 1rem 0;
     color:#FFF;
     background:#332532;
     border: 0.125rem solid #FFF;
 }
 
-form input[type=submit]:focus, #send_position:focus {
+input[type=submit].endform {
+  margin: 1rem 0 3.5rem 0;
+}
+
+button.not-registered {
+    margin: 0 0 3.5rem 0;
+    background:#F77A52;
+}
+
+input[type=submit]:focus, #send_position:focus, button:focus {
     color:#332532;
     background:#FFF;
     border: 0.125rem solid #332532;
@@ -587,7 +701,7 @@ form input[type=submit]:focus, #send_position:focus {
 }
 
 #event_view .cancelling-cross:focus {
-  background: #F77A52;
+  background:#ff614c;
 }
 
 #event_view .eventview-header {
@@ -607,7 +721,7 @@ form input[type=submit]:focus, #send_position:focus {
 
 #event_view .eventview-header h1,
 #event_view .eventview-header p {
-  padding: 0 1%;
+  padding: 0 3%;
   background:#FFF;
 }
 
@@ -636,16 +750,17 @@ form input[type=submit]:focus, #send_position:focus {
 #event_view .eventview-interact {
   box-sizing: border-box;
   width: 100%;
-  height: auto;
+  height: 6rem;
   padding: 0 10%;
-  bottom: 3rem;
+  bottom: 2rem;
 }
 
 #event_view .eventview-header .eventview-interact button {
   height: 4rem;
   width: 40%;
+  margin: 0;
   bottom: 0.25rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #FFF;
   border: 0.25rem solid #FFF;
   border-radius: 1rem;
@@ -660,6 +775,7 @@ form input[type=submit]:focus, #send_position:focus {
   right: 10%;
   bottom: 1rem;
   color: #FFF;
+  font-size: 1.5rem;
   letter-spacing: 0.5rem;
 }
 
@@ -697,7 +813,7 @@ form input[type=submit]:focus, #send_position:focus {
 }
 
 #event_view .eventview-infos .eventview-text table {
-  width: 60%;
+  width: 80%;
   height: auto;
   margin: 0 auto;
 }
@@ -763,13 +879,13 @@ form input[type=submit]:focus, #send_position:focus {
     color:#FFF;
     text-align: center;
     font-weight: 300;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 
 #search_city {
     box-sizing: border-box;
     width: 90%;
-    height: 5rem;
+    height: 4rem;
     margin: 0 5%;
     padding: 1rem;
     font-size: 2rem;

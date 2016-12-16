@@ -51,7 +51,7 @@
         <div class="inputbox">
 
             <input type="password"  name="confirmpassword" id="confirmpassword" required>
-            <label for="confirmpassword">Confirmez votre mot de passe</label>
+            <label for="confirmpassword">Confirmez le mot de passe</label>
 
         </div>
 
@@ -76,7 +76,7 @@
             </div>
        </div>
 
-        <input type="submit" name="submit" value="S'inscrire">
+        <input class="endform" type="submit" name="submit" value="S'inscrire">
 
     </form>
 

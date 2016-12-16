@@ -25,7 +25,6 @@ class UserController extends Controller
     public function edit()
     {
 
-          $message = '';
           $user = new User;
           $auth = new Auth;
           $id = $this->getUser(); // recuperation de l'ID
@@ -74,7 +73,7 @@ class UserController extends Controller
                 $message = '<div></div>';
               }
             }
-          $this->show('user/edit', ['title' => 'edit user', 'message'=> $message, 'compFormulaire' => $this->getUser()]);
+          $this->show('user/edit', ['title' => 'edit user', 'compFormulaire' => $this->getUser()]);
       }
 
 

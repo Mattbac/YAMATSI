@@ -2,40 +2,52 @@
 
 <?php $this->start('main_content') ?>
 
-	<h1>Inscription</h1>
-	<h2><?= $message ?></h2>
+<div id="profile">
 
-	<hr>
+	<h1>Modifier son profil</h1>
 
-	<section>
-	    <form action="" method="post" enctype="multipart/form-data">
+  <div id="user_information">
+		<form action="" method="post" enctype="multipart/form-data">
 
-          <!-- Edition du pseudo -->
+				<!-- Edition du pseudo -->
 
-          <label for="nickname">Pseudo</label>
-	        <input type="text" name="nickname" id="nickname" value="<?= $compFormulaire['nickname'] ?>">
+				<div class="inputbox">
+				<input type="text" name="nickname" id="nickname" value="<?= $compFormulaire['nickname'] ?>">
+				<label for="nickname">Pseudo</label>
+				</div>
 
-					<label>Avatar</label>
-					<input type="file" name="file">
+				<div class="avatar">
+					<img src="<?= $this->assetUrl('img/avatar/'.$user['pictures_profile']) ?>" alt="Votre avatar">
+				</div>
+					<input type="file" name="file" class="picfile picspec">
 
-          <!-- Edition de l'email -->
+				<!-- Edition de l'email -->
 
-	        <label for="email">E-mail</label>
-	        <input type="email" name="email" id="email" value="<?= $compFormulaire['email'] ?>">
+				<div class="inputbox">
+					<input type="email" name="email" id="email" value="<?= $compFormulaire['email'] ?>">
+					<label for="email">E-mail</label>
+				</div>
+				<!-- Edition du mdp plus confimation -->
 
-          <!-- Edition du mdp plus confimation -->
+				<div class="inputbox">
+					<input type="password" name="password" id="password" >
+					<label for="password">Nouveau mot de passe</label>
+				</div>
 
-	        <label for="password">Nouveau mot de passe</label>
-	        <input type="password" name="password" id="password" >
+				<div class="inputbox">
+					<input type="password" name="confirmpassword" id="confirmpassword" >
+					<label for="confirmpassword">Confirmation mot de passe</label>
+				</div>
+				<!-- Envoi du form -->
 
-	        <label for="confirmpassword">Confirmation de votre nouveau mot de passe</label>
-	        <input type="password" name="confirmpassword" id="confirmpassword" >
+				<button type="submit" name="edit">Modifier</button>
 
-          <!-- Envoi du form -->
+		</form>
 
-	        <input type="submit" name="edit" value="Modifier">
-					<a onclick="return confirm('Etes-vous sur de vouloir supprimer votre compte ?');">Supprimer votre profil</a>
-	    </form>
-	</section>
+	<a onclick="return confirm('Etes-vous sur de vouloir supprimer votre compte ?');"><button class="delete-profile canceller">Supprimer votre profil</button></a>
+
+  </div>
+
+</div>
 
 <?php $this->stop('main_content') ?>
