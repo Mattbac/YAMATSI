@@ -33,6 +33,23 @@ class UsersModel extends \W\Model\UsersModel {
 
 		return ['guest' => $guest, 'part' => $part];
 	}
+
+  public function updateToken($token, $email)
+  {
+     $sql = "UPDATE users set token ='".$token."' WHERE email= '".$email."'";
+     $sth = $this->dbh->query($sql);
+  }
+
+  public function verifToken($token)
+  {
+    $sql = "SELECT * FROM users WHERE token= :token";
+    $sth = $this->dbh->prepare($sql);
+    $sth->bindValue(':token', $token);
+    $sth->execute();
+    return $sth->fetch();
+
+  }
+
 }
 
 ?>

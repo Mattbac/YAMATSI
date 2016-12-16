@@ -30,7 +30,7 @@ class EventController extends Controller
             $element['guest_part'] = ['guest' => '', 'part' => ''];
         }
 
-        $this->show('event/page', [  'event'     => $element['event'], 
+        $this->show('event/page', [  'event'     => $element['event'],
                                             'coms'      => $element['com'],
                                             'guests'    => $element['guest_part']['guest'],
                                             'parts'     => $element['guest_part']['part'],
@@ -63,8 +63,13 @@ class EventController extends Controller
     public function create($lat, $lng)
     {
         if(isset($_POST['submitformcreate'])){// if the form is send // && is_numeric($lat) && is_numeric($lng)
-          $event = new Event();
+          $event = new EventModel();
           var_dump($_POST);
+
+          if(!is_dir("upload")){
+            mkdir("assets/img/upload");
+          }
+
           $extensions = ["image/png", "image/gif", "image/jpg", "image/jpeg"];
 
           /* ### CLASSE LES AVATARS PAR USER ### */

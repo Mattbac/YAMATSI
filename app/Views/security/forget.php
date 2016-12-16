@@ -4,9 +4,9 @@
 	<h1>Mot de passe oublié</h1>
 	<form action="" method="post">
     <label for="email">Email :</label>
-    <input type="text" name="email">
+    <input type="email" name="email">
 
 		<button name="forgetMdp">Envoyer</button>
 	</form>
-<a href="<?= $this->url('security_forget') ?>">Mot de passe oublié</a>
+
 <?php $this->stop('main_content') ?>
