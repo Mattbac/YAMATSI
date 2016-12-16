@@ -48,6 +48,6 @@ name VARCHAR(255) NOT NULL/* id of the event */) ENGINE=InnoDB DEFAULT CHARSET=u
 
 CREATE TABLE IF NOT EXISTS register_event (
 event_id INT(11) NOT NULL,/* id of the event */
-user_id INT(11) NOT NULL,/* id of the event */
+users_id INT(11) NOT NULL,/* id of the event */
 date_time INT(11) NOT NULL,/* Timestamp of register */
 rate_value INT(1) NOT NULL/* between 1 and 4 */) ENGINE=InnoDB DEFAULT CHARSET=utf8;

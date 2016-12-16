@@ -40,7 +40,17 @@ $(function() {
     });
 
     $(document).on("click","#submitCom",function(){
-        console.log($(this));
+
+        $.ajax({
+            type    : "POST",
+            url     : locationPage[0]+"public/api/send_com/",
+            data    : 'event_id='+$(this).parent().data('event-id')+'&title='+$(this).prev().prev().prev().val()+'&message='+$(this).prev().val()
+        }).done(function(data){
+            console.log(data);
+            if(data == 'true'){
+                $(this).parent().empty();
+            }
+        });
     });
 
     $(".add_answer_comment").click(function(e){
@@ -51,7 +61,16 @@ $(function() {
     });
 
     $(document).on("click","#submitAnswerCom",function(){
-        console.log($(this));
+
+        $.ajax({
+            type    : "POST",
+            url     : locationPage[0]+"public/api/send_com/",
+            data    : 'event_id='+$(this).parent().data('event-id')+'&com_id='+$(this).parent().data('com-id')+'&message='+$(this).prev().val()
+        }).done(function(data){
+            if(data == 'true'){
+                $(this).parent().empty();
+            }
+        });
     });
 
 });

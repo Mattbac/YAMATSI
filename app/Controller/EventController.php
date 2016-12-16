@@ -25,6 +25,7 @@ class EventController extends Controller
 
         $element['event']           			= $eventModel->find($id);
 		if($element['event']){
+			
 			$element['com']             		= $commentModel->findAllComWithId($id);
 			$element['type']            		= $typeModel->find($element['event']['type_id']);
 			$element['is_connect']          	= !empty($this->getUser()['id']);
@@ -39,13 +40,14 @@ class EventController extends Controller
 				$element['guest_part'] 			= ['guest' => '', 'part' => ''];
 			}
 			
-			$this->show('event/page', [   'is_connect'			=> $element['is_connect'],
-										'is_register_event'	=> $element['is_register_event'],
-										'event'     			=> $element['event'], 
-										'coms'      			=> $element['com'],
-										'guests'    			=> $element['guest_part']['guest'],
-										'parts'     			=> $element['guest_part']['part'],
-										'type'      			=> $element['type']['name']]);
+			$this->show('event/page', [ 'is_connect'			=> $element['is_connect'],
+										'is_register_event'		=> $element['is_register_event'],
+										'event'     			    => $element['event'], 
+										'comsFirst'      			=> $element['com'][1],
+										'comsAn'      			  => $element['com'][2],
+										'guests'    			    => $element['guest_part']['guest'],
+										'parts'     			    => $element['guest_part']['part'],
+										'type'      			    => $element['type']['name']]);
 		}else{
 			$this->showNotFound();
 		}

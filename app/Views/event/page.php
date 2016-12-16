@@ -61,21 +61,25 @@
 </div>
 <div>
     <h2>Commentaire</h2>
-    <?php foreach ($coms as $com) {?>
+    <?php foreach ($comsFirst as $com){
+        if($com['title'] != null){?>
     <div>
         <h3>Titre : <?php echo $com['title']?></h3>
         <p><?php echo $com['message']?></p>
         <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
         <button class="add_answer_comment">Repondre</button>
-        <div class="answer_comment" data-com-id="<?php echo $com['id']?>">
+        <div class="answer_comment" data-event-id="<?php echo $event['id']?>" data-com-id="<?php echo $com['id']?>">
 
         </div>
+        <?php foreach ($comsAn as $comAnswer){
+            if($com['id'] == $comAnswer['comment_id']){?>
         <div>
-            <p><?php echo $com['message']?></p>
-            <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
+            <p><?php echo $comAnswer['message']?></p>
+            <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $comAnswer['nickname']?></a></p>
         </div>
+        <?php }}?>
     </div>
-    <?php }?>
+    <?php }}?>
 </div>
 <?php $this->stop('main_content') ?>
 

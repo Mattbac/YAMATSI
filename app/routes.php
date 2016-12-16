@@ -4,13 +4,13 @@
 		['GET', 		'/api/search_city/[:slug][/]?'			, 'Api#search_city'					, 'api_search_city'],
 		['GET', 		'/api/search_event[/]?'					, 'Api#search_event'				, 'api_search_event'],
 		['GET', 		'/api/search_event_element/[i:id][/]?'	, 'Api#search_event_element'		, 'api_search_event_element'],
-		['GET|POST', 	'/api/register_com[/]?'					, 'Api#send_com'					, 'api_send_com'],
+		['GET|POST', 	'/api/send_com[/]?'						, 'Api#send_com'					, 'api_send_com'],
 		['GET|POST', 	'/api/register_event[/]?'				, 'Api#register_event'				, 'api_register_event'],
 		['GET|POST', 	'/api/cancel_registeration_event[/]?'	, 'Api#cancel_registeration_event'	, 'cancel_registeration_event'],
 
 		['GET|POST', 	'/login'							, 'Security#login'				, 'security_login'],
 		['GET', 		'/logout'							, 'Security#logout'				, 'security_logout'],
-		['GET|POST', 	'/forget'							, 'Security#forget'				, 'security_forget'],
+		['GET|POST', 	'/forget[/]?[:token]?'				, 'Security#forget'				, 'security_forget'],
 	
 		['GET|',		'/user[/]?[i:id]?[/]?'				, 'User#profil'					, 'user_profil'], //liste de tout les membres
 		['GET|POST',	'/user/edit[/]?'					, 'User#edit'					, 'user_edit'], //liste de tout les membres
