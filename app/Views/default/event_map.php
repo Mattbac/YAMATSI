@@ -10,8 +10,20 @@
 
     <div class="eventview-interact">
 
-        <button>Je participe <i class="fa fa-check" aria-hidden="true"></i></button>
-        <button class="hidden canceller">Je n'y participe plus <i class="fa fa-times" aria-hidden="true"></i></button>
+        <?php
+        if(!$is_connect){
+            echo '<a id="not_connection" href="'.$this->url('security_login').'">Se connecter</a>';
+        }else{
+            if($is_register_event){
+                echo '<button style="display:none;" id="registeration_event" data-event-id="'.$event['id'].'">Je participe <i class="fa fa-check" aria-hidden="true"></i></button>';
+                echo '<button id="cancel_registeration_event" data-event-id="'.$event['id'].'">Je n\'y participe plus <i class="fa fa-check" aria-hidden="true"></i></button>';
+            }else{
+                echo '<button id="registeration_event" data-event-id="'.$event['id'].'">Je participe <i class="fa fa-check" aria-hidden="true"></i></button>';
+                echo '<button style="display:none;" id="cancel_registeration_event" data-event-id="'.$event['id'].'">Je n\'y participe plus <i class="fa fa-check" aria-hidden="true"></i></button>';
+            }
+        }
+        ?>
+
         <div class="rating"><i class="fa fa-square" aria-hidden="true"></i><i class="fa fa-square" aria-hidden="true"></i><i class="fa fa-square" aria-hidden="true"></i><i class="fa fa-square" aria-hidden="true"></i></div>
 
     </div>
@@ -25,19 +37,22 @@
     <div class="eventview-organizer">
     par <a href="<?php echo '/YAMATSI/public/user/'.$event['users_id'] ?>"></a>
     </div>
-
     <div class="eventview-guests">
-    Guest(s) :
-    <?php foreach ($guests as $guest) {?>
-    <a href="<?php echo '/YAMATSI/public/user/'.$guest['id'] ?>"><?php echo $guest['nickname'] ?></a>
-    <?php } ?>
+    <?php
+    if($guests != ''){
+        foreach ($guests as $guest) {
+            echo "<a href=\"/YAMATSI/public/user/".$guest['id']."\">".$guest['nickname']."</a>";
+        }
+    }?>
     </div>
-
     <div class="eventview-partners">
     Partenaire(s) :
-    <?php foreach ($parts as $part) {?>
-    <a href="<?php echo '/YAMATSI/public/user/'.$part['id'] ?>"><?php echo $part['nickname'] ?></a>
-    <?php }?>
+    <?php
+    if($parts != ''){
+        foreach ($parts as $part) {
+            echo "<a href=\"/YAMATSI/public/user/".$part['id']."\">".$part['nickname']."</a>";
+        }
+    }?>
     </div>
 
     <div class="eventview-text">
@@ -68,6 +83,7 @@
     <div class="comment">
         <h3>Titre : <?php echo $com['title']?></h3>
         <p><?php echo $com['message']?></p>
+        <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
     </div>
 
     <?php }?>

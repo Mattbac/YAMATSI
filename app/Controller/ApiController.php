@@ -8,6 +8,7 @@ use Model\EventModel as EventModel;
 use Model\CommentModel as CommentModel;
 use Model\TypeModel as TypeModel;
 use Model\UsersModel as UsersModel;
+use Model\Register_eventModel as Register_eventModel;
 
 class ApiController extends Controller
 {
@@ -35,22 +36,74 @@ class ApiController extends Controller
     public function search_event_element($id)
     {
         $element = [];
-        $CommentModel = new CommentModel();
-        $EventModel = new EventModel();
-        $TypeModel = new TypeModel();
-        $UsersModel = new UsersModel();
+        $commentModel               = new CommentModel();
+        $eventModel                 = new EventModel();
+        $typeModel                  = new TypeModel();
+        $usersModel                 = new UsersModel();
+        $register_eventModel        = new Register_eventModel();
 
-        $element['event']           = $EventModel->find($id);
-        $element['com']             = $CommentModel->findAllComWithId($id);
-        $element['type']            = $TypeModel->find($element['event']['type_id']);
-        $element['guest_part']      = $UsersModel->findGuestPart($element['event']['guest_part_id']);
+        $element['event']                   = $eventModel->find($id);
+        $element['com']             		= $commentModel->findAllComWithId($id);
+		$element['type']            		= $typeModel->find($element['event']['type_id']);
+		$element['is_connect']          	= !empty($this->getUser()['id']);
 
-        file_put_contents('test.txt', json_encode($element['event']['guest_part_id']));
+		if($element['is_connect']){
+			$element['is_register_event']   = !empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $id));
+		}
 
-        $this->show('default/event_map', [  'event'     => $element['event'],
-                                            'coms'      => $element['com'],
-                                            'guests'     => $element['guest_part']['guest'],
-                                            'parts'      => $element['guest_part']['part'],
-                                            'type'      => $element['type']['name']]);
+		if($element['event']['guest_part_id'] != ''){
+			$element['guest_part']      	= $usersModel->findGuestPart($element['event']['guest_part_id']);
+		}else{
+			$element['guest_part'] 			= ['guest' => '', 'part' => ''];
+		}
+			
+		$this->show('default/event_map', [   'is_connect'			=> $element['is_connect'],
+										'is_register_event'	=> $element['is_register_event'],
+										'event'     			=> $element['event'], 
+										'coms'      			=> $element['com'],
+										'guests'    			=> $element['guest_part']['guest'],
+										'parts'     			=> $element['guest_part']['part'],
+										'type'      			=> $element['type']['name']]);
+    }
+
+    public function register_com()
+    {
+        $commentModel = new CommentModel();
+
+        if(isset($_POST)){
+            $commentModel->insert(['']);
+        }
+    }
+
+    public function register_event()
+    {
+        $register_eventModel = new Register_eventModel();
+        if(isset($_POST['eventid']) && isset($this->getUser()['id'])){
+
+            if(empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $_POST['eventid']))){
+                $register_eventModel->insert(['users_id' => $this->getUser()['id'], 'event_id' => $_POST['eventid']]);
+                echo 'true';
+            }else{
+                echo 'false';
+            }
+        }else{
+            echo 'false';
+        }
+    }
+
+    public function cancel_registeration_event()
+    {
+        $register_eventModel = new Register_eventModel();
+        if(isset($_POST['eventid']) && isset($this->getUser()['id'])){
+
+            if(!empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $_POST['eventid']))){
+                $register_eventModel->cancel_register($this->getUser()['id'], $_POST['eventid']);
+                echo 'true';
+            }else{
+                echo 'false';
+            }
+        }else{
+            echo 'false';
+        }
     }
 }
