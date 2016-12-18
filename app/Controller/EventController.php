@@ -24,57 +24,61 @@ class EventController extends Controller
         $register_eventModel = new Register_eventModel();
 
         $element['event']           			= $eventModel->find($id);
-		if($element['event']){
-			
-			$element['com']             		= $commentModel->findAllComWithId($id);
-			$element['type']            		= $typeModel->find($element['event']['type_id']);
-			$element['is_connect']          	= !empty($this->getUser()['id']);
+        if($element['event']){
+          
+          $element['createdBy']           = $usersModel->find($id);
+          $element['com']             		= $commentModel->findAllComWithId($id);
+          $element['type']            		= $typeModel->find($element['event']['type_id']);
+          $element['is_connect']          	= !empty($this->getUser()['id']);
 
-			if($element['is_connect']){
-				$element['is_register_event']   = !empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $id));
-			}
+          if($element['is_connect']){
+            $element['is_register_event']   = !empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $id));
+          }else{
+            $element['is_register_event'] = null;
+          }
 
-			if($element['event']['guest_part_id'] != ''){
-				$element['guest_part']      	= $usersModel->findGuestPart($element['event']['guest_part_id']);
-			}else{
-				$element['guest_part'] 			= ['guest' => '', 'part' => ''];
-			}
-			
-			$this->show('event/page', [ 'is_connect'			=> $element['is_connect'],
-										'is_register_event'		=> $element['is_register_event'],
-										'event'     			    => $element['event'], 
-										'comsFirst'      			=> $element['com'][1],
-										'comsAn'      			  => $element['com'][2],
-										'guests'    			    => $element['guest_part']['guest'],
-										'parts'     			    => $element['guest_part']['part'],
-										'type'      			    => $element['type']['name']]);
+          if($element['event']['guest_part_id'] != ''){
+            $element['guest_part']      	= $usersModel->findGuestPart($element['event']['guest_part_id']);
+          }else{
+            $element['guest_part'] 			= ['guest' => '', 'part' => ''];
+          }
 
-		}else{
-			$this->showNotFound();
-		}
+          $this->show('event/page', [ 'is_connect'			    => $element['is_connect'],
+                                      'is_register_event'		=> $element['is_register_event'],
+                                      'event'     			    => $element['event'], 
+                                      'createdBy'     			=> $element['createdBy'], 
+                                      'comsFirst'      			=> $element['com'][1],
+                                      'comsAn'      			  => $element['com'][2],
+                                      'guests'    			    => $element['guest_part']['guest'],
+                                      'parts'     			    => $element['guest_part']['part'],
+                                      'type'      			    => $element['type']['name']]);
+
+        }else{
+          $this->showNotFound();
+        }
     }
 
     public function edit($id = 0)
     {
-		$eventModel = new EventModel();
-		$event = $eventModel->find($id);
+        $eventModel = new EventModel();
+        $event = $eventModel->find($id);
 
-		if($id != 0 && $this->getUser()['id'] == $event['users_id']){
-			if(isset($_POST['submitformcreate']))
-			{
+        if($id != 0 && $this->getUser()['id'] == $event['users_id']){
+          if(isset($_POST['submitformcreate']))
+          {
 
-			}
-			$typesModel = new TypeModel();
-			$type = $typesModel->findAll();
-			var_dump($event);
-			$this->show('event/edit', ['event' => $event, 'types' => $type]);
+          }
+          $typesModel = new TypeModel();
+          $type = $typesModel->findAll();
+          var_dump($event);
+          $this->show('event/edit', ['event' => $event, 'types' => $type]);
 
-		}elseif($id != 0){
-			$this->redirectToRoute('event_page', ['id' => $id]);
+        }elseif($id != 0){
+          $this->redirectToRoute('event_page', ['id' => $id]);
 
-		}else{
-			$this->redirectToRoute('default_map');
-		}
+        }else{
+          $this->redirectToRoute('default_map');
+        }
     }
 
     public function create($lat, $lng)
@@ -91,7 +95,7 @@ class EventController extends Controller
 
           /* ### CLASSE LES AVATARS PAR USER ### */
           if (isset($_FILES['file']))
-            {
+          {
               if(in_array($_FILES['file']['type'], $extensions))
                 {
                   move_uploaded_file($_FILES['file']['tmp_name'],"assets/img/upload/".$_FILES['file']['name']);
@@ -132,8 +136,6 @@ class EventController extends Controller
         $arrayType = $types->findAll();
         $this->show('event/create', ['title' => 'OutLooker - Créer un évènement', 'lat' => $lat, 'lng' => $lng, 'types' => $arrayType]);
     }
-
-
 
     public function map()
     {

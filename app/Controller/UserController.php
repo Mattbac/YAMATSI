@@ -13,7 +13,6 @@ class UserController extends Controller
     {
         $user = new User;
         if($id == 0 && isset($this->getUser()['id'])) {
-            var_dump($user->find($this->getUser()['id']));
             $this->show('user/profilUser', ['title' => 'page user perso '.$id, 'user' => $this->getUser()]);
         }elseif($id != 0){
             $this->show('user/profil', ['title' => 'page user '.$id, 'user' => $user->find($id)]);
@@ -22,56 +21,36 @@ class UserController extends Controller
         }
     }
 
-    public function edit()
+	public function edit()
     {
+        $extensions = ["image/png", "image/gif", "image/jpg", "image/jpeg"];
 
-          $user = new User;
-          $auth = new Auth;
-          $id = $this->getUser(); // recuperation de l'ID
-
+        $user = new User;
+        $auth = new Auth;
+          
+        $id = $this->getUser();
             if(isset($_POST['edit'])){
 
-            // FAIRE CAS D'ERREURS
-            ## EXTENSIONS DE FICHIERS ACCEPTES ### */
+				$datas = [
+					'nickname' => $_POST['nickname'],
+					'email'    => $_POST['email']
+				];
 
-              $extensions = ["image/png", "image/gif", "image/jpg", "image/jpeg"];
+              if (isset($_FILES['file'])){
 
-            /* ### CLASSE LES AVATARS PAR USER ### */
-              if (isset($_FILES['file']))
-                {
-                  if(in_array($_FILES['file']['type'], $extensions))
-                  {
-                    move_uploaded_file($_FILES['file']['tmp_name'],"assets/img/avatar/".$_FILES['file']['name']);
+                  if(in_array($_FILES['file']['type'], $extensions) && isset($_FILES['file']['tmp_name'])){
+
+                      move_uploaded_file($_FILES['file']['tmp_name'],"assets/img/avatar/".$_FILES['file']['name']);
+                      $datas['pictures_profile'] = $_FILES['file']['name'];
                   }
-                  if($_FILES['file']['name'] == "")
-                  {
-                      // RIEN SI AUCUN FICHIER CHARGE
-                  }
-                  else
-                  {
-                      $avatar = '';
-                  }
-
-              $datas = [
-                'nickname' => $_POST['nickname'],
-                'email'    => $_POST['email'],
-                'password' => $auth->hashPassword($_POST['password'])
-              ];
-
-              if (isset($_FILES['file']['tmp_name']))
-              {
-                $datas['pictures_profile'] = $_FILES['file']['name'];
               }
+
+              if($_POST['password'] == $_POST['confirmpassword']){
+                  $datas['password'] = $auth->hashPassword($_POST['password']);
+              }
+
               $user->update($datas, $id['id']);
-
-              $auth->refreshUser($user); // on utilise la sesison pour afficher les champs donc il faut l'actualiser lors de l'envoi de la requete Update
-
-              $message = '<div>Profil modifié</div>';
-              }
-              else
-              {
-                $message = '<div></div>';
-              }
+              $auth->refreshUser($user); // on utilise la session pour afficher les champs que l'on actualise lors de l'envoi de la requete Update
             }
           $this->show('user/edit', ['title' => 'edit user', 'compFormulaire' => $this->getUser()]);
       }

@@ -44,26 +44,29 @@ class ApiController extends Controller
 
         $element['event']                   = $eventModel->find($id);
         $element['com']             		= $commentModel->findAllComWithId($id);
-		$element['type']            		= $typeModel->find($element['event']['type_id']);
-		$element['is_connect']          	= !empty($this->getUser()['id']);
+        $element['type']            		= $typeModel->find($element['event']['type_id']);
+        $element['is_connect']          	= !empty($this->getUser()['id']);
 
-		if($element['is_connect']){
-			$element['is_register_event']   = !empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $id));
-		}
+        if($element['is_connect']){
+            $element['is_register_event']   = !empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $id));
+        }else{
+            $element['is_register_event'] = null;
+        }
 
-		if($element['event']['guest_part_id'] != ''){
-			$element['guest_part']      	= $usersModel->findGuestPart($element['event']['guest_part_id']);
-		}else{
-			$element['guest_part'] 			= ['guest' => '', 'part' => ''];
-		}
-			
-		$this->show('default/event_map', ['is_connect'		=> $element['is_connect'],
-										'is_register_event'	=> $element['is_register_event'],
-										'event'     		=> $element['event'], 
-										'coms'      		=> $element['com'],
-										'guests'    		=> $element['guest_part']['guest'],
-										'parts'     		=> $element['guest_part']['part'],
-										'type'      		=> $element['type']['name']]);
+        if($element['event']['guest_part_id'] != ''){
+            $element['guest_part']      	= $usersModel->findGuestPart($element['event']['guest_part_id']);
+        }else{
+            $element['guest_part'] 			= ['guest' => '', 'part' => ''];
+        }
+
+        $this->show('default/event_map', [ 'is_connect'	=> $element['is_connect'],
+                        'is_register_event'		    => $element['is_register_event'],
+                        'event'     			    => $element['event'], 
+                        'comsFirst'      			=> $element['com'][1],
+                        'comsAn'      			    => $element['com'][2],
+                        'guests'    			    => $element['guest_part']['guest'],
+                        'parts'     			    => $element['guest_part']['part'],
+                        'type'      			    => $element['type']['name']]);
     }
 
     public function send_com()
@@ -71,21 +74,27 @@ class ApiController extends Controller
         $commentModel = new CommentModel();
 
         if(isset($_POST['title']) && isset($_POST['message']) && isset($_POST['event_id']) && isset($this->getUser()['id'])){
-
-            $commentModel->insert([ 'users_id'      => $this->getUser()['id'],
-                                    'event_id'      => $_POST['event_id'],
-                                    'message'       => $_POST['message'],
-                                    'created_at'    => time(),
-                                    'title'         => $_POST['title']]);
-            echo true;
+            if($_POST['title'] != '' && $_POST['message'] != ''){
+                $commentModel->insert([ 'users_id'      => $this->getUser()['id'],
+                                        'event_id'      => $_POST['event_id'],
+                                        'message'       => $_POST['message'],
+                                        'created_at'    => time(),
+                                        'title'         => $_POST['title']]);
+                echo true;
+            }else{
+                echo false;
+            }
         }elseif(isset($_POST['com_id']) && isset($_POST['message']) && isset($_POST['event_id']) && isset($this->getUser()['id'])){
-
-            $commentModel->insert([ 'users_id'      => $this->getUser()['id'],
-                                    'event_id'      => $_POST['event_id'],
-                                    'comment_id'    => $_POST['com_id'],
-                                    'message'       => $_POST['message'],
-                                    'created_at'    => time()]);
+            if($_POST['message'] != ''){
+                $commentModel->insert([ 'users_id'      => $this->getUser()['id'],
+                                        'event_id'      => $_POST['event_id'],
+                                        'comment_id'    => $_POST['com_id'],
+                                        'message'       => $_POST['message'],
+                                        'created_at'    => time()]);
             echo true;
+            }else{
+                echo false;
+            }
         }else{
             echo false;
         }
@@ -97,7 +106,7 @@ class ApiController extends Controller
         if(isset($_POST['eventid']) && isset($this->getUser()['id'])){
 
             if(empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $_POST['eventid']))){
-                $register_eventModel->insert(['users_id' => $this->getUser()['id'], 'event_id' => $_POST['eventid']]);
+                $register_eventModel->insert(['users_id' => $this->getUser()['id'], 'event_id' => $_POST['eventid'], 'date_time' => time()]);
                 echo true;
             }else{
                 echo false;
@@ -114,12 +123,12 @@ class ApiController extends Controller
 
             if(!empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $_POST['eventid']))){
                 $register_eventModel->cancel_register($this->getUser()['id'], $_POST['eventid']);
-                echo 'true';
+                echo true;
             }else{
-                echo 'false';
+                echo false;
             }
         }else{
-            echo 'false';
+            echo false;
         }
     }
 }

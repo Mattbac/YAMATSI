@@ -313,12 +313,14 @@ $(function() {
 
   $(document).on("click","#registeration_event",function(){
 
+        console.log('click on registeration event');
         $.ajax({
             type    : "POST",
             url     : locationPage[0]+"public/api/register_event/",
             data    : 'eventid='+$("#registeration_event").data("event-id")
         }).done(function(data){
-            if(data == 'true'){
+            console.log(data);
+            if(data == true){
                 $("#registeration_event").hide();
                 $("#cancel_registeration_event").show();
             }
@@ -327,16 +329,23 @@ $(function() {
 
     $(document).on("click","#cancel_registeration_event",function(){
 
+        console.log('click on cancel registeration event');
         $.ajax({
             type    : "POST",
             url     : locationPage[0]+"public/api/cancel_registeration_event/",
             data    : 'eventid='+$("#cancel_registeration_event").data("event-id")
         }).done(function(data){
-            if(data == 'true'){
+            console.log(data);
+            if(data == true){
                 $("#cancel_registeration_event").hide();
                 $("#registeration_event").show();
             }
         });
+    });
+
+    $(document).on("click", ".cancelling-cross", function(){
+        $("#event_view").empty();
+        $('#event_view').hide();
     });
 
 });

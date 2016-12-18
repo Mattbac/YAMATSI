@@ -26,7 +26,7 @@
 </div>
 <div>
     <div>
-    <a href="<?php echo $this->url('user_profil', ['id' => $event['users_id']]) ?>">Assoc/comp</a>
+    <a href="<?php echo $this->url('user_profil', ['id' => $event['users_id']]) ?>"><?php echo $createdBy['nickname']; ?></a>
     </div>
     <div>
     <?php
@@ -53,7 +53,18 @@
 </div>
 <div>
     <h3>Qui participe ?</h3>
-    <a href="<?php echo $this->url('user_profil', ['id' => $event['guest_part_id']]) ?>">Guest</a>
+    <?php   if(!empty($guests)){
+                foreach($guests as $guest){ ?>
+    <a href="<?php echo $this->url('user_profil', ['id' => $guest['id']]) ?>"><?php echo $guest['nickname']; ?></a>
+    <?php   }}else{
+                echo '<p>Pas d\'invité</p>';
+            }
+            if(!empty($parts)){
+                foreach($parts as $part){ ?>
+    <a href="<?php echo $this->url('user_profil', ['id' => $part['id']]) ?>"><?php echo $part['nickname']; ?></a>
+            <?php }}else{
+                echo '<p>Pas de partenaire</p>';
+                   }  ?>
 </div>
 <button id="add_comment">Ajouter un commentaire</button>
 <div id="add_new_comment" data-event-id="<?php echo $event['id']?>">
@@ -61,23 +72,22 @@
 </div>
 <div>
     <h2>Commentaire</h2>
-    <?php foreach ($comsFirst as $com){
+    <?php foreach ($comsFirst as $key => $com){
         if($com['title'] != null){?>
     <div>
         <h3>Titre : <?php echo $com['title']?></h3>
         <p><?php echo $com['message']?></p>
         <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
-        <button class="add_answer_comment">Repondre</button>
-        <div class="answer_comment" data-event-id="<?php echo $event['id']?>" data-com-id="<?php echo $com['id']?>">
-
         </div>
-        <?php foreach ($comsAn as $comAnswer){
-            if($com['id'] == $comAnswer['comment_id']){?>
+        <?php if(isset($comsAn[$key])){
+            foreach ($comsAn[$key] as $comAnswer){?>
         <div>
             <p><?php echo $comAnswer['message']?></p>
             <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $comAnswer['nickname']?></a></p>
         </div>
         <?php }}?>
+        <button class="add_answer_comment">Repondre</button>
+        <div class="answer_comment" data-event-id="<?php echo $event['id']?>" data-com-id="<?php echo $com['id']?>">
     </div>
     <?php }}?>
 </div>

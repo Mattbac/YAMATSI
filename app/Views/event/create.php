@@ -63,43 +63,33 @@
         </div>
 
         <div class="timetable">
-            <div class="inputbox">
-                <label for="start1">Horaire de début</label>
-                <input type="time" step="1800" id="start1" name="start1">
+            <div id="dateFirst">
+                <div class="inputbox">
+                    <label for="hstart1">Horaire de début</label>
+                    <input type="time" step="1800" id="hstart1" name="hstart1">
+                </div>
+
+                <div class="inputbox">
+                    <label for="stop1">Horaire de fin</label>
+                    <input type="time" step="1800" id="hstop1" name="hstop1">
+                </div>
+
+                <div class="inputbox">
+                    <label for="hdate1">Date :</label>
+                    <input type="date" name="hdate1" id="hdate1">
+                </div>
             </div>
 
-            <div class="inputbox">
-                <label for="stop1">Horaire de fin</label>
-                <input type="time" step="1800" id="stop1" name="stop1">
-            </div>
-
-            <div class="inputbox">
-                <label for="date">Date :</label>
-                <input type="date" name="date">
-            </div>
-
-
-            <div class="adddates">
+            <div id="adddates" class="adddates">
                 <p>Votre évènement s'étend sur plusieurs jours ?</p>
             </div>
 
                 <!-- Dates intermédiaires -->
+            <div id="dateinter" class="dateinter">
 
-            <div class="datesup">
-                <div class="inputbox">
-                <label for="laststart">Horaire de début</label>
-                <input type="time" step="1800" id="laststart">
-                </div>
+            </div>
+            <div id="datesup" class="datesup">
 
-                <div class="inputbox">
-                <label for="laststop">Horaire de fin</label>
-                <input type="time" step="1800" id="laststop">
-                </div>
-
-                <div class="inputbox">
-                <label for="lastdate">Dernière date :</label>
-                <input type="date" name="lastdate">
-                </div>
             </div>
         </div>
 
@@ -160,3 +150,8 @@
     </form>
 
 <?php $this->stop('main_content') ?>
+
+<?php $this->start('script_content') ?>
+<script src="<?= $this->assetUrl('js/jquery-3.1.1.min.js') ?>"></script>
+<script src="<?= $this->assetUrl('js/register_create.js') ?>"></script>
+<?php $this->stop('script_content') ?>

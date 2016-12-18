@@ -526,7 +526,7 @@ form .timetable .adddates:focus {
     background: #FFF;
 }
 
-form .timetable .datesup {
+form .timetable .datesup{
     display:none;
 }
 

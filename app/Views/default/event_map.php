@@ -4,7 +4,7 @@
 
 <div class="eventview-header">
 
-    <h1><?php echo $event['name']?></h1>
+    <h1><a href="<?php echo $this->url('event_page', ['id' => $event['id']]);?>"><?php echo $event['name']?></a></h1>
     <p>Catégorie: <strong><?php echo $event['category_of'] ?></strong></p>
     <p>Type: <strong><?php echo $type ?></strong></p>
 
@@ -76,16 +76,21 @@
 
 <div class="eventview-comments">
 
-    <h2>Commentaire(s)</h2>
-
-    <?php foreach ($coms as $com) {?>
-
-    <div class="comment">
+    <h2>Commentaire</h2>
+    <?php foreach ($comsFirst as $key => $com){
+        if($com['title'] != null){?>
+    <div>
         <h3>Titre : <?php echo $com['title']?></h3>
         <p><?php echo $com['message']?></p>
         <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
+        <?php if(isset($comsAn[$key])){
+            foreach ($comsAn[$key] as $comAnswer){?>
+        <div>
+            <p><?php echo $comAnswer['message']?></p>
+            <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $comAnswer['nickname']?></a></p>
+        </div>
+        <?php }}?>
     </div>
-
-    <?php }?>
+    <?php }}?>
 
 </div>
