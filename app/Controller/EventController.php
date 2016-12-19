@@ -11,7 +11,10 @@ use \Model\Register_eventModel as Register_eventModel;
 
 class EventController extends Controller
 {
-
+  function post($param)
+  {
+    return strip_tags(trim($_POST[$param]));
+  }
     // Creation Event Form
 
     public function page($id)
@@ -25,7 +28,7 @@ class EventController extends Controller
 
         $element['event']           			= $eventModel->find($id);
         if($element['event']){
-          
+
           $element['createdBy']           = $usersModel->find($id);
           $element['com']             		= $commentModel->findAllComWithId($id);
           $element['type']            		= $typeModel->find($element['event']['type_id']);
@@ -45,8 +48,8 @@ class EventController extends Controller
 
           $this->show('event/page', [ 'is_connect'			    => $element['is_connect'],
                                       'is_register_event'		=> $element['is_register_event'],
-                                      'event'     			    => $element['event'], 
-                                      'createdBy'     			=> $element['createdBy'], 
+                                      'event'     			    => $element['event'],
+                                      'createdBy'     			=> $element['createdBy'],
                                       'comsFirst'      			=> $element['com'][1],
                                       'comsAn'      			  => $element['com'][2],
                                       'guests'    			    => $element['guest_part']['guest'],
@@ -83,11 +86,12 @@ class EventController extends Controller
 
     public function create($lat, $lng)
     {
+      if(isset($this->getUser()['id'])){
+        if($this->getUser()['type'] != 'user'){
         if(isset($_POST['submitformcreate'])){// if the form is send // && is_numeric($lat) && is_numeric($lng)
           $event = new EventModel();
-          var_dump($_POST);
 
-          if(!is_dir("upload")){
+          if(!is_dir("assets/img/upload")){
             mkdir("assets/img/upload");
           }
 
@@ -108,16 +112,36 @@ class EventController extends Controller
                 {
                   $avatar = '';
                 }
+            $i = 1;
+            $tab = [];
+          while(isset($_POST['hstart'.$i]))
+            {
+              $dateStart = new \DateTime($this->post('hdate'.$i) +' '+ $this->post('hstart'.$i));
+              $dateStop = new \DateTime($this->post('hdate'.$i) +' '+ $this->post('hstop'.$i));
+              $tabDate = [$dateStart->getTimestamp(), $dateStop->getTimestamp()];
+              $tab[] = $tabDate;
+              $i++;
+            }
+            if(isset($_POST['hlastdate']))
+            {
+              $dateStart = new \DateTime($this->post('hlastdate') +' '+ $this->post('hstartlast'));
+              $dateStop = new \DateTime($this->post('hlastdate') +' '+ $this->post('hstoplast'));
+              $tabDate = [$dateStart->getTimestamp(), $dateStop->getTimestamp()];
+              $tab[] = $tabDate;
+            }
+
 
             $datas = [
-              'name'             => $_POST['name'],
-              'adress'           => $_POST['adress'],
-              'message'          => $_POST['description'],
-              'category_of'      => $_POST['category'],
-              'type_id'          => $_POST['type'],
-              'date_time'        => '549841', // matt ICIIIIIIIII
-              'comment_autorize' => $_POST['comment'],
-              'guest_part_id'    => '1', // matt ICIIIIIIIII
+              'name'             => $this->post('name'),
+              'adress'           => $this->post('adress'),
+              'message'          => $this->post('description'),
+              'category_of'      => $this->post('category'),
+              'type_id'          => $this->post('type'),
+              'date_time'        => serialize($tab),
+              'end_of_event'     => ((isset($_POST['hlastdate'])) ? $this->post('hlastdate') : $this->post('hdate1')),
+              'start_of_event'   => $this->post('hdate1'),
+              'comment_autorize' => $this->post('comment'),
+              'guest_part_id'    => NULL,
               'coor_lat'         => $lat,
               'coor_lng'         => $lng,
               'users_id'         => $this->getUser()['id']
@@ -134,6 +158,14 @@ class EventController extends Controller
         $types = new TypeModel();
         $arrayType = $types->findAll();
         $this->show('event/create', ['title' => 'OutLooker - Créer un évènement', 'lat' => $lat, 'lng' => $lng, 'types' => $arrayType]);
+      }
+      else{
+        $this->redirectToRoute('user_profil');
+      }
+    }
+      else{
+          $this->redirectToRoute('user_register');
+      }
     }
 
     public function map()

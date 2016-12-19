@@ -17,6 +17,8 @@ name VARCHAR(255) NOT NULL,/* Name of the event */
 adress VARCHAR(255) NOT NULL,/* Adress of the event */
 message TEXT NOT NULL,/* presentation message of the event */
 date_time TEXT NOT NULL,/* range of date and time in format text with serialize */
+end_of_event TEXT NOT NULL,/* end of the event */
+start_of_event TEXT NOT NULL,/* start of the event */
 picture_first VARCHAR(255),/* presentation picture */
 users_id INT(11) NOT NULL,/* id of the assoc or comp who create the event */
 guest_part_id TEXT NULL,/* serialize array with the id of the guest or part ['guest' => [1,58,63,778], 'part' => [922,42,766,1588]]*/

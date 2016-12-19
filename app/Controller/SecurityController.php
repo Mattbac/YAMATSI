@@ -57,6 +57,8 @@ class SecurityController extends Controller
           // Envoi du mail
 			    $mail = new \PHPMailer();
           $mail->addAddress($email);
+          $mail->isHTML(true);
+          $mail->CharSet = "UTF-8";
           $mail->Subject = "Recupération mot de passe Outlooker";
           $mail->Body = "Redefinir votre mot de passe <a href='http://localhost".$this->generateUrl("security_forget", ['token' => $token])."'>ici</a></h1>"; // rendre dynamique ce lien
           $mail->send();
@@ -70,6 +72,7 @@ class SecurityController extends Controller
       $user = new User;
       $auth = new Auth;
       $token = trim($token);
+      $error = '';
       $checkUser = $user->verifToken($token);
       if($checkUser)
       {

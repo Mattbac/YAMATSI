@@ -8,7 +8,11 @@ use \Model\UsersModel as User;
 
 class UserController extends Controller
 {
-
+  // Fonction pour filtrer les post de PHP
+  function post($param)
+  {
+    return strip_tags(trim($_POST[$param]));
+  }
     public function profil($id = 0)
     {
         $user = new User;
@@ -27,13 +31,13 @@ class UserController extends Controller
 
         $user = new User;
         $auth = new Auth;
-          
+
         $id = $this->getUser();
-            if(isset($_POST['edit'])){
+        if(isset($_POST['edit'])){
 
 				$datas = [
-					'nickname' => $_POST['nickname'],
-					'email'    => $_POST['email']
+					'nickname' => $this->post('nickname'),
+					'email'    => $this->post('email')
 				];
 
               if (isset($_FILES['file'])){
@@ -45,12 +49,13 @@ class UserController extends Controller
                   }
               }
 
-              if($_POST['password'] == $_POST['confirmpassword']){
-                  $datas['password'] = $auth->hashPassword($_POST['password']);
+              if($this->post('password') == $this->post('confirmpassword')){
+                  $datas['password'] = $auth->hashPassword($this->post('password'));
               }
 
               $user->update($datas, $id['id']);
               $auth->refreshUser($user); // on utilise la session pour afficher les champs que l'on actualise lors de l'envoi de la requete Update
+              $this->redirectToRoute('user_profil');
             }
           $this->show('user/edit', ['title' => 'edit user', 'compFormulaire' => $this->getUser()]);
       }
@@ -64,7 +69,7 @@ class UserController extends Controller
           $user = new User();
           $auth = new Auth();
 
-          if($_POST['email'] == $_POST['confirmmail'] && $_POST['password'] == $_POST['confirmpassword'] && !$user->emailExists($_POST['email']) && !$user->usernameExists($_POST['nickname']) && !empty($_POST['nickname']) && !empty($_POST['email']) && !empty($_POST['password']))
+          if($this->post('email') == $this->post('confirmmail') && $this->post('password') == $this->post('confirmpassword') && !$user->emailExists($this->post('email')) && !$user->usernameExists($this->post('nickname')) && !empty($this->post('nickname')) && !empty($this->post('email')) && !empty($this->post('password')))
           {
      			 ## EXTENSIONS DE FICHIERS ACCEPTES ### */
 
@@ -87,10 +92,10 @@ class UserController extends Controller
      							 }
      						 }
                  $datas = [
-                   'type'     => $_POST['type'],
-                   'nickname' => $_POST['nickname'],
-                   'email'    => $_POST['email'],
-                   'password' => $auth->hashPassword($_POST['password'])
+                   'type'     => $this->post('type'),
+                   'nickname' => $this->post('nickname'),
+                   'email'    => $this->post('email'),
+                   'password' => $auth->hashPassword($this->post('password'))
 
                  ];
                  if (isset($_FILES['file']))
@@ -99,7 +104,7 @@ class UserController extends Controller
                  }
                  $user->insert($datas);
 
-            $message = '<div>Félicitation vous êtes bien inscrit</div>';
+              $this->redirectToRoute('security_login');
           }
           else
           {
