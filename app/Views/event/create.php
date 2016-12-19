@@ -119,13 +119,17 @@
         </div>
 
         <div class="inputbox">
+            <div id="selectguest"></div>
             <input type="text" name="guests" id="guests">
             <label for="guests">Guest(s) <i class="fa fa-user-o" aria-hidden="true"></i></label>
+            <div id="findguest"></div>
         </div>
 
         <div class="inputbox">
+            <div id="selectpart"></div>
             <input type="text" name="partners" id="partners">
             <label for="partners">Partenaire(s) <i class="fa fa-user-o" aria-hidden="true"></i></label>
+            <div id="findpart"></div>
         </div>
 
 

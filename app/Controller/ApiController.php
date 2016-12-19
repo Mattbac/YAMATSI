@@ -14,6 +14,27 @@ class ApiController extends Controller
 {
 
     // Creation Event Form
+    public function search_guest($slug)
+    {
+        $UsersModel = new UsersModel();
+
+        $array = ["%20",",","|",":",".","+","-","*","/"];
+        $slug = str_replace($array, $array[0], $slug);
+        $slug = explode($array[0], $slug);
+
+        echo json_encode($UsersModel->findUserBySlug($slug));
+    }
+
+    public function search_part($slug)
+    {
+        $UsersModel = new UsersModel();
+
+        $array = ["%20",",","|",":",".","+","-","*","/"];
+        $slug = str_replace($array, $array[0], $slug);
+        $slug = explode($array[0], $slug);
+
+        echo json_encode($UsersModel->findPartBySlug($slug));
+    }
 
     public function search_city($slug)
     {
@@ -43,8 +64,13 @@ class ApiController extends Controller
         $register_eventModel        = new Register_eventModel();
 
         $element['event']                   = $eventModel->find($id);
+        $element['user']                    = $usersModel->find($element['event']['users_id']);
         $element['com']             		= $commentModel->findAllComWithId($id);
         $element['type']            		= $typeModel->find($element['event']['type_id']);
+        $element['whoIsRegister']           = $register_eventModel->findAllRegister($id);
+        $element['category']            	=   ($element['event']['category_of'] == 1) ? 'Enfant' : 
+                                                (($element['event']['category_of'] == 2) ? 'Adolescent' : 
+                                                (($element['event']['category_of'] == 3) ? 'Adulte' : 'Tout public'));
         $element['is_connect']          	= !empty($this->getUser()['id']);
 
         if($element['is_connect']){
@@ -59,14 +85,17 @@ class ApiController extends Controller
             $element['guest_part'] 			= ['guest' => '', 'part' => ''];
         }
 
-        $this->show('default/event_map', [ 'is_connect'	=> $element['is_connect'],
-                        'is_register_event'		    => $element['is_register_event'],
-                        'event'     			    => $element['event'], 
-                        'comsFirst'      			=> $element['com'][1],
-                        'comsAn'      			    => $element['com'][2],
-                        'guests'    			    => $element['guest_part']['guest'],
-                        'parts'     			    => $element['guest_part']['part'],
-                        'type'      			    => $element['type']['name']]);
+        $this->show('default/event_map', [  'is_connect'	            => $element['is_connect'],
+                                            'is_register_event'		    => $element['is_register_event'],
+                                            'whoIsRegister'		        => $element['whoIsRegister'],
+                                            'user'		                => $element['user'],
+                                            'event'     			    => $element['event'], 
+                                            'category'     			    => $element['category'], 
+                                            'comsFirst'      			=> $element['com'][1],
+                                            'comsAn'      			    => $element['com'][2],
+                                            'guests'    			    => $element['guest_part']['guest'],
+                                            'parts'     			    => $element['guest_part']['part'],
+                                            'type'      			    => ($element['type']['name'] != '') ? $element['type']['name'] :'Tout type']);
     }
 
     public function send_com()

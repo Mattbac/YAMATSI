@@ -5,8 +5,8 @@
 <div>
     <img src="" alt="">
     <h2><?php echo $event['name']?></h2>
-    <p>Category: <?php echo $event['category_of'] ?></p>
-    <p>Type: <?php echo $type ?></p>
+    <p>Category: <strong><?php echo $category ?></strong></p>
+    <p>Type: <strong><?php echo $type ?></strong></p>
 </div>
 <div>
     <?php
@@ -28,16 +28,21 @@
     <div>
     <a href="<?php echo $this->url('user_profil', ['id' => $event['users_id']]) ?>"><?php echo $createdBy['nickname']; ?></a>
     </div>
-    <div>
+    <div class="eventview-guests">
+    Guest(s) :
     <?php
     if($guests != ''){
         foreach ($guests as $guest) {
             echo "<a href=\"".$this->url('user_profil', ['id' => $guest['id']])."\">".$guest['nickname']."</a>";
         }
-    }
+    }?>
+    </div>
+    <div class="eventview-partners">
+    Partenaire(s) :
+    <?php
     if($parts != ''){
         foreach ($parts as $part) {
-            echo "<a href=\"".$this->url('user_profil', ['id' => $part['id']])."\">".$part['nickname']."</a>";
+            echo "<a href=\"/YAMATSI/public/user/".$part['id']."\">".$part['nickname']."</a>";
         }
     }?>
     </div>
@@ -53,18 +58,9 @@
 </div>
 <div>
     <h3>Qui participe ?</h3>
-    <?php   if(!empty($guests)){
-                foreach($guests as $guest){ ?>
-    <a href="<?php echo $this->url('user_profil', ['id' => $guest['id']]) ?>"><?php echo $guest['nickname']; ?></a>
-    <?php   }}else{
-                echo '<p>Pas d\'invité</p>';
-            }
-            if(!empty($parts)){
-                foreach($parts as $part){ ?>
-    <a href="<?php echo $this->url('user_profil', ['id' => $part['id']]) ?>"><?php echo $part['nickname']; ?></a>
-            <?php }}else{
-                echo '<p>Pas de partenaire</p>';
-                   }  ?>
+    <?php foreach($whoIsRegister as $register){?>
+        <a href="<?php echo $this->url('user_profil', ['id' => $register['users_id']])?>"><?php echo $register['nickname'];?></a>
+    <?php } ?>
 </div>
 <button id="add_comment">Ajouter un commentaire</button>
 <div id="add_new_comment" data-event-id="<?php echo $event['id']?>">

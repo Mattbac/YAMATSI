@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => $title]) ?>
+<?php $this->layout('layout', ['title' => 'Page perso']) ?>
 
 <?php $this->start('main_content') ?>
 
@@ -21,58 +21,46 @@
   <div class="content">
       <div id="suggestion">
           <h2>Evènements suggérés</h2>
+          <?php foreach($eventsFuture as $key => $event){ ?>
           <div class="showevent lane-space-between">
               <div class="blocinfo lane-space-between">
-                <h3>Titre</h3>
-                <p>Type</p>
-                <p>Catégorie</p>
+                <h3><a href="<?php echo $this->url('event_page', ['id' => $event['id']]);?>"><?php echo  $event['name']; ?></a></h3>
+                <p>Type : <?php echo $event['type_id'] ?></p>
+                <p>Catégorie : <?php echo $event['category_of'] ?></p>
                 <p>Date(s) : Horaire(s)</p>
               </div>
               <img src="<?= $this->assetUrl('img/default_event.jpg') ?>" alt="">
           </div>
-          <div class="showevent lane-space-between">
-              <div class="blocinfo lane-space-between">
-                <h3>Titre</h3>
-                <p>Type</p>
-                <p>Catégorie</p>
-                <p>Date(s) : Horaire(s)</p>
-              </div>
-              <img src="<?= $this->assetUrl('img/default_event.jpg') ?>" alt="">
-          </div>
+          <?php }?>
       </div>
       <div id="futur_event">
           <h2>Evènements à venir</h2>
+          <?php foreach($eventsFuture as $key => $event){ ?>
           <div class="showevent lane-space-between">
               <div class="blocinfo lane-space-between">
-                <h3>Titre</h3>
-                <p>Type</p>
-                <p>Catégorie</p>
+                <h3><a href="<?php echo $this->url('event_page', ['id' => $event['id']]);?>"><?php echo  $event['name']; ?></a></h3>
+                <p>Type : <?php echo $event['type_id'] ?></p>
+                <p>Catégorie : <?php echo $event['category_of'] ?></p>
                 <p>Date(s) : Horaire(s)</p>
               </div>
               <img src="<?= $this->assetUrl('img/default_event.jpg') ?>" alt="">
           </div>
-          <div class="showevent lane-space-between">
-              <div class="blocinfo lane-space-between">
-                <h3>Titre</h3>
-                <p>Type</p>
-                <p>Catégorie</p>
-                <p>Date(s) : Horaire(s)</p>
-              </div>
-              <img src="<?= $this->assetUrl('img/default_event.jpg') ?>" alt="">
-          </div>
+          <?php }?>
       </div>
   </div>
   <div id="paste_event">
     	<h2>Evènements passés</h2>
-      <div class="showevent lane-space-between">
-          <div class="blocinfo lane-space-between">
-            <h3>Titre</h3>
-            <p>Type</p>
-            <p>Catégorie</p>
-            <p>Date(s) : Horaire(s)</p>
+      <?php foreach($eventsFuture as $key => $event){ ?>
+          <div class="showevent lane-space-between">
+              <div class="blocinfo lane-space-between">
+                <h3><a href="<?php echo $this->url('event_page', ['id' => $event['id']]);?>"><?php echo  $event['name']; ?></a></h3>
+                <p>Type : <?php echo $event['type_id'] ?></p>
+                <p>Catégorie : <?php echo $event['category_of'] ?></p>
+                <p>Date(s) : Horaire(s)</p>
+              </div>
+              <img src="<?= $this->assetUrl('img/default_event.jpg') ?>" alt="">
           </div>
-          <img src="<?= $this->assetUrl('img/default_event.jpg') ?>" alt="">
-      </div>
+        <?php }?>
   </div>
 
 </div>

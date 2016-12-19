@@ -38,6 +38,25 @@ class EventModel extends \W\Model\Model {
 
 		return $sth->fetchAll();
 	}
+
+	public function findAllEventWithIds($ids)
+	{
+		$sql = 'SELECT * FROM ' . $this->table . ' WHERE id = :id';
+		$events = [];
+
+		foreach($ids as $key => $id){
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(':id', $id['event_id']);
+			$sth->execute();
+			$event = $sth->fetch();
+			if(!empty($event)){
+				$events[$key] = $event;
+			}
+		}
+
+		return $events;
+	}
+
 }
 
 ?>
