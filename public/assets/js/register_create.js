@@ -1,3 +1,4 @@
+locationPage = document.location.href.split('public');
 $(function(){
 
     function form(datefirst, datelast){
@@ -36,5 +37,81 @@ $(function(){
             $('#datesup').append('<p>Vous devez entrer des dates pour valider.</p>');
         }
     })
+
+    valideguest = 0;
+    validepart = 0;
+	timeguest = 0;
+	timepart = 0;
+    $('#guests').on("input", function(){
+		valideguest++;
+		timeguest = new Date().getTime();
+	});
+
+    $('#partners').on("input", function(){
+		validepart++;
+		timepart = new Date().getTime();
+	});
+
+	setInterval(function(){
+		if(timeguest + 800 < new Date().getTime() && valideguest > 0){
+			valideguest = 0;
+			rechercheguest();
+		}
+	}, 400);
+
+    setInterval(function(){
+		if(timepart + 800 < new Date().getTime() && validepart > 0){
+			validepart = 0;
+			recherchepart();
+		}
+	}, 400);
+
+  function rechercheguest(){
+    if($('#guests').val() != ''){
+      $.ajax({
+        type: "GET",
+        dataType: 'json',
+        url: locationPage[0]+"public/api/search_guest/"+$('#guests').val()
+      }).done(function(datas){
+          console.log(datas);
+        $('#findguest').empty();
+        for(key in datas){
+          $('#findguest').append("<p class=\"guest id"+datas[key]['id']+"\" data-id='"+datas[key]['id']+"'>"+datas[key]['nickname']+"</p>");
+        }
+      });
+    }
+  }
+
+  function recherchepart(){
+    if($('#partners').val() != ''){
+      $.ajax({
+        type: "GET",
+        dataType: 'json',
+        url: locationPage[0]+"public/api/search_part/"+$('#partners').val()
+      }).done(function(datas){
+          console.log(datas);
+        $('#findpart').empty();
+        for(key in datas){
+          $('#findpart').append("<p class=\"part id"+datas[key]['id']+"\" data-id='"+datas[key]['id']+"'>"+datas[key]['nickname']+"</p>");
+        }
+      });
+    }
+  }
+
+    $(document).on("click",".guest",function(){
+        /*console.log($(this).data('id'));
+        console.log($(this).text());*/
+        $('#selectguest').append("<input type=\"text\" name=\"guestid"+$(this).data('id')+"\" value=\""+$(this).text()+"\" readonly>");
+    })
+
+    $(document).on("click",".part",function(){
+        /*console.log($(this).data('id'));
+        console.log($(this).text());*/
+        var cla = '.id'+$(this).data('id');
+        $(cla).remove();
+        $('#selectpart').append("<input type=\"text\" name=\"partid"+$(this).data('id')+"\" value=\""+$(this).text()+"\" readonly>");
+    })
+
+
 
 });

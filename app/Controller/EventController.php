@@ -20,19 +20,24 @@ class EventController extends Controller
     public function page($id)
     {
         $element = [];
-        $commentModel = new CommentModel();
-        $eventModel = new EventModel();
-        $typeModel = new TypeModel();
-        $usersModel = new UsersModel();
-        $register_eventModel = new Register_eventModel();
+        $commentModel             = new CommentModel();
+        $eventModel               = new EventModel();
+        $typeModel                = new TypeModel();
+        $usersModel               = new UsersModel();
+        $register_eventModel      = new Register_eventModel();
 
-        $element['event']           			= $eventModel->find($id);
+        $element['event']           			  = $eventModel->find($id);
         if($element['event']){
-
-          $element['createdBy']           = $usersModel->find($id);
-          $element['com']             		= $commentModel->findAllComWithId($id);
-          $element['type']            		= $typeModel->find($element['event']['type_id']);
-          $element['is_connect']          	= !empty($this->getUser()['id']);
+          
+          $element['createdBy']             = $usersModel->find($id);
+          $element['user']                  = $usersModel->find($element['event']['users_id']);
+          $element['com']             		  = $commentModel->findAllComWithId($id);
+          $element['type']            		  = $typeModel->find($element['event']['type_id']);
+          $element['whoIsRegister']         = $register_eventModel->findAllRegister($id);
+          $element['category']            	=   ($element['event']['category_of'] == 1) ? 'Enfant' : 
+                                                (($element['event']['category_of'] == 2) ? 'Adolescent' : 
+                                                (($element['event']['category_of'] == 3) ? 'Adulte' : 'Tout public'));
+          $element['is_connect']            = !empty($this->getUser()['id']);
 
           if($element['is_connect']){
             $element['is_register_event']   = !empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $id));
@@ -48,13 +53,16 @@ class EventController extends Controller
 
           $this->show('event/page', [ 'is_connect'			    => $element['is_connect'],
                                       'is_register_event'		=> $element['is_register_event'],
+                                      'whoIsRegister'		    => $element['whoIsRegister'],
+                                      'user'		            => $element['user'],
                                       'event'     			    => $element['event'],
-                                      'createdBy'     			=> $element['createdBy'],
+                                      'category'     			  => $element['category'], 
+                                      'createdBy'     			=> $element['createdBy'], 
                                       'comsFirst'      			=> $element['com'][1],
                                       'comsAn'      			  => $element['com'][2],
                                       'guests'    			    => $element['guest_part']['guest'],
                                       'parts'     			    => $element['guest_part']['part'],
-                                      'type'      			    => $element['type']['name']]);
+                                      'type'      			    => ($element['type']['name'] != '') ? $element['type']['name'] :'Tout type']);
 
         }else{
           $this->showNotFound();

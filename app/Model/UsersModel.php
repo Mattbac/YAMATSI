@@ -24,31 +24,72 @@ class UsersModel extends \W\Model\UsersModel {
 
     public function findGuestPart($unserilizeTabId)
 	{
-        $tabId = unserialize($unserilizeTabId);
-        $guestId = (isset($tabId['guest'])) ? $tabId['guest'] : null;
-        $partId = (isset($tabId['part'])) ? $tabId['part'] : null;
+        if(!empty($unserilizeTabId)){
+            $tabId = unserialize($unserilizeTabId);
+            $guestId = (isset($tabId['guest'])) ? $tabId['guest'] : null;
+            $partId = (isset($tabId['part'])) ? $tabId['part'] : null;
 
-        $guest = $this->selectWhereId($guestId);
-        $part = $this->selectWhereId($partId);
+            $guest = $this->selectWhereId($guestId);
+            $part = $this->selectWhereId($partId);
+        }else{
+            $guest = '';
+            $part = '';
+        }
 
 		return ['guest' => $guest, 'part' => $part];
 	}
 
-  public function updateToken($token, $email)
-  {
-     $sql = "UPDATE users set token ='".$token."' WHERE email= '".$email."'";
-     $sth = $this->dbh->query($sql);
-  }
+    public function updateToken($token, $email)
+    {
+        $sql = "UPDATE users set token ='".$token."' WHERE email= '".$email."'";
+        $sth = $this->dbh->query($sql);
+    }
 
-  public function verifToken($token)
-  {
-    $sql = "SELECT * FROM users WHERE token= :token";
-    $sth = $this->dbh->prepare($sql);
-    $sth->bindValue(':token', $token);
-    $sth->execute();
-    return $sth->fetch();
+    public function verifToken($token)
+    {
+        $sql = "SELECT * FROM users WHERE token= :token";
+        $sth = $this->dbh->prepare($sql);
+        $sth->bindValue(':token', $token);
+        $sth->execute();
+        return $sth->fetch();
 
-  }
+    }
+
+    public function findUserBySlug($slugs)
+	{
+		$sql = "SELECT * FROM ".$this->table." WHERE type = 'user' AND";
+		foreach ($slugs as $key => $slug) {
+			$sql .= " nickname like '%".$slug."%'";
+			if($key < count($slugs)-1){
+				$sql .= " AND";
+			}
+		}
+
+		$sql .= " LIMIT 10";
+
+		$sth = $this->dbh->prepare($sql);
+		$sth->execute();
+
+		return $sth->fetchAll();
+	}
+
+    public function findPartBySlug($slugs)
+	{
+		$sql = "SELECT * FROM ".$this->table." WHERE type = 'comp' AND";
+		foreach ($slugs as $key => $slug) {
+			$sql .= " nickname like '%".$slug."%'";
+			if($key < count($slugs)-1){
+				$sql .= " AND";
+			}
+		}
+
+		$sql .= " LIMIT 10";
+
+		$sth = $this->dbh->prepare($sql);
+		$sth->execute();
+
+		return $sth->fetchAll();
+	}
 
 }
 

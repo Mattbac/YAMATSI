@@ -1,5 +1,5 @@
     <div id="longlogo">
-        <a href="../home/">
+        <a href="<?= $this->url('default_home') ?>">
             <img src="<?= $this->assetUrl('img/longlogoLO.png') ?>" alt="OutLooker">
         </a>
     </div>

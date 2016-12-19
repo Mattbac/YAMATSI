@@ -4,7 +4,9 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \W\Security\AuthentificationModel as Auth;
-use \Model\UsersModel as User;
+use \Model\UsersModel as UserModel;
+use \Model\EventModel as EventModel;
+use \Model\Register_eventModel as Register_eventModel;
 
 class UserController extends Controller
 {
@@ -15,11 +17,20 @@ class UserController extends Controller
   }
     public function profil($id = 0)
     {
-        $user = new User;
+        $user = new UserModel;
+        $event = new EventModel;
+        $register_event = new Register_eventModel;
+
         if($id == 0 && isset($this->getUser()['id'])) {
-            $this->show('user/profilUser', ['title' => 'page user perso '.$id, 'user' => $this->getUser()]);
+            $alleventregister = $register_event->findAllUserid($this->getUser()['id']);
+            $this->show('user/profilUser',  [   'user'                      => $this->getUser(),
+                                                'eventsPaste'               => $event->findAllEventWithIds($alleventregister),
+                                                'eventsFuture'              => $event->findAllEventWithIds($alleventregister)]);
         }elseif($id != 0){
-            $this->show('user/profil', ['title' => 'page user '.$id, 'user' => $user->find($id)]);
+            $alleventregister = $register_event->findAllUserid($id);
+            $this->show('user/profil',      [   'user'                      => $user->find($id),
+                                                'eventsPaste'               => $event->findAllEventWithIds($alleventregister),
+                                                'eventsFuture'              => $event->findAllEventWithIds($alleventregister)]);
         }else{
             $this->redirectToRoute('security_login');
         }
@@ -27,23 +38,23 @@ class UserController extends Controller
 
 	public function edit()
     {
+
         $extensions = ["image/png", "image/gif", "image/jpg", "image/jpeg"];
 
-        $user = new User;
+        $user = new UserModel;
         $auth = new Auth;
 
         $id = $this->getUser();
         if(isset($_POST['edit'])){
 
-				$datas = [
-					'nickname' => $this->post('nickname'),
-					'email'    => $this->post('email')
-				];
+			$datas = [
+				'nickname' => $this->post('nickname'),
+				'email'    => $this->post('email')
+			];
 
-              if (isset($_FILES['file'])){
+            if (isset($_FILES['file'])){
 
-                  if(in_array($_FILES['file']['type'], $extensions) && isset($_FILES['file']['tmp_name'])){
-
+                if(in_array($_FILES['file']['type'], $extensions) && isset($_FILES['file']['tmp_name'])){
                       move_uploaded_file($_FILES['file']['tmp_name'],"assets/img/avatar/".$_FILES['file']['name']);
                       $datas['pictures_profile'] = $_FILES['file']['name'];
                   }
@@ -56,17 +67,19 @@ class UserController extends Controller
               $user->update($datas, $id['id']);
               $auth->refreshUser($user); // on utilise la session pour afficher les champs que l'on actualise lors de l'envoi de la requete Update
               $this->redirectToRoute('user_profil');
-            }
-          $this->show('user/edit', ['title' => 'edit user', 'compFormulaire' => $this->getUser()]);
-      }
 
+            $user->update($datas, $id['id']);
+            $auth->refreshUser($user); // on utilise la session pour afficher les champs que l'on actualise lors de l'envoi de la requete Update
+        }
+        $this->show('user/edit', ['title' => 'edit user', 'compFormulaire' => $this->getUser()]);
+    }
 
     public function register()
     {
         $message = '';
         if(isset($_POST['submit']))
         {
-          $user = new User();
+          $user = new UserModel();
           $auth = new Auth();
 
           if($this->post('email') == $this->post('confirmmail') && $this->post('password') == $this->post('confirmpassword') && !$user->emailExists($this->post('email')) && !$user->usernameExists($this->post('nickname')) && !empty($this->post('nickname')) && !empty($this->post('email')) && !empty($this->post('password')))

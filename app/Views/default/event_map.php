@@ -5,7 +5,7 @@
 <div class="eventview-header">
 
     <h1><a href="<?php echo $this->url('event_page', ['id' => $event['id']]);?>"><?php echo $event['name']?></a></h1>
-    <p>Catégorie: <strong><?php echo $event['category_of'] ?></strong></p>
+    <p>Catégorie: <strong><?php echo $category ?></strong></p>
     <p>Type: <strong><?php echo $type ?></strong></p>
 
     <div class="eventview-interact">
@@ -35,13 +35,14 @@
 <div class="eventview-infos">
 
     <div class="eventview-organizer">
-    par <a href="<?php echo '/YAMATSI/public/user/'.$event['users_id'] ?>"></a>
+    par <a href="<?php echo '/YAMATSI/public/user/'.$user['id'] ?>"><?php echo $user['nickname'] ?></a>
     </div>
     <div class="eventview-guests">
+    Guest(s) :
     <?php
     if($guests != ''){
         foreach ($guests as $guest) {
-            echo "<a href=\"/YAMATSI/public/user/".$guest['id']."\">".$guest['nickname']."</a>";
+            echo "<a href=\"".$this->url('user_profil', ['id' => $guest['id']])."\">".$guest['nickname']."</a>";
         }
     }?>
     </div>
@@ -63,13 +64,15 @@
             <tr><td>Lundi</td><td>8h30</td><td>19h</td></tr>
             <tr><td>Mardi</td><td>9h</td><td>21h</td></tr>
         </table>
-        <p><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $event['adress']?></p>
+        <p><i class="fa fa-map-marker" aria-hidden="true"></i><?php echo $event['adress']?></p>
 
     </div>
 
     <div class="who">
         <h3>Qui participe ?</h3>
-        <a href="<?php echo '/YAMATSI/public/user/'.$event['guest_part_id'] ?>"></a>
+        <?php foreach($whoIsRegister as $register){?>
+            <a href="<?php echo $this->url('user_profil', ['id' => $register['users_id']])?>"><?php echo $register['nickname'];?></a>
+        <?php } ?>
     </div>
 
 </div>
