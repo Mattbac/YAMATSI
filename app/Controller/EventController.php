@@ -120,8 +120,7 @@ class EventController extends Controller
               'guest_part_id'    => '1', // matt ICIIIIIIIII
               'coor_lat'         => $lat,
               'coor_lng'         => $lng,
-              'users_id'         => '1' // matt ICIIIIIIIII
-
+              'users_id'         => $this->getUser()['id']
             ];
 
             if (isset($_FILES['file']))

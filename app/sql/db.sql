@@ -46,6 +46,7 @@ id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,/* id */
 name VARCHAR(255) NOT NULL/* id of the event */) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS register_event (
+id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,/* id */
 event_id INT(11) NOT NULL,/* id of the event */
 users_id INT(11) NOT NULL,/* id of the event */
 date_time INT(11) NOT NULL,/* Timestamp of register */
