@@ -37,6 +37,9 @@ class EventController extends Controller
                                                 (($element['event']['category_of'] == 2) ? 'Adolescent' : 
                                                 (($element['event']['category_of'] == 3) ? 'Adulte' : 'Tout public'));
           $element['is_connect']            = !empty($this->getUser()['id']);
+          $element['planning']              = unserialize($element['event']['date_time']);
+
+          var_dump($element['planning']);
 
           if($element['is_connect']){
             $element['is_register_event']   = !empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $id));
@@ -55,6 +58,7 @@ class EventController extends Controller
                                       'whoIsRegister'		    => $element['whoIsRegister'],
                                       'user'		            => $element['user'],
                                       'event'     			    => $element['event'],
+                                      'planning'     			  => $element['planning'],
                                       'category'     			  => $element['category'], 
                                       'comsFirst'      			=> $element['com'][1],
                                       'comsAn'      			  => $element['com'][2],
