@@ -26,7 +26,7 @@
 </div>
 <div>
     <div>
-    <a href="<?php echo $this->url('user_profil', ['id' => $event['users_id']]) ?>"><?php echo $createdBy['nickname']; ?></a>
+    <a href="<?php echo $this->url('user_profil', ['id' => $event['users_id']]) ?>"><?php echo $user['nickname']; ?></a>
     </div>
     <div class="eventview-guests">
     Guest(s) :

@@ -21,6 +21,7 @@ $(function(){
     }
 
     $('#adddates').on("click",function(){
+        $('#datesup').empty();
         $('#datesup').append('<div><label for="hstartlast">Horaire de fin</label>');
         $('#datesup').append('<input type="time" name="hstartlast" step="1800" id="hstartlast">');
         $('#datesup').append('<input type="time" name="hstoplast" step="1800" id="hstoplast">');
@@ -34,7 +35,8 @@ $(function(){
         && $('#hstart1').val() != "" && $('#hstop1').val() != "" && $('#hdate1').val() != ""){
             form([$('#hstart1').val(), $('#hstop1').val(), $('#hdate1').val()], [$('#hstartlast').val(), $('#hstoplast').val(), $('#hlastdate').val()]);
         }else{
-            $('#datesup').append('<p>Vous devez entrer des dates pour valider.</p>');
+            $('#message').remove();
+            $('#datesup').append('<p id="message">Vous devez entrer des dates pour valider.</p>');
         }
     })
 
@@ -99,14 +101,12 @@ $(function(){
   }
 
     $(document).on("click",".guest",function(){
-        /*console.log($(this).data('id'));
-        console.log($(this).text());*/
+        var cla = '.id'+$(this).data('id');
+        $(cla).remove();
         $('#selectguest').append("<input type=\"text\" name=\"guestid"+$(this).data('id')+"\" value=\""+$(this).text()+"\" readonly>");
     })
 
     $(document).on("click",".part",function(){
-        /*console.log($(this).data('id'));
-        console.log($(this).text());*/
         var cla = '.id'+$(this).data('id');
         $(cla).remove();
         $('#selectpart').append("<input type=\"text\" name=\"partid"+$(this).data('id')+"\" value=\""+$(this).text()+"\" readonly>");

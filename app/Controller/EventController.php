@@ -29,7 +29,6 @@ class EventController extends Controller
         $element['event']           			  = $eventModel->find($id);
         if($element['event']){
           
-          $element['createdBy']             = $usersModel->find($id);
           $element['user']                  = $usersModel->find($element['event']['users_id']);
           $element['com']             		  = $commentModel->findAllComWithId($id);
           $element['type']            		  = $typeModel->find($element['event']['type_id']);
@@ -57,7 +56,6 @@ class EventController extends Controller
                                       'user'		            => $element['user'],
                                       'event'     			    => $element['event'],
                                       'category'     			  => $element['category'], 
-                                      'createdBy'     			=> $element['createdBy'], 
                                       'comsFirst'      			=> $element['com'][1],
                                       'comsAn'      			  => $element['com'][2],
                                       'guests'    			    => $element['guest_part']['guest'],
@@ -137,7 +135,13 @@ class EventController extends Controller
               $tabDate = [$dateStart->getTimestamp(), $dateStop->getTimestamp()];
               $tab[] = $tabDate;
             }
-
+            
+            $tabpart = [];
+            foreach ($_POST as $key => $value) {
+                if(substr($key,0,6) == 'partid'){
+                    $tabpart[] = ['id' => explode('partid', $key)[1], 'nickname' => $value];
+                }
+            }
 
             $datas = [
               'name'             => $this->post('name'),
@@ -149,7 +153,7 @@ class EventController extends Controller
               'end_of_event'     => ((isset($_POST['hlastdate'])) ? $this->post('hlastdate') : $this->post('hdate1')),
               'start_of_event'   => $this->post('hdate1'),
               'comment_autorize' => $this->post('comment'),
-              'guest_part_id'    => NULL,
+              'guest_part_id'    => serialize($tabpart),
               'coor_lat'         => $lat,
               'coor_lng'         => $lng,
               'users_id'         => $this->getUser()['id']

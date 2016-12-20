@@ -7,10 +7,10 @@ class CommentModel extends \W\Model\Model {
     public function findAllComWithId($id)
 	{
 		$com = [];
-		if (!is_numeric($id)){
+		if(!is_numeric($id)){
 			return false;
 		}
-		$sql = 'SELECT c.*, u.nickname FROM '.$this->table.' AS c, users AS u WHERE c.event_id = :id AND u.id = c.users_id AND c.title IS NOT null ORDER BY created_at';
+		$sql = 'SELECT c.*, u.nickname FROM '.$this->table.' AS c, users AS u WHERE c.event_id = :id AND u.id = c.users_id AND c.title IS NOT null ORDER BY c.created_at';
 
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':id', $id);

@@ -359,11 +359,11 @@ function initMap() {
         dataType: 'json',
         url: locationPage[0]+"public/api/search_event/"
     }).done(function(datas){
-
 		for(key in datas){
+      var myLatLng = {lat: parseFloat(datas[key]['coor_lat']), lng: parseFloat(datas[key]['coor_lng'])};
 			marker = new google.maps.Marker({
 				content: datas[key]['id'],
-				position: new google.maps.LatLng(datas[key]['coor_lat'],datas[key]['coor_lng']),
+				position: myLatLng,
 				map: map,
 				icon: locationPage[0]+"public/assets/img/music_icon.png",
 				title: datas[key]['name']
