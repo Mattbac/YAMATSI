@@ -16,10 +16,10 @@
         }else{
             if($is_register_event){
                 echo '<button style="display:none;" id="registeration_event" data-event-id="'.$event['id'].'">Je participe <i class="fa fa-check" aria-hidden="true"></i></button>';
-                echo '<button id="cancel_registeration_event" data-event-id="'.$event['id'].'">Je n\'y participe plus <i class="fa fa-check" aria-hidden="true"></i></button>';
+                echo '<button id="cancel_registeration_event" data-event-id="'.$event['id'].'">Se désinscrire</button>';
             }else{
                 echo '<button id="registeration_event" data-event-id="'.$event['id'].'">Je participe <i class="fa fa-check" aria-hidden="true"></i></button>';
-                echo '<button style="display:none;" id="cancel_registeration_event" data-event-id="'.$event['id'].'">Je n\'y participe plus <i class="fa fa-check" aria-hidden="true"></i></button>';
+                echo '<button style="display:none;" id="cancel_registeration_event" data-event-id="'.$event['id'].'">Se désinscrire</button>';
             }
         }
         ?>
@@ -51,7 +51,7 @@
     <?php
     if($parts != ''){
         foreach ($parts as $part) {
-            echo "<a href=\"/YAMATSI/public/user/".$part['id']."\">".$part['nickname']."</a>";
+            echo "<a href=\"/YAMATSI/public/user/".$part['id']."\">".$part['nickname']."</a> ";
         }
     }?>
     </div>
@@ -82,17 +82,17 @@
     <h2>Commentaire</h2>
     <?php foreach ($comsFirst as $key => $com){
         if($com['title'] != null){?>
-    <div>
+    <div class="comment">
         <h3>Titre : <?php echo $com['title']?></h3>
-        <p><?php echo $com['message']?></p>
-        <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
+        <div class="comment-content">
+          <p><?php echo $com['message']?></p>
+          <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
         <?php if(isset($comsAn[$key])){
             foreach ($comsAn[$key] as $comAnswer){?>
-        <div>
             <p><?php echo $comAnswer['message']?></p>
             <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $comAnswer['nickname']?></a></p>
-        </div>
         <?php }}?>
+        </div>
     </div>
     <?php }}?>
 
