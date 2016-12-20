@@ -28,13 +28,12 @@ class EventController extends Controller
 
         $element['event']           			  = $eventModel->find($id);
         if($element['event']){
-          
           $element['user']                  = $usersModel->find($element['event']['users_id']);
           $element['com']             		  = $commentModel->findAllComWithId($id);
           $element['type']            		  = $typeModel->find($element['event']['type_id']);
           $element['whoIsRegister']         = $register_eventModel->findAllRegister($id);
-          $element['category']            	=   ($element['event']['category_of'] == 1) ? 'Enfant' : 
-                                                (($element['event']['category_of'] == 2) ? 'Adolescent' : 
+          $element['category']            	=   ($element['event']['category_of'] == 1) ? 'Enfant' :
+                                                (($element['event']['category_of'] == 2) ? 'Adolescent' :
                                                 (($element['event']['category_of'] == 3) ? 'Adulte' : 'Tout public'));
           $element['is_connect']            = !empty($this->getUser()['id']);
 
@@ -55,7 +54,7 @@ class EventController extends Controller
                                       'whoIsRegister'		    => $element['whoIsRegister'],
                                       'user'		            => $element['user'],
                                       'event'     			    => $element['event'],
-                                      'category'     			  => $element['category'], 
+                                      'category'     			  => $element['category'],
                                       'comsFirst'      			=> $element['com'][1],
                                       'comsAn'      			  => $element['com'][2],
                                       'guests'    			    => $element['guest_part']['guest'],
@@ -122,11 +121,16 @@ class EventController extends Controller
             $tab = [];
           while(isset($_POST['hstart'.$i]))
             {
+              if($this->post('hdate'.$i) == NULL || $this->post('hstart'.$i) == NULL || $this->post('hstop'.$i)== NULL)
+              {
+                $i++;
+              }else{
               $dateStart = new \DateTime($this->post('hdate'.$i) +' '+ $this->post('hstart'.$i));
               $dateStop = new \DateTime($this->post('hdate'.$i) +' '+ $this->post('hstop'.$i));
               $tabDate = [$dateStart->getTimestamp(), $dateStop->getTimestamp()];
               $tab[] = $tabDate;
               $i++;
+              }
             }
             if(isset($_POST['hlastdate']))
             {
@@ -134,8 +138,10 @@ class EventController extends Controller
               $dateStop = new \DateTime($this->post('hlastdate') +' '+ $this->post('hstoplast'));
               $tabDate = [$dateStart->getTimestamp(), $dateStop->getTimestamp()];
               $tab[] = $tabDate;
+            }else{
+              echo "Fatal error";
             }
-            
+
             $tabpart = [];
             foreach ($_POST as $key => $value) {
                 if(substr($key,0,6) == 'partid'){
@@ -158,7 +164,7 @@ class EventController extends Controller
               'coor_lng'         => $lng,
               'users_id'         => $this->getUser()['id']
             ];
-
+    var_dump($datas);
             if (isset($_FILES['file']))
             {
               $datas['picture_first'] = $_FILES['file']['name'];

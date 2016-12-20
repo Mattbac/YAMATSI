@@ -8,13 +8,17 @@ use Model\UsersModel as User;
 
 class SecurityController extends Controller
 {
+  function post($param)
+  {
+    return strip_tags(trim($_POST[$param]));
+  }
     public function login()
     {
         if(!isset($this->getUser()['id'])){
             if(isset($_POST['login']))
             {
                 $auth = new Auth();
-                $userCheck = $auth->isValidLoginInfo($_POST['email'], $_POST['password']);
+                $userCheck = $auth->isValidLoginInfo($this->post('email'), $this->post('password'));
                 if($userCheck)
                 {
                     $user = new User();
@@ -49,7 +53,7 @@ class SecurityController extends Controller
       {
        $user = new User;
 
-       $email = strip_tags(trim($_POST['email']));
+       $email = $this->post('email');
 
         if($user->emailExists($email))
         {
@@ -78,15 +82,15 @@ class SecurityController extends Controller
       {
         if(isset($_POST['resetMdp']))
         {
-          $password   = trim($_POST['password']);
-          $passwordCf = $_POST['password-cf'];
+          $password   = $this->post('password');
+          $passwordCf = $this->post('password-cf');
           if ($password == $passwordCf)
           {
             $user->update([
               'token'    => NULL,
               'password' => $auth->hashPassword($password)
             ], $checkUser['id']);
-            $this->redirectToRoute('default_home');
+            $this->redirectToRoute('security_login');
 
           }
           else
