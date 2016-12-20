@@ -66,17 +66,17 @@
             <div id="dateFirst">
                 <div class="inputbox">
                     <label for="hstart1">Horaire de début</label>
-                    <input type="time" step="1800" id="hstart1" name="hstart1">
+                    <input type="time" step="1800" id="hstart1" name="hstart1" required>
                 </div>
 
                 <div class="inputbox">
                     <label for="stop1">Horaire de fin</label>
-                    <input type="time" step="1800" id="hstop1" name="hstop1">
+                    <input type="time" step="1800" id="hstop1" name="hstop1" required>
                 </div>
 
                 <div class="inputbox">
                     <label for="hdate1">Date :</label>
-                    <input type="date" name="hdate1" id="hdate1">
+                    <input type="date" name="hdate1" id="hdate1" required>
                 </div>
             </div>
 
@@ -120,14 +120,14 @@
 
         <div class="inputbox">
             <div id="selectguest"></div>
-            <input type="text" name="guests" id="guests">
+            <input type="text" id="guests">
             <label for="guests">Guest(s) <i class="fa fa-user-o" aria-hidden="true"></i></label>
             <div id="findguest"></div>
         </div>
 
         <div class="inputbox">
             <div id="selectpart"></div>
-            <input type="text" name="partners" id="partners">
+            <input type="text" id="partners">
             <label for="partners">Partenaire(s) <i class="fa fa-user-o" aria-hidden="true"></i></label>
             <div id="findpart"></div>
         </div>
