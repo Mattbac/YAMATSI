@@ -35,6 +35,7 @@ class EventController extends Controller
           $element['category']            	=   ($element['event']['category_of'] == 1) ? 'Enfant' :
                                                 (($element['event']['category_of'] == 2) ? 'Adolescent' :
                                                 (($element['event']['category_of'] == 3) ? 'Adulte' : 'Tout public'));
+          $element['id_user_connect']       = $this->getUser()['id'];
           $element['is_connect']            = !empty($this->getUser()['id']);
           $element['planning']              = unserialize($element['event']['date_time']);
 
@@ -56,7 +57,8 @@ class EventController extends Controller
                                       'user'		            => $element['user'],
                                       'event'     			    => $element['event'],
                                       'planning'     			  => $element['planning'],
-                                      'category'     			  => $element['category'], 
+                                      'id_user_connect'     => $element['id_user_connect'],
+                                      'category'     			  => $element['category'],
                                       'comsFirst'      			=> $element['com'][1],
                                       'comsAn'      			  => $element['com'][2],
                                       'guests'    			    => $element['guest_part']['guest'],
@@ -144,7 +146,7 @@ class EventController extends Controller
             }else{
               echo "Fatal error";
             }
-
+            $tabguest = [];
             $tabpart = [];
             $tabguest = [];
             foreach ($_POST as $key => $value) {
@@ -155,7 +157,6 @@ class EventController extends Controller
                     $tabguest[] = ['id' => explode('guestid', $key)[1], 'nickname' => $value];
                 }
             }
-
             $datas = [
               'name'             => $this->post('name'),
               'adress'           => $this->post('adress'),
@@ -166,12 +167,14 @@ class EventController extends Controller
               'end_of_event'     => ((isset($_POST['hlastdate'])) ? $this->post('hlastdate') : $this->post('hdate1')),
               'start_of_event'   => $this->post('hdate1'),
               'comment_autorize' => $this->post('comment'),
+
               'guest_part_id'    => serialize(['guest' => ((!empty($tabguest)) ? $tabguest : '' ), 'part' => ((!empty($tabpart)) ? $tabpart : '' )]),
+
               'coor_lat'         => $lat,
               'coor_lng'         => $lng,
               'users_id'         => $this->getUser()['id']
             ];
-    
+
             if (isset($_FILES['file']))
             {
               $datas['picture_first'] = $_FILES['file']['name'];

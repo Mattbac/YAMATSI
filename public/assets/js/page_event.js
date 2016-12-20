@@ -74,4 +74,23 @@ $(function() {
         });
     });
 
+    $(".editanswer").click(function(){
+      $(".editanswer").next().empty();
+      $(this).next().append('<label for="editAnswer_com">Edition de votre commentaire</label>');
+      $(this).next().append('<textarea name="editAnswer_com" id="editAnswer_com">'+$(this).prev().prev().text()+'</textarea>');
+      $(this).next().append('<input id="submitEditAnswerCom" type="submit" name="submitEditCom" value="Envoyer votre commentaire">');
+    });
+
+    $(document).on("click","#submitEditAnswerCom",function(e){
+        $.ajax({
+            type    : "POST",
+            url     : locationPage[0]+"public/api/edit_com/",
+            data    : 'event_id='+$(this).parent().data('event-id')+'&com_id='+$(this).parent().data('com-id')+'&message='+$(this).prev().val()
+        }).done(function(data){
+            if(data == 1){
+                $(".editanswer").next().empty();
+            }
+        });
+    });
+
 });

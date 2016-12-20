@@ -125,6 +125,7 @@ class ApiController extends Controller
                                         'comment_id'    => $this->post('com_id'),
                                         'message'       => $this->post('message'),
                                         'created_at'    => time()]);
+
             echo true;
             }else{
                 echo false;
@@ -134,6 +135,12 @@ class ApiController extends Controller
         }
     }
 
+    public function edit_com()
+    {
+      //$this->getUser()['id'] doit egal a l'id 'users_id' qui est lauteur
+
+
+    }
     public function register_event()
     {
         $register_eventModel = new Register_eventModel();

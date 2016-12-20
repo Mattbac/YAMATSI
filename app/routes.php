@@ -7,6 +7,7 @@
 		['GET', 		'/api/search_event[/]?'					, 'Api#search_event'				, 'api_search_event'],
 		['GET', 		'/api/search_event_element/[i:id][/]?'	, 'Api#search_event_element'		, 'api_search_event_element'],
 		['GET|POST', 	'/api/send_com[/]?'						, 'Api#send_com'					, 'api_send_com'],
+		['GET|POST', 	'/api/edit_com[/]?'						, 'Api#edit_com'					, 'api_edit_com'],
 		['GET|POST', 	'/api/register_event[/]?'				, 'Api#register_event'				, 'api_register_event'],
 		['GET|POST', 	'/api/cancel_registeration_event[/]?'	, 'Api#cancel_registeration_event'	, 'cancel_registeration_event'],
 
