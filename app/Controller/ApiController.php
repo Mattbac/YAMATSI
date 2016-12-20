@@ -12,7 +12,10 @@ use Model\Register_eventModel as Register_eventModel;
 
 class ApiController extends Controller
 {
-
+  function post($param)
+  {
+    return strip_tags(trim($_POST[$param]));
+  }
     // Creation Event Form
     public function search_guest($slug)
     {
@@ -68,8 +71,8 @@ class ApiController extends Controller
         $element['com']             		= $commentModel->findAllComWithId($id);
         $element['type']            		= $typeModel->find($element['event']['type_id']);
         $element['whoIsRegister']           = $register_eventModel->findAllRegister($id);
-        $element['category']            	=   ($element['event']['category_of'] == 1) ? 'Enfant' : 
-                                                (($element['event']['category_of'] == 2) ? 'Adolescent' : 
+        $element['category']            	=   ($element['event']['category_of'] == 1) ? 'Enfant' :
+                                                (($element['event']['category_of'] == 2) ? 'Adolescent' :
                                                 (($element['event']['category_of'] == 3) ? 'Adulte' : 'Tout public'));
         $element['is_connect']          	= !empty($this->getUser()['id']);
 
@@ -89,8 +92,8 @@ class ApiController extends Controller
                                             'is_register_event'		    => $element['is_register_event'],
                                             'whoIsRegister'		        => $element['whoIsRegister'],
                                             'user'		                => $element['user'],
-                                            'event'     			    => $element['event'], 
-                                            'category'     			    => $element['category'], 
+                                            'event'     			    => $element['event'],
+                                            'category'     			    => $element['category'],
                                             'comsFirst'      			=> $element['com'][1],
                                             'comsAn'      			    => $element['com'][2],
                                             'guests'    			    => $element['guest_part']['guest'],
@@ -103,22 +106,22 @@ class ApiController extends Controller
         $commentModel = new CommentModel();
 
         if(isset($_POST['title']) && isset($_POST['message']) && isset($_POST['event_id']) && isset($this->getUser()['id'])){
-            if($_POST['title'] != '' && $_POST['message'] != ''){
+            if($this->post('title') != '' && $this->post('message') != ''){
                 $commentModel->insert([ 'users_id'      => $this->getUser()['id'],
-                                        'event_id'      => $_POST['event_id'],
-                                        'message'       => $_POST['message'],
+                                        'event_id'      => $this->post('event_id'),
+                                        'message'       => $this->post('message'),
                                         'created_at'    => time(),
-                                        'title'         => $_POST['title']]);
+                                        'title'         => $this->post('title')]);
                 echo true;
             }else{
                 echo false;
             }
         }elseif(isset($_POST['com_id']) && isset($_POST['message']) && isset($_POST['event_id']) && isset($this->getUser()['id'])){
-            if($_POST['message'] != ''){
+            if($this->post('message') != ''){
                 $commentModel->insert([ 'users_id'      => $this->getUser()['id'],
-                                        'event_id'      => $_POST['event_id'],
-                                        'comment_id'    => $_POST['com_id'],
-                                        'message'       => $_POST['message'],
+                                        'event_id'      => $this->post('event_id'),
+                                        'comment_id'    => $this->post('com_id'),
+                                        'message'       => $this->post('message'),
                                         'created_at'    => time()]);
             echo true;
             }else{
@@ -134,8 +137,8 @@ class ApiController extends Controller
         $register_eventModel = new Register_eventModel();
         if(isset($_POST['eventid']) && isset($this->getUser()['id'])){
 
-            if(empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $_POST['eventid']))){
-                $register_eventModel->insert(['users_id' => $this->getUser()['id'], 'event_id' => $_POST['eventid'], 'date_time' => time()]);
+            if(empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $this->post('eventid')))){
+                $register_eventModel->insert(['users_id' => $this->getUser()['id'], 'event_id' => $this->post('eventid'), 'date_time' => time()]);
                 echo true;
             }else{
                 echo false;
@@ -150,8 +153,8 @@ class ApiController extends Controller
         $register_eventModel = new Register_eventModel();
         if(isset($_POST['eventid']) && isset($this->getUser()['id'])){
 
-            if(!empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $_POST['eventid']))){
-                $register_eventModel->cancel_register($this->getUser()['id'], $_POST['eventid']);
+            if(!empty($register_eventModel->isAllreadyRegister($this->getUser()['id'],  $this->post('eventid')))){
+                $register_eventModel->cancel_register($this->getUser()['id'],  $this->post('eventid'));
                 echo true;
             }else{
                 echo false;
