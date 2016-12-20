@@ -84,15 +84,20 @@
     <div class="comment">
         <h3>Titre : <?php echo $com['title']?></h3>
         <div class="comment-content">
-        <p><?php echo $com['message']?></p>
+        <p data-com-id="<?php echo $com['id']?>"><?php echo $com['message']?></p>
         <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
         </div>
+
         <div class="answer">
           <?php if(isset($comsAn[$key])){
               foreach ($comsAn[$key] as $comAnswer){?>
           <div class="comment-content">
-              <p><?php echo $comAnswer['message']?></p>
+              <p data-com-id="<?php echo $comAnswer['id']?>"><?php echo $comAnswer['message']?></p>
               <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $comAnswer['nickname']?></a></p>
+              <?php if($id_user_connect == $com['users_id']){?>
+                <button class="editanswer">Editer</button>
+              <?php }?>
+                <div class="answer_edit_comment" data-event-id="<?php echo $event['id']?>" data-com-id="<?php echo $com['id']?>"> </div>
           </div>
         </div>
       </div>

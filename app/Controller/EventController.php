@@ -35,6 +35,7 @@ class EventController extends Controller
           $element['category']            	=   ($element['event']['category_of'] == 1) ? 'Enfant' :
                                                 (($element['event']['category_of'] == 2) ? 'Adolescent' :
                                                 (($element['event']['category_of'] == 3) ? 'Adulte' : 'Tout public'));
+          $element['id_user_connect']       = $this->getUser()['id'];
           $element['is_connect']            = !empty($this->getUser()['id']);
 
           if($element['is_connect']){
@@ -54,6 +55,7 @@ class EventController extends Controller
                                       'whoIsRegister'		    => $element['whoIsRegister'],
                                       'user'		            => $element['user'],
                                       'event'     			    => $element['event'],
+                                      'id_user_connect'     => $element['id_user_connect'],
                                       'category'     			  => $element['category'],
                                       'comsFirst'      			=> $element['com'][1],
                                       'comsAn'      			  => $element['com'][2],
@@ -141,14 +143,16 @@ class EventController extends Controller
             }else{
               echo "Fatal error";
             }
-
+            $tabguest = [];
             $tabpart = [];
             foreach ($_POST as $key => $value) {
                 if(substr($key,0,6) == 'partid'){
                     $tabpart[] = ['id' => explode('partid', $key)[1], 'nickname' => $value];
                 }
+                if(substr($key,0,7) == 'guestid'){
+                    $tabguest[] = ['id' => explode('guestid', $key)[1], 'nickname' => $value];
+                }
             }
-
             $datas = [
               'name'             => $this->post('name'),
               'adress'           => $this->post('adress'),
@@ -159,12 +163,12 @@ class EventController extends Controller
               'end_of_event'     => ((isset($_POST['hlastdate'])) ? $this->post('hlastdate') : $this->post('hdate1')),
               'start_of_event'   => $this->post('hdate1'),
               'comment_autorize' => $this->post('comment'),
-              'guest_part_id'    => serialize($tabpart),
+              'guest_part_id'    => serialize(['guest' => $tabguest, 'part' => $tabpart]),
               'coor_lat'         => $lat,
               'coor_lng'         => $lng,
               'users_id'         => $this->getUser()['id']
             ];
-    var_dump($datas);
+            var_dump($_POST);
             if (isset($_FILES['file']))
             {
               $datas['picture_first'] = $_FILES['file']['name'];
