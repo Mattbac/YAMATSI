@@ -6,15 +6,15 @@ $(function(){
         $('#dateinter').empty();
         myDatefirst=datefirst[2].split("-");
         myDatelast=datelast[2].split("-");
-        first = (new Date(myDatefirst[0],myDatefirst[1],myDatefirst[2]).getTime())/1000 + (60*60*24);
-        last = (new Date(myDatelast[0],myDatelast[1],myDatelast[2]).getTime())/1000;
+        first = (new Date(myDatefirst[0],myDatefirst[1]-1,myDatefirst[2]).getTime())/1000 + (60*60*24);
+        last = (new Date(myDatelast[0],myDatelast[1]-1,myDatelast[2]).getTime())/1000;
         i = 2;
         while(first < last){
             newdate = new Date(first * 1000);
             $('#dateinter').append('<div><label for="hstart'+(i)+'">Horaire intermediaire</label>');
             $('#dateinter').append('<input type="time" name="hstart'+(i)+'" step="1800" id="hstart'+(i)+'" value="'+datefirst[0]+'">');
             $('#dateinter').append('<input type="time" name="hstop'+(i)+'" step="1800" id="hstop'+(i)+'" value="'+datefirst[1]+'">');
-            $('#dateinter').append('<input type="date" name="hdate'+(i)+'" id="hdate'+(i)+'" value="'+(newdate.getFullYear()+'-'+((newdate.getMonth() < 10) ? '0' : '')+(newdate.getMonth())+'-'+newdate.getDate())+'"></div>');
+            $('#dateinter').append('<input type="date" name="hdate'+(i)+'" id="hdate'+(i)+'" value="'+(newdate.getFullYear()+'-'+((newdate.getMonth() < 10) ? '0' : '')+(newdate.getMonth()+1)+'-'+newdate.getDate())+'"></div>');
             first += (60*60*24);
             i += 1;
         }

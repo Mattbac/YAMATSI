@@ -38,8 +38,6 @@ class EventController extends Controller
           $element['is_connect']            = !empty($this->getUser()['id']);
           $element['planning']              = unserialize($element['event']['date_time']);
 
-          var_dump($element['planning']);
-
           if($element['is_connect']){
             $element['is_register_event']   = !empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $id));
           }else{
@@ -47,7 +45,7 @@ class EventController extends Controller
           }
 
           if($element['event']['guest_part_id'] != ''){
-            $element['guest_part']      	= $usersModel->findGuestPart($element['event']['guest_part_id']);
+            $element['guest_part']      	= unserialize($element['event']['guest_part_id']);
           }else{
             $element['guest_part'] 			= ['guest' => '', 'part' => ''];
           }
@@ -123,23 +121,24 @@ class EventController extends Controller
                 }
             $i = 1;
             $tab = [];
+
           while(isset($_POST['hstart'.$i]))
             {
               if($this->post('hdate'.$i) == NULL || $this->post('hstart'.$i) == NULL || $this->post('hstop'.$i)== NULL)
               {
                 $i++;
               }else{
-              $dateStart = new \DateTime($this->post('hdate'.$i) +' '+ $this->post('hstart'.$i));
-              $dateStop = new \DateTime($this->post('hdate'.$i) +' '+ $this->post('hstop'.$i));
-              $tabDate = [$dateStart->getTimestamp(), $dateStop->getTimestamp()];
-              $tab[] = $tabDate;
-              $i++;
+                $dateStart = new \DateTime($this->post('hdate'.$i).' '.$this->post('hstart'.$i));
+                $dateStop = new \DateTime($this->post('hdate'.$i).' '.$this->post('hstop'.$i));
+                $tabDate = [$dateStart->getTimestamp(), $dateStop->getTimestamp()];
+                $tab[] = $tabDate;
+                $i++;
               }
             }
             if(isset($_POST['hlastdate']))
             {
-              $dateStart = new \DateTime($this->post('hlastdate') +' '+ $this->post('hstartlast'));
-              $dateStop = new \DateTime($this->post('hlastdate') +' '+ $this->post('hstoplast'));
+              $dateStart = new \DateTime($this->post('hlastdate').' '.$this->post('hstartlast'));
+              $dateStop = new \DateTime($this->post('hlastdate').' '.$this->post('hstoplast'));
               $tabDate = [$dateStart->getTimestamp(), $dateStop->getTimestamp()];
               $tab[] = $tabDate;
             }else{
@@ -147,9 +146,13 @@ class EventController extends Controller
             }
 
             $tabpart = [];
+            $tabguest = [];
             foreach ($_POST as $key => $value) {
                 if(substr($key,0,6) == 'partid'){
                     $tabpart[] = ['id' => explode('partid', $key)[1], 'nickname' => $value];
+                }
+                if(substr($key,0,7) == 'guestid'){
+                    $tabguest[] = ['id' => explode('guestid', $key)[1], 'nickname' => $value];
                 }
             }
 
@@ -163,12 +166,12 @@ class EventController extends Controller
               'end_of_event'     => ((isset($_POST['hlastdate'])) ? $this->post('hlastdate') : $this->post('hdate1')),
               'start_of_event'   => $this->post('hdate1'),
               'comment_autorize' => $this->post('comment'),
-              'guest_part_id'    => serialize($tabpart),
+              'guest_part_id'    => serialize(['guest' => ((!empty($tabguest)) ? $tabguest : '' ), 'part' => ((!empty($tabpart)) ? $tabpart : '' )]),
               'coor_lat'         => $lat,
               'coor_lng'         => $lng,
               'users_id'         => $this->getUser()['id']
             ];
-    var_dump($datas);
+    
             if (isset($_FILES['file']))
             {
               $datas['picture_first'] = $_FILES['file']['name'];

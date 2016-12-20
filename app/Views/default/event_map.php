@@ -61,8 +61,10 @@
         <p><?php echo $event['message'] ?></p>
         <p>Horaires :</p>
         <table>
-            <tr><td>Lundi</td><td>8h30</td><td>19h</td></tr>
-            <tr><td>Mardi</td><td>9h</td><td>21h</td></tr>
+            <?php foreach($planning as $day){
+                if((new \DateTime())->getTimestamp() < $day[1]){?>
+                <tr><td><?php echo date("j-m-Y", $day[0])?></td><td><?php echo date("h\hi", $day[0])?></td><td><?php echo date("h\hi", $day[1])?></td></tr>
+            <?php }} ?>
         </table>
         <p><i class="fa fa-map-marker" aria-hidden="true"></i><?php echo $event['adress']?></p>
 

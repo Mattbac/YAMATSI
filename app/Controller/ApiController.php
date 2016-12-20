@@ -75,6 +75,7 @@ class ApiController extends Controller
                                                 (($element['event']['category_of'] == 2) ? 'Adolescent' :
                                                 (($element['event']['category_of'] == 3) ? 'Adulte' : 'Tout public'));
         $element['is_connect']          	= !empty($this->getUser()['id']);
+        $element['planning']                = unserialize($element['event']['date_time']);
 
         if($element['is_connect']){
             $element['is_register_event']   = !empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $id));
@@ -83,7 +84,7 @@ class ApiController extends Controller
         }
 
         if($element['event']['guest_part_id'] != ''){
-            $element['guest_part']      	= $usersModel->findGuestPart($element['event']['guest_part_id']);
+            $element['guest_part']      	= unserialize($element['event']['guest_part_id']);
         }else{
             $element['guest_part'] 			= ['guest' => '', 'part' => ''];
         }
@@ -93,6 +94,7 @@ class ApiController extends Controller
                                             'whoIsRegister'		        => $element['whoIsRegister'],
                                             'user'		                => $element['user'],
                                             'event'     			    => $element['event'],
+                                            'planning'     			    => $element['planning'],
                                             'category'     			    => $element['category'],
                                             'comsFirst'      			=> $element['com'][1],
                                             'comsAn'      			    => $element['com'][2],
