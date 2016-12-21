@@ -16,7 +16,7 @@
   </div>
   <div class="content">
       <div id="futur_event">
-          <h2>Evènements à venir et en cour</h2>
+          <h2>Evènements à venir et en cours</h2>
           <?php foreach($eventsregister as $key => $event){
           if(intval($event['end_of_event']) > (new \DateTime())->getTimestamp()){?>
           <div class="showevent lane-space-between">
@@ -28,7 +28,7 @@
                     <?php foreach($event['planning'] as $key => $day){
                         if($key == 0 || $key == count($event['planning'])-1){
                           if($key == 0){?>
-                                <tr><th colspan="3">Debut de l'event :</th></tr>
+                                <tr><th colspan="3">Début de l'event :</th></tr>
                             <?php }else{?>
                                 <tr><th colspan="3">Fin de l'event :</th></tr>
                             <?php }?>

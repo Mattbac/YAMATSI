@@ -256,7 +256,7 @@ footer p a:focus {
 
 #hplogo {
   width: 100%;
-  height: 40%;
+  height: 38%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -270,9 +270,10 @@ footer p a:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 7rem;
-  width: 60%;
-  height: 10rem;
+  font-size: 6rem;
+  width: 80%;
+  margin: 0 0 0.5rem 0;
+  height: 7rem;
   color: #332532;
   border-radius: 2.5rem;
   border: 0.75rem solid #332532;
@@ -288,7 +289,7 @@ footer p a:focus {
 }
 
 .userbar {
-  width: 80%;
+  width: 90%;
   height: 3rem;
   margin: 2% 0 0 0;
   font-size: 0;
@@ -298,12 +299,9 @@ footer p a:focus {
   width: 50%;
   height: 100%;
   font-size: 1.25rem;
-  color:#332532;
-  border-top:0.125rem solid #332532;
-  border-bottom:0.125rem solid #332532;
-  border-left:0.125rem solid #332532;
-  border-right:none;
-  background:none;
+  color:#FFF;
+  border:none;
+  background:#332532;
 }
 
 .userbar button:focus {
@@ -315,19 +313,34 @@ footer p a:focus {
 }
 
 .userbar a.logbutton button {
-  border-right:0.125rem solid #332532;
   border-radius: 0 1rem 1rem 0;
 }
 
-.userbar a.outbutton button {
+.userbar a.outbutton button,
+.userbar a.profilebutton button,
+.userbar a.createbutton button {
   border-radius: 1rem;
   width: 100%;
   margin: 0 auto;
-  border: 0.125rem solid #332532;
+}
+
+.userbar a.profilebutton button,
+.userbar a.createbutton button {
+  width: 45%;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.userbar a.profilebutton button {
+  margin-right: 5%;
+}
+
+.userbar a.createbutton button {
+  margin-left: 5%;
 }
 
 .downarrow {
-  margin: 0.8rem 0 0 0;
+  margin: 4.5rem 0 0 0;
   font-size: 2rem;
   color:#e4d6d9;
 }
@@ -346,6 +359,11 @@ footer p a:focus {
 #corporate h2 {
   font-weight: 300;
   text-indent: 1rem;
+}
+
+#service h3 {
+  text-align: center;
+  margin: 1rem 0;
 }
 
 #service .photolane,
@@ -383,6 +401,23 @@ footer p a:focus {
   color:#FFF;
   background:linear-gradient(65deg,#F77A52,#FF974F);
   padding: 0.5rem 0.5rem 3.5rem 0.5rem;
+}
+
+#corporate > h3:nth-child(4) {
+  text-indent: 15%;
+}
+
+#corporate > h3:nth-child(5) {
+  text-indent: 25%;
+}
+
+#corporate > h3:nth-child(6) {
+  text-indent: 35%;
+}
+
+#corporate > p {
+  text-align: center;
+  margin: 1rem 0 0 0;
 }
 
 /* ############################### USER PROFILE ############################### */
@@ -711,6 +746,18 @@ form .inputbox .picfile {
     right:1rem;
 }
 
+#selectpart, #selectguest {
+    padding: 1.5rem 0 0 0;
+}
+
+#selectpart input, #selectguest input {
+  background: none;
+  border: 0.25rem solid #FF974F;
+  width: 45%;
+  margin: 0 2.5% 0.5rem 2.5%;
+  display: inline-block;
+}
+
 input[type=submit], #send_position, button  {
     width: 100%;
     height: 5rem;
@@ -964,14 +1011,16 @@ input[type=submit]:focus, #send_position:focus, button:focus {
 }
 
 .eventview-infos .eventview-text table {
-  width: 80%;
+  width: 90%;
   height: auto;
   margin: 0 auto;
+  font-size: 1rem;
 }
 
 .eventview-infos .eventview-text tr {
   display: flex;
   justify-content: space-between;
+      margin: 0.25rem 0;
 }
 
 .eventview-infos .eventview-text p:last-child {
@@ -1116,6 +1165,24 @@ input[type=submit]:focus, #send_position:focus, button:focus {
 
 @media (min-width: 426px) {
 
+/* ############################## MENU ############################## */
+
+#menu:target {
+  top:0;
+}
+
+#menu {
+  width: 100%;
+  height: 32%;
+  top:-32%;
+  right: 0;
+  border-bottom: 0.5rem solid #F77A52;
+}
+
+#menu ul img {
+  display: none;
+}
+
 /* ############################## HP ############################## */
 
 #hplogo {
@@ -1139,6 +1206,126 @@ input[type=submit]:focus, #send_position:focus, button:focus {
 
 .downarrow {
     margin: 5% 0 0 0;
+}
+
+/* ############################## MAP ############################## */
+
+#header .navbar input, #header .navbar select {
+  font-size: 1rem;
+}
+
+#header #result_search {
+  width: 50%;
+  max-height: none;
+}
+
+#header #result_search .searchresult {
+  font-size: 1.5rem;
+}
+
+/* ############################## FORM ############################## */
+
+#selectpart input, #selectguest input {
+  width: 23%;
+  margin: 0 1% 0.5rem 1%;
+}
+
+}
+
+/* ############################## DESKTOP ############################## */
+
+@media (min-width: 769px) {
+
+/* ############################## HP ############################## */
+
+#go {
+    width: 12rem;
+    height: 12rem;
+    font-size: 8rem;
+}
+
+.userbar {
+  width: 35%;
+}
+
+.downarrow {
+  margin: 6.5% 0 0 0;
+}
+
+#service .downarrow {
+  margin: 0 0 2% 0;
+}
+
+#corporate .downarrow {
+  margin: 0 0 6% 0;
+}
+
+#service, #corporate {
+  padding: 0 20%;
+}
+
+#service h1, #corporate h1 {
+  font-size: 3rem;
+  padding: 0.5rem 0 0 0;
+}
+
+#service .photolane,
+#corporate .photolane {
+  width: 100%;
+  height: auto;
+}
+
+#service .photolane .showpic,
+#corporate .photolane .showpic {
+  width: 49.5%;
+  height: auto;
+  margin: 1rem auto;
+  display: inline-block;
+}
+
+/* ############################## MAP ############################## */
+
+.hamburger {
+  display: none;
+}
+
+#menu:target {
+  top:35%;
+  left:0;
+}
+
+#menu {
+  right: 0;
+  top: 35%;
+  width: 20%;
+  height: auto;
+  padding: 0 3rem;
+  border-radius: 1rem 0 0 1rem;
+  border-top: 0.25rem solid #F77A52;
+  border-bottom: 0.25rem solid #F77A52;
+  border-left: 0.25rem solid #F77A52;
+}
+
+#header {
+  width: 20%;
+  height: 100%;
+  background: none;
+}
+
+#header .navbar {
+  height: auto;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  display: inline-block;
+  background: none;
+}
+
+#header .navbar select,
+#header .navbar input {
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 1rem;
+  margin: 0.25rem 0;
 }
 
 }

@@ -66,7 +66,7 @@
                 <tr><td><?php echo date("j-m-Y", $day[0])?></td><td><?php echo date("h\hi", $day[0])?></td><td><?php echo date("h\hi", $day[1])?></td></tr>
             <?php }} ?>
         </table>
-        <p><i class="fa fa-map-marker" aria-hidden="true"></i><?php echo $event['adress']?></p>
+        <p><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $event['adress']?></p>
 
     </div>
 

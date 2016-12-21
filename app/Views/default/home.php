@@ -19,14 +19,18 @@
 
 				<?php if(!$is_connect){
 
-				echo "<a href=\"".$this->url('user_register')."\" class=\"regbutton\"><button>Inscription</button></a>";
-				echo "<a href=\"".$this->url('security_login')."\" class=\"logbutton\"><button>Connexion</button></a>";
+				echo "<a href=\"".$this->url('user_register')."\" class=\"regbutton\"><button>Inscription <i class=\"fa fa-circle\" aria-hidden=\"true\"></i></button></a>";
+				echo "<a href=\"".$this->url('security_login')."\" class=\"logbutton\"><button>Connexion <i class=\"fa fa-sign-in\" aria-hidden=\"true\"></i></button></a>";
 
 				} else {
 
-				echo "<a href=\"".$this->url('security_logout')."\" class=\"outbutton\"><button>Déconnexion</button></a>";
+				echo "<a href=\"".$this->url('user_profil')."\" class=\"profilebutton\"><button>Profil <i class=\"fa fa-user-circle-o\" aria-hidden=\"true\"></i></button></a>";
+				echo "<a href=\"".$this->url('event_map')."\" class=\"createbutton\"><button>Ajouter <i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i></button></a>";
+				echo "<a href=\"".$this->url('security_logout')."\" class=\"outbutton\"><button> Déconnecter <i class=\"fa fa-power-off\" aria-hidden=\"true\"></i></button></a>";
 
 				} ?>
+
+
 
 			</div>
 		</div>
@@ -52,7 +56,13 @@
 			</div>
 		</div>
 
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<h3>OutLooker est votre nouveau compagnon de sortie !</h3>
+
+				<p>Vous voulez sortir ce soir ? La semaine prochaine ? Ou même le mois prochain ? Recherchez sur OutLooker les évènements qui vous plaisent. Que vous soyez branchés musique, expos d'art, manifs sportives, etc. Trouvez ce que vous aimez quand vous avez envie de sortir.</p>
+
+				<h3>Intéragissez</h3>
+
+				<p>Echangez avec les organisateurs ou les participants. Evaluez l'évènement auquel vous avez assisté et même l'organisme qui l'a organisé afin de communiquer des infos utiles qui pourraient bénéficier aux autres.</p>
 
 				<div class="lane-space-around">
 					<a href="#corporate" class="downarrow"><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
@@ -75,7 +85,11 @@
 			</div>
 		</div>
 
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<h3>Yanis Bélaïd,</h3>
+				<h3>Matthieu Bacoup &amp;</h3>
+				<h3>Simon Philippe</h3>
+
+				<p>Trois passionnés, acharnés et motivés depuis plus de deux semaines pour mettre sur pied ce projet en mettant au service du groupe leur propre affinité pour le développement web et l'intgration.</p>
 
 				<div class="lane-space-around">
 					<a href="#top" class="downarrow"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
