@@ -1,19 +1,5 @@
-INSERT INTO `event` (`id`, `name`, `message`, `date_time`, `picture_first`, `users_id`, `coor_lat`, `coor_lng`, `comment_autorize`, `category_of`, `type_id`) VALUES
-(1, 'yanis', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
-(2, 'event de fou', 'c''est un evenement de fou prevu pour cette hiver, le 28 decembre !', '2645533', NULL, 2, 49, 2, 1, '1', 4),
-(3, 'event bleu', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
-(4, 'event vert', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
-(5, 'event marron', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
-(6, 'event black', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
-(7, 'event white', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
-(8, 'event green', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
-(9, 'event orange', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
-(10, 'event red', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
-(11, 'event violet', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
-(12, 'event gris', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
-(13, 'event prune', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
-(14, 'event super', 'sdlfkgnslmdkfg sfgjsdflgkjsdl gkjsdflg jks', '3152264', NULL, 1, 56, 4, 0, '0', 0),
-(15, 'Tortuga', 'événement sur les tortues', '654654654', NULL, 3, 43, 6, 1, '1', 4);
+INSERT INTO `event` (`id`, `name`, `adress`, `message`, `date_time`, `end_of_event`, `start_of_event`, `picture_first`, `users_id`, `guest_part_id`, `coor_lat`, `coor_lng`, `comment_autorize`, `category_of`, `type_id`) VALUES
+(1, 'blue', '36 rue blue', 'blueblue blue blue blue blue', 'a:5:{i:0;a:2:{i:0;i:1482658200;i:1;i:1482665400;}i:1;a:2:{i:0;i:1482744600;i:1;i:1482751800;}i:2;a:2:{i:0;i:1482831000;i:1;i:1482838200;}i:3;a:2:{i:0;i:1482917400;i:1;i:1482924600;}i:4;a:2:{i:0;i:1483039800;i:1;i:1483050600;}}', '1482966000', '1482620400', 'animal.jpg', 1, 'a:2:{s:5:"guest";s:0:"";s:4:"part";a:3:{i:0;a:2:{s:2:"id";s:1:"5";s:8:"nickname";s:4:"klop";}i:1;a:2:{s:2:"id";s:1:"8";s:8:"nickname";s:8:"mohammed";}i:2;a:2:{s:2:"id";s:1:"4";s:8:"nickname";s:8:"simonoub";}}}', 50, 3, 1, '2', 5);
 
 INSERT INTO `comment` (`id`, `event_id`, `users_id`, `comment_id`, `message`, `title`, `created_at`) VALUES
 (1, 1, 1, NULL, 'Ceci est un commentaire', 'Commentaire', 55668444),
