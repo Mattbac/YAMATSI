@@ -58,6 +58,7 @@ class UserController extends Controller
 
         if($id == 0 && isset($this->getUser()['id'])) {
             $alleventregister = $register_event->findAllUserid($this->getUser()['id']);
+            $alleventregister = (empty($alleventregister)) ? [0 => ['event_id' => '0']] : $alleventregister;
             $eventregisters = $this->array_sort($event->findAllEventWithIds($alleventregister), 'end_of_event', 'SORT_DESC');
 
             foreach ($eventregisters as $key => $eventregister) {
@@ -69,12 +70,12 @@ class UserController extends Controller
                                                         (   ($eventregister['category_of'] == 3) ? 'Adulte' : 'Tout public'));
             }
 
-            $sugestionEvents                             = $this->array_sort($event->findAllEventWithNotIds($this->array_sort($alleventregister, 'event_id', 'SORT_DESC')), 'end_of_event', 'SORT_ASC');;
+            $sugestionEvents                            = $this->array_sort($event->findAllEventWithNotIds($this->array_sort($alleventregister, 'event_id', 'SORT_DESC')), 'end_of_event', 'SORT_ASC');
             foreach ($sugestionEvents as $key => $sugestionEvent) {
-                $sugestionEvents[$key]['planning']       = unserialize($sugestionEvent['date_time']);
-                $sugestionEvents[$key]['type']           = $typeModel->find($sugestionEvent['type_id']);
-                $sugestionEvents[$key]['type']           = $sugestionEvents[$key]['type']['name'];
-                $sugestionEvents[$key]['category']       =   ($sugestionEvent['category_of'] == 1) ? 'Enfant' :
+                $sugestionEvents[$key]['planning']      = unserialize($sugestionEvent['date_time']);
+                $sugestionEvents[$key]['type']          = $typeModel->find($sugestionEvent['type_id']);
+                $sugestionEvents[$key]['type']          = $sugestionEvents[$key]['type']['name'];
+                $sugestionEvents[$key]['category']      =   ($sugestionEvent['category_of'] == 1) ? 'Enfant' :
                                                         (   ($sugestionEvent['category_of'] == 2) ? 'Adolescent' :
                                                         (   ($sugestionEvent['category_of'] == 3) ? 'Adulte' : 'Tout public'));
             }

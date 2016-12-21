@@ -17,7 +17,7 @@ $(function(){
             }
             $('#dateinter').append('<input type="time" name="hstart'+(i)+'" step="1800" id="hstart'+(i)+'" value="'+datefirst[0]+'">');
             $('#dateinter').append('<input type="time" name="hstop'+(i)+'" step="1800" id="hstop'+(i)+'" value="'+datefirst[1]+'">');
-            $('#dateinter').append('<input type="date" name="hdate'+(i)+'" id="hdate'+(i)+'" value="'+(newdate.getFullYear()+'-'+((newdate.getMonth() < 10) ? '0' : '')+(newdate.getMonth()+1)+'-'+newdate.getDate())+'"></div>');
+            $('#dateinter').append('<input type="date" name="hdate'+(i)+'" id="hdate'+(i)+'" value="'+(newdate.getFullYear()+'-'+((newdate.getMonth() < 10) ? '0' : '')+(newdate.getMonth()+1)+'-'+((newdate.getDate() < 10) ? '0' : '')+newdate.getDate())+'"></div>');
             first += (60*60*24);
             i += 1;
         }
