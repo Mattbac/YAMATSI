@@ -98,8 +98,9 @@
               <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $comAnswer['nickname']?></a></p>
               <?php if($id_user_connect == $com['users_id']){?>
                 <button class="editanswer">Editer</button>
-              <?php }?>
+
                 <div class="answer_edit_comment" data-event-id="<?php echo $event['id']?>" data-com-id="<?php echo $com['id']?>"> </div>
+              <?php }?>
           </div>
         </div>
       </div>
