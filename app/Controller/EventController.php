@@ -182,7 +182,8 @@ class EventController extends Controller
               $datas['picture_first'] = $_FILES['file']['name'];
             }
 
-            $event->insert($datas);
+            $newEvent = $event->insert($datas);
+            $this->redirectToRoute('event_page', ['id' => $newEvent['id']]);
         }
       }
         $types = new TypeModel();
