@@ -140,21 +140,22 @@ class ApiController extends Controller
 
     public function edit_com()
     {
-      $commentModel = new CommentModel();
-      if(isset($_POST['com_id']) && isset($_POST['message']) && isset($_POST['event_id']) && isset($this->getUser()['id'])){
+        $commentModel = new CommentModel();
+        if(isset($_POST['com_id']) && isset($_POST['message']) && isset($_POST['event_id']) && isset($this->getUser()['id'])){
 
-          if($this->post('message') != '')
-          {
-              $commentModel->update([
-                              'message'       => $this->post('message'),
-                              'created_at'    => time()], $this->getUser()['id']);
-              echo true;
-          }
-          else
-          {
-              echo false;
-          }
+            if($this->post('message') != '' && is_numeric($_POST['com_id'])){
+
+                $com = $commentModel->find($_POST['com_id']);
+
+                if($com['users_id'] == $this->getUser()['id']){
+                    $commentModel->update([ 'message'       => $this->post('message'),
+                                            'created_at'    => time()], $_POST['com_id']);
+                    echo true;
+                }else{echo false;}
+            }else{echo false;}
+        }else{echo false;}
     }
+
     public function register_event()
     {
         $register_eventModel = new Register_eventModel();

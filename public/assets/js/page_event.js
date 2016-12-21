@@ -41,7 +41,6 @@ $(function() {
     });
 
     $(document).on("click","#submitCom",function(e){
-
         $.ajax({
             type    : "POST",
             url     : locationPage[0]+"public/api/send_com/",
@@ -62,7 +61,6 @@ $(function() {
     });
 
     $(document).on("click","#submitAnswerCom",function(e){
-
         $.ajax({
             type    : "POST",
             url     : locationPage[0]+"public/api/send_com/",
@@ -75,6 +73,7 @@ $(function() {
     });
 
     $(".editanswer").click(function(){
+        console.log('editanswer');
       $(".editanswer").next().empty();
       $(this).next().append('<label for="editAnswer_com">Edition de votre commentaire</label>');
       $(this).next().append('<textarea name="editAnswer_com" id="editAnswer_com">'+$(this).prev().prev().text()+'</textarea>');
@@ -85,11 +84,11 @@ $(function() {
         $.ajax({
             type    : "POST",
             url     : locationPage[0]+"public/api/edit_com/",
-            data    :
-            'event_id='+$(this).parent().data('event-id')+'&com_id='+$(this).parent().child()+'&message='+$(this).prev().val()
+            data    : 'event_id='+$(this).parent().data('event-id')+'&com_id='+$(this).parent().prev().prev().prev().data('com-id')+'&message='+$(this).prev().val()
         }).done(function(data){
+            console.log(data);
             if(data == 1){
-                $(".editanswer").next().empty();
+                $(".answer_edit_comment").empty();
             }
         });
     });

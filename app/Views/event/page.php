@@ -88,6 +88,10 @@
         <div class="comment-content">
         <p data-com-id="<?php echo $com['id']?>"><?php echo $com['message']?></p>
         <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
+        <?php if($id_user_connect == $com['users_id']){?>
+            <button class="editanswer">Editer</button>
+            <div class="answer_edit_comment" data-event-id="<?php echo $event['id']?>" data-com-id="<?php echo $com['id']?>"> </div>
+        <?php }?>
         </div>
 
         <div class="answer">
@@ -96,9 +100,8 @@
           <div class="comment-content">
               <p data-com-id="<?php echo $comAnswer['id']?>"><?php echo $comAnswer['message']?></p>
               <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $comAnswer['nickname']?></a></p>
-              <?php if($id_user_connect == $com['users_id']){?>
+              <?php if($id_user_connect == $comAnswer['users_id']){?>
                 <button class="editanswer">Editer</button>
-
                 <div class="answer_edit_comment" data-event-id="<?php echo $event['id']?>" data-com-id="<?php echo $com['id']?>"> </div>
               <?php }?>
           </div>
