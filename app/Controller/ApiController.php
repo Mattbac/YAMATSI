@@ -53,8 +53,11 @@ class ApiController extends Controller
     public function search_event()
     {
         $EventModel = new EventModel();
-
-        echo json_encode($EventModel->findAll());
+        if($_POST['category_id'] != 'null' || $_POST['type_id'] != 'null' || $_POST['date'] != 'null'){
+            echo json_encode($EventModel->findAllEventWithSpecial($_POST['category_id'], $_POST['type_id'], $_POST['date']));
+        }else{
+            echo json_encode($EventModel->findAll());
+        }
     }
 
     public function search_event_element($id)

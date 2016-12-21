@@ -7,7 +7,7 @@ class EventModel extends \W\Model\Model {
     public function findAll($orderBy = '', $orderDir = 'ASC', $limit = null, $offset = null)
 	{
 
-		$sql = 'SELECT id, name, coor_lat, coor_lng FROM ' . $this->table;
+		$sql = 'SELECT id, name, coor_lat, coor_lng, category_of, type_id FROM ' . $this->table;
 		if (!empty($orderBy)){
 
 			//sécurisation des paramètres, pour éviter les injections SQL
@@ -55,6 +55,60 @@ class EventModel extends \W\Model\Model {
 		}
 
 		return $events;
+	}
+
+	public function findAllEventWithNotIds($ids)
+	{
+		$sql = 'SELECT * FROM ' . $this->table . ' WHERE id NOT IN (';
+
+		foreach($ids as $key => $id){
+			if($key != 0){
+				$sql .= ',';
+			}
+			$sql .= $id['event_id'];
+		}
+		$sql .= ') AND end_of_event > :date';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':date', (new \DateTime())->getTimestamp());
+		$sth->execute();
+		$events = $sth->fetchAll();
+
+
+		return $events;
+	}
+
+	public function findAllEventWithSpecial($category_id, $type_id, $date)
+	{
+		$sql = 'SELECT id, name, coor_lat, coor_lng, category_of, type_id FROM '.$this->table.' WHERE';
+		if($category_id != 'null' && $category_id != 0){
+			$sql .= ' category_of = :category';
+		}
+
+		if($type_id != 'null' && $category_id != 'null' && $type_id != 0){
+			$sql .= ' AND type_id = :type';
+		}elseif($type_id != 'null' && $type_id != 0){
+			$sql .= ' type_id = :type';
+		}
+
+		if($date != 'null' && $type_id != 'null' && $date != 0){
+			$sql .= ' AND end_of_event >= :date AND start_of_event <= :date';
+		}elseif($date != 'null' && $date != 0){
+			$sql .= ' end_of_event >= :date AND start_of_event <= :date';
+		}
+
+		$sth = $this->dbh->prepare($sql);
+		if($category_id != 'null' && $category_id != 0){
+			$sth->bindValue(':category'	, $category_id);
+		}
+		if($type_id != 'null' && $type_id != 0){
+			$sth->bindValue(':type'		, $type_id);
+		}
+		if($date != 'null' && $date != 0){
+			$sth->bindValue(':date'		, (new \DateTime($date))->getTimestamp());
+		}
+		$sth->execute();
+
+		return $sth->fetchAll();
 	}
 
 }

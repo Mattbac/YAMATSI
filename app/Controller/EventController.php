@@ -42,13 +42,13 @@ class EventController extends Controller
           if($element['is_connect']){
             $element['is_register_event']   = !empty($register_eventModel->isAllreadyRegister($this->getUser()['id'], $id));
           }else{
-            $element['is_register_event'] = null;
+            $element['is_register_event']   = null;
           }
 
           if($element['event']['guest_part_id'] != ''){
-            $element['guest_part']      	= unserialize($element['event']['guest_part_id']);
+            $element['guest_part']      	  = unserialize($element['event']['guest_part_id']);
           }else{
-            $element['guest_part'] 			= ['guest' => '', 'part' => ''];
+            $element['guest_part'] 			    = ['guest' => '', 'part' => ''];
           }
 
           $this->show('event/page', [ 'is_connect'			    => $element['is_connect'],
@@ -164,8 +164,8 @@ class EventController extends Controller
               'category_of'      => $this->post('category'),
               'type_id'          => $this->post('type'),
               'date_time'        => serialize($tab),
-              'end_of_event'     => ((isset($_POST['hlastdate'])) ? $this->post('hlastdate') : $this->post('hdate1')),
-              'start_of_event'   => $this->post('hdate1'),
+              'end_of_event'     => ((isset($_POST['hlastdate'])) ? (new \DateTime($this->post('hlastdate')))->getTimestamp() : (new \DateTime($this->post('hdate1')))->getTimestamp()),
+              'start_of_event'   => (new \DateTime($this->post('hdate1')))->getTimestamp(),
               'comment_autorize' => $this->post('comment'),
 
               'guest_part_id'    => serialize(['guest' => ((!empty($tabguest)) ? $tabguest : '' ), 'part' => ((!empty($tabpart)) ? $tabpart : '' )]),
