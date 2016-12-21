@@ -10,22 +10,20 @@
     <section id="header">
         <div class="navbar">
             <select name="category" id="category">
-                <option value="0">Tous Publics</option>
+                <option value="null">Tous Publics</option>
                 <option value="1">Enfant</option>
                 <option value="2">Adolescent</option>
                 <option value="3">Adulte</option>
             </select>
             <select name="type" id="type">
-                <option value="0">Tous types</option>
-                <option value="1">Dance</option>
-                <option value="2">Festival</option>
-                <option value="3">Sport</option>
-                <option value="4">Brocante</option>
-                <option value="5">Exposition</option>
-                <option value="6">Cirque</option>
-                <option value="7">Musique</option>
+                <option value="null">Tous types</option>
+                <?php foreach ($type as $value) {
+                    if($value['id'] != 1){?>
+                    <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
+                <?php }
+                }?>
             </select>
-            <input type="date">
+            <input id="date" name="date" type="date">
             <input id="search_city" type="text" name="search_city" placeholder="Ville et/ou CP...">
         </div>
 

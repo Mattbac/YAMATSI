@@ -353,37 +353,78 @@ $(function() {
 function initMap() {
   	map = new google.maps.Map(document.getElementById('map'), mapOptions );
 
-	marker = '';
+    category = null;
+    type = null;
+    date = null;
+	  marker = [];
+    searchEventWithParam();
 
-    $.ajax({
-        dataType: 'json',
-        url: locationPage[0]+"public/api/search_event/"
-    }).done(function(datas){
-		for(key in datas){
-      var myLatLng = {lat: parseFloat(datas[key]['coor_lat']), lng: parseFloat(datas[key]['coor_lng'])};
-			marker = new google.maps.Marker({
-				content: datas[key]['id'],
-				position: myLatLng,
-				map: map,
-				icon: locationPage[0]+"public/assets/img/music_icon.png",
-				title: datas[key]['name']
-			});
+    function searchEventWithParam(){
 
-			google.maps.event.addListener(marker, "click", function(event){
-        $('#event_view').empty();
-        $('#event_view').show();
+        if(date == ''){
+            date = null;
+        }
+
         $.ajax({
-            dataType: 'html',
-            url: locationPage[0]+"public/api/search_event_element/"+this.content
-        }).done(function(html){
-            $('#event_view').append(html);
+            type: "POST",
+            dataType: 'json',
+            url: locationPage[0]+"public/api/search_event/",
+            data: 'category_id='+category+'&type_id='+type+'&date='+date
+        }).done(function(datas){
+            putMarker(datas);
         });
-			});
+    }
 
-      google.maps.event.addListener(map, "click", function(event){
-        $('#event_view').hide();
-			});
+    function deleteMarker(){
+        for (var i = 0; i < marker.length; i++) {
+            marker[i].setMap(null);
+        }
+    }
 
-		}
+    function putMarker(datas){
+
+        deleteMarker();// Vide la map de tout les markers
+
+        for(key in datas){
+            var myLatLng = {lat: parseFloat(datas[key]['coor_lat']), lng: parseFloat(datas[key]['coor_lng'])};
+            marker[key] = new google.maps.Marker({
+                content: datas[key]['id'],
+                position: myLatLng,
+                map: map,
+                icon: locationPage[0]+"public/assets/img/music_icon.png",
+                title: datas[key]['name']
+            });
+
+            google.maps.event.addListener(marker[key], "click", function(event){
+                $('#event_view').empty();
+                $('#event_view').show();
+                $.ajax({
+                    dataType: 'html',
+                    url: locationPage[0]+"public/api/search_event_element/"+this.content
+                }).done(function(html){
+                    $('#event_view').append(html);
+                });
+            });
+
+            google.maps.event.addListener(map, "click", function(event){
+                $('#event_view').hide();
+            });
+
+        }
+    }
+
+    $("#category").change(function(){
+        category = ($("#category").val());
+        searchEventWithParam();
+    });
+
+    $("#type").change(function(){
+        type = ($("#type").val());
+        searchEventWithParam();
+    });
+
+    $("#date").change(function(){
+        date = ($("#date").val());
+        searchEventWithParam();
     });
 }

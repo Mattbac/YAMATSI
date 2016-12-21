@@ -4,7 +4,7 @@
 		['GET', 		'/api/search_part/[:slug][/]?'			, 'Api#search_part'					, 'api_search_part'],
 		['GET', 		'/api/search_guest/[:slug][/]?'			, 'Api#search_guest'				, 'api_search_guest'],
 		['GET', 		'/api/search_city/[:slug][/]?'			, 'Api#search_city'					, 'api_search_city'],
-		['GET', 		'/api/search_event[/]?'					, 'Api#search_event'				, 'api_search_event'],
+		['GET|POST', 	'/api/search_event[/]?'					, 'Api#search_event'				, 'api_search_event'],
 		['GET', 		'/api/search_event_element/[i:id][/]?'	, 'Api#search_event_element'		, 'api_search_event_element'],
 		['GET|POST', 	'/api/send_com[/]?'						, 'Api#send_com'					, 'api_send_com'],
 		['GET|POST', 	'/api/register_event[/]?'				, 'Api#register_event'				, 'api_register_event'],
@@ -14,7 +14,7 @@
 		['GET', 		'/logout'							, 'Security#logout'				, 'security_logout'],
 		['GET|POST', 	'/forget[/]?[:token]?[/]?'			, 'Security#forget'				, 'security_forget'],
 
-		['GET|',		'/user[/]?[i:id]?[/]?'				, 'User#profil'					, 'user_profil'], //liste de tout les membres
+		['GET|',		'/user/[i:id]?[/]?'					, 'User#profil'					, 'user_profil'], //liste de tout les membres
 		['GET|POST',	'/user/edit[/]?'					, 'User#edit'					, 'user_edit'], //liste de tout les membres
 		['GET|POST',	'/user/register[/]?'				, 'User#register'				, 'user_register'], //liste de tout les membres
 

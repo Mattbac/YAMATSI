@@ -3,6 +3,7 @@
 namespace Controller;
 
 use \W\Controller\Controller;
+use Model\TypeModel as TypeModel;
 
 class DefaultController extends Controller
 {
@@ -15,7 +16,9 @@ class DefaultController extends Controller
 
 	public function map()
     {
-        $this->show('default/map', ['title' => 'search map']);
+        $typeModel = new TypeModel();
+        $this->show('default/map', ['title' => 'search map',
+                                    'type'  => $typeModel->findAll()]);
     }
 
     // Search map Position
