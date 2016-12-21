@@ -76,7 +76,7 @@ class EventController extends Controller
 		    $typesModel = new TypeModel();
         $event = $eventModel->find($id);
 
-        var_dump($id);
+        
         if($id != 0 && $this->getUser()['id'] == $event['users_id']){
           if(isset($_POST['submitformcreate']))
           {
@@ -120,7 +120,7 @@ class EventController extends Controller
                 $tabDate = [$dateStart->getTimestamp(), $dateStop->getTimestamp()];
                 $tab[] = $tabDate;
               }
-              
+
               $tabguest = [];
               $tabpart = [];
               $tabguest = [];
