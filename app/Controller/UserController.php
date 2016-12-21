@@ -130,6 +130,8 @@ class UserController extends Controller
 
               if($this->post('password') == $this->post('confirmpassword')){
                   $datas['password'] = $auth->hashPassword($this->post('password'));
+              }else{
+                echo "Mauvais mot de passe";
               }
 
               $user->update($datas, $id['id']);
