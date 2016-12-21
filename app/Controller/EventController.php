@@ -167,9 +167,7 @@ class EventController extends Controller
               'end_of_event'     => ((isset($_POST['hlastdate'])) ? $this->post('hlastdate') : $this->post('hdate1')),
               'start_of_event'   => $this->post('hdate1'),
               'comment_autorize' => $this->post('comment'),
-
               'guest_part_id'    => serialize(['guest' => ((!empty($tabguest)) ? $tabguest : '' ), 'part' => ((!empty($tabpart)) ? $tabpart : '' )]),
-
               'coor_lat'         => $lat,
               'coor_lng'         => $lng,
               'users_id'         => $this->getUser()['id']

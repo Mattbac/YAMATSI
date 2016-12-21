@@ -106,7 +106,7 @@ class ApiController extends Controller
     public function send_com()
     {
         $commentModel = new CommentModel();
-
+         $commentModel->findAll();
         if(isset($_POST['title']) && isset($_POST['message']) && isset($_POST['event_id']) && isset($this->getUser()['id'])){
             if($this->post('title') != '' && $this->post('message') != ''){
                 $commentModel->insert([ 'users_id'      => $this->getUser()['id'],
@@ -137,9 +137,20 @@ class ApiController extends Controller
 
     public function edit_com()
     {
-      //$this->getUser()['id'] doit egal a l'id 'users_id' qui est lauteur
+      $commentModel = new CommentModel();
+      if(isset($_POST['com_id']) && isset($_POST['message']) && isset($_POST['event_id']) && isset($this->getUser()['id'])){
 
-
+          if($this->post('message') != '')
+          {
+              $commentModel->update([
+                              'message'       => $this->post('message'),
+                              'created_at'    => time()], $this->getUser()['id']);
+              echo true;
+          }
+          else
+          {
+              echo false;
+          }
     }
     public function register_event()
     {
