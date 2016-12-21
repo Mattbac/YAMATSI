@@ -73,7 +73,7 @@ class EventController extends Controller
     public function edit($id = 0)
     {
         $eventModel = new EventModel();
-		$typesModel = new TypeModel();
+		    $typesModel = new TypeModel();
         $event = $eventModel->find($id);
 
         var_dump($id);
@@ -120,7 +120,7 @@ class EventController extends Controller
                 $tabDate = [$dateStart->getTimestamp(), $dateStop->getTimestamp()];
                 $tab[] = $tabDate;
               }
-              var_dump($tab);
+              
               $tabguest = [];
               $tabpart = [];
               $tabguest = [];

@@ -23,18 +23,18 @@
 
             <div class="radiolane">
                 <div class="oneradiobox">
-                    <input type="radio" id="categoryall" name="category" value="Tout public" <?php echo ($event['category_of'] === '0') ? 'checked' : '' ; ?>> <label for="categoryall">Tout public</label>
+                    <input type="radio" id="categoryall" name="category" value="0" <?php echo ($event['category_of'] === '0') ? 'checked' : '' ; ?>> <label for="categoryall">Tout public</label>
                 </div>
                 <div class="oneradiobox">
-                    <input type="radio" id="categorychild" name="category" value="Enfants" <?php echo ($event['category_of'] === '1') ? 'checked' : '' ; ?>> <label for="categorychild">Enfants</label>
+                    <input type="radio" id="categorychild" name="category" value="1" <?php echo ($event['category_of'] === '1') ? 'checked' : '' ; ?>> <label for="categorychild">Enfants</label>
                 </div>
             </div>
             <div class="radiolane">
                 <div class="oneradiobox">
-                    <input type="radio" id="categoryteenager" name="category" value="Adolescents" <?php echo ($event['category_of'] === '2') ? 'checked' : '' ; ?>> <label for="categoryteenager">Adolescents</label>
+                    <input type="radio" id="categoryteenager" name="category" value="2" <?php echo ($event['category_of'] === '2') ? 'checked' : '' ; ?>> <label for="categoryteenager">Adolescents</label>
                 </div>
                 <div class="oneradiobox">
-                    <input type="radio" id="categoryadult" name="category" value="Adultes" <?php echo ($event['category_of'] === '3') ? 'checked' : '' ; ?>> <label for="categoryadult">Adultes</label>
+                    <input type="radio" id="categoryadult" name="category" value="3" <?php echo ($event['category_of'] === '3') ? 'checked' : '' ; ?>> <label for="categoryadult">Adultes</label>
                 </div>
             </div>
         </div>
