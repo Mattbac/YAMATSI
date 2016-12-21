@@ -9,9 +9,12 @@ $(function(){
         first = (new Date(myDatefirst[0],myDatefirst[1]-1,myDatefirst[2]).getTime())/1000 + (60*60*24);
         last = (new Date(myDatelast[0],myDatelast[1]-1,myDatelast[2]).getTime())/1000;
         i = 2;
+        $('#dateinter').append('<label>Créneaux intermédiaires</label>');
         while(first < last){
             newdate = new Date(first * 1000);
-            $('#dateinter').append('<div><label for="hstart'+(i)+'">Horaire intermediaire</label>');
+            if(i>2){
+              $('#dateinter').append('<div><hr>');
+            }
             $('#dateinter').append('<input type="time" name="hstart'+(i)+'" step="1800" id="hstart'+(i)+'" value="'+datefirst[0]+'">');
             $('#dateinter').append('<input type="time" name="hstop'+(i)+'" step="1800" id="hstop'+(i)+'" value="'+datefirst[1]+'">');
             $('#dateinter').append('<input type="date" name="hdate'+(i)+'" id="hdate'+(i)+'" value="'+(newdate.getFullYear()+'-'+((newdate.getMonth() < 10) ? '0' : '')+(newdate.getMonth()+1)+'-'+newdate.getDate())+'"></div>');
@@ -22,11 +25,11 @@ $(function(){
 
     $('#adddates').on("click",function(){
         $('#datesup').empty();
-        $('#datesup').append('<div><label for="hstartlast">Horaire de fin</label>');
+        $('#datesup').append('<div><label for="hstartlast">Créneau de la dernière date</label>');
         $('#datesup').append('<input type="time" name="hstartlast" step="1800" id="hstartlast">');
         $('#datesup').append('<input type="time" name="hstoplast" step="1800" id="hstoplast">');
         $('#datesup').append('<input type="date" name="hlastdate" id="hlastdate"></div>');
-        $('#datesup').append('<div id="lastdate" class="adddates"><p>Valider la derniere date ?</p></div>');
+        $('#datesup').append('<div id="lastdate" class="adddates"><p>Valider la derniere date ? <i class="fa fa-check" aria-hidden="true"></i></p></div>');
         $('#datesup').show();
     })
 
@@ -36,7 +39,7 @@ $(function(){
             form([$('#hstart1').val(), $('#hstop1').val(), $('#hdate1').val()], [$('#hstartlast').val(), $('#hstoplast').val(), $('#hlastdate').val()]);
         }else{
             $('#message').remove();
-            $('#datesup').append('<p id="message">Vous devez entrer des dates pour valider.</p>');
+            $('#datesup').append('<p class="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Vous devez entrer des dates pour valider.</p>');
         }
     })
 

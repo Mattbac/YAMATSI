@@ -16,8 +16,18 @@
 
 		<div class="lane-space-around">
 			<div class="userbar">
-				<a href="<?= $this->url('user_register') ?>"><button>Inscription</button></a>
-				<a href="<?= $this->url('security_login') ?>"><button>Connexion</button></a>
+
+				<?php if(!$is_connect){
+
+				echo "<a href=\"".$this->url('user_register')."\" class=\"regbutton\"><button>Inscription</button></a>";
+				echo "<a href=\"".$this->url('security_login')."\" class=\"logbutton\"><button>Connexion</button></a>";
+
+				} else {
+
+				echo "<a href=\"".$this->url('security_logout')."\" class=\"outbutton\"><button>Déconnexion</button></a>";
+
+				} ?>
+
 			</div>
 		</div>
 

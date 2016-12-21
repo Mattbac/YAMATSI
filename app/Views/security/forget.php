@@ -2,9 +2,15 @@
 
 <?php $this->start('main_content') ?>
 	<h1>Mot de passe oublié</h1>
+
+	<p>Un e-mail contenant un lien qui vous permettra de redéfinir votre mot de passe vous sera envoyer.</p>
+
 	<form action="" method="post">
-    <label for="email">Email :</label>
-    <input type="email" name="email">
+
+		<div class="inputbox">
+	    <input type="email" name="email" required>
+			<label for="email">Email :</label>
+		</div>
 
 		<button name="forgetMdp">Envoyer</button>
 	</form>

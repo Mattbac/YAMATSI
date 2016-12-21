@@ -11,7 +11,8 @@ class DefaultController extends Controller
 	// Home Page
 	public function home()
 	{
-		$this->show('default/home', ['title' => 'home']);
+		$is_connect = !empty($this->getUser()['id']);
+		$this->show('default/home', ['title' => 'home', 'is_connect' => $is_connect]);
 	}
 
 	public function map()

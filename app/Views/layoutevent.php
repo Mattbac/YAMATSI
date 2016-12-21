@@ -11,6 +11,19 @@
 	<body>
 		<div class="container">
 
+			<a href="#menu" class="hamburger"><i class="fa fa-bars" aria-hidden="true"></i></a>
+
+			<li id="menu">
+			  <ul><a href="#">Fermer la fenêtre<i class="fa fa-times" aria-hidden="true"></i></a></ul>
+			  <ul><a href="<?php echo $this->url('user_profil');?>">Profil<i class="fa fa-user-circle-o" aria-hidden="true"></i></a></ul>
+			  <ul><a href="<?php echo $this->url('default_map');?>">Map<i class="fa fa-home" aria-hidden="true"></i></a></ul>
+			  <ul><a href="<?php echo $this->url('event_map');?>">Créer un évènement<i class="fa fa-map-marker" aria-hidden="true"></i></a></ul>
+			  <ul><a href="<?php echo $this->url('security_logout');?>">Déconnexion<i class="fa fa-power-off" aria-hidden="true"></i></a></ul>
+				<ul>
+						<img src="<?= $this->assetUrl('img/logoLO_white.png') ?>" alt="OutLooker">
+				</ul>
+			</li>
+
 				<?= $this->section('main_content') ?>
 
 		</div>

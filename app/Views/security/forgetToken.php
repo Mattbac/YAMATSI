@@ -2,11 +2,20 @@
 
 <?php $this->start('main_content') ?>
 
-  <p>Changer de mot de passe</p>
+  <h1>Changer de mot de passe</h1>
     <form method="POST">
-      <input type="password" name="password" placeholder="mot de passe">
-      <input type="password" name="password-cf" placeholder="confirmer votre mot de passe">
-      <button name="resetMdp"> Redefinir mon mot de passe </button>
-    </form><p><?= $error ?></p>
+
+      <div class="inputbox">
+      <input type="password" name="password">
+      <label for="password">Nouveau mot de passe</label>
+      </div>
+
+      <div class="inputbox">
+      <input type="password" name="password-cf">
+      <label for="password-cf">Confirmer le mot de passe</label>
+      </div>
+
+      <button name="resetMdp"> Redéfinir mon mot de passe </button>
+    </form><div class="alert"><?= $error ?></div>
 
 <?php $this->stop('main_content') ?>

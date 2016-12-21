@@ -95,7 +95,7 @@ class SecurityController extends Controller
           }
           else
           {
-            $error = "le mot de passe n'est pas valide";
+            $error = "Le mot de passe n'est pas valide.";
           }
         }
         $this->show('security/forgetToken', ['error' => $error]);

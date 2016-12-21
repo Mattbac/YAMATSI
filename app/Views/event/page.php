@@ -12,7 +12,7 @@
 
         <?php
         if(!$is_connect){
-            echo '<a id="not_connection" href="'.$this->url('security_login').'">Se connecter</a>';
+            echo '<a id="not_connection" href="'.$this->url('security_login').'"><button>Se connecter</button></a>';
         }else{
             if($is_register_event){
                 echo '<button style="display:none;" id="registeration_event" data-event-id="'.$event['id'].'">Je participe <i class="fa fa-check" aria-hidden="true"></i></button>';
@@ -73,14 +73,13 @@
         <a href="<?php echo $this->url('user_profil', ['id' => $register['users_id']])?>"><?php echo $register['nickname'];?></a>
     <?php } ?>
     </div>
-
-<button id="add_comment">Ajouter un commentaire</button>
-<div id="add_new_comment" data-event-id="<?php echo $event['id']?>">
-
 </div>
 
+<button id="add_comment">Ajouter un commentaire <i class="fa fa-commenting" aria-hidden="true"></i></button>
+<div id="add_new_comment" data-event-id="<?php echo $event['id']?>"></div>
+
 <div class="eventview-comments">
-    <h2>Commentaire</h2>
+    <h2>Commentaire(s)</h2>
     <?php foreach ($comsFirst as $key => $com){
         if($com['title'] != null){?>
     <div class="comment">
@@ -91,7 +90,7 @@
         <?php if($id_user_connect == $com['users_id']){?>
             <button class="editanswer">Editer</button>
             <div class="answer_edit_comment" data-event-id="<?php echo $event['id']?>" data-com-id="<?php echo $com['id']?>"> </div>
-        <?php }?>
+        <?php } ?>
         </div>
 
         <div class="answer">
@@ -107,7 +106,7 @@
           </div>
         </div>
       </div>
-        <?php }}?>
+      <?php }}?>
         <button class="add_answer_comment">Repondre</button>
         <div class="answer_comment" data-event-id="<?php echo $event['id']?>" data-com-id="<?php echo $com['id']?>"></div>
     <?php }}?>
