@@ -12,7 +12,7 @@
 
         <?php
         if(!$is_connect){
-            echo '<a id="not_connection" href="'.$this->url('security_login').'">Se connecter</a>';
+            echo '<a id="not_connection" href="'.$this->url('security_login').'"><button>Se connecter</button></a>';
         }else{
             if($is_register_event){
                 echo '<button style="display:none;" id="registeration_event" data-event-id="'.$event['id'].'">Je participe <i class="fa fa-check" aria-hidden="true"></i></button>';
@@ -86,11 +86,15 @@
         <h3>Titre : <?php echo $com['title']?></h3>
         <div class="comment-content">
           <p><?php echo $com['message']?></p>
-          <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
+          <p>écrit par : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
+        </div>
+        <div class="answer">
         <?php if(isset($comsAn[$key])){
             foreach ($comsAn[$key] as $comAnswer){?>
+            <div class="answer-content">
             <p><?php echo $comAnswer['message']?></p>
-            <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $comAnswer['nickname']?></a></p>
+            <p>écrit par : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $comAnswer['nickname']?></a></p>
+            </div>
         <?php }}?>
         </div>
     </div>

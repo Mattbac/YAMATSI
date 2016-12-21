@@ -38,12 +38,12 @@
             <label for="password">Mot de passe</label>
         </div>
 
-        <div class="alert">
+        <div class="alert hidden">
             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             <p>Le mot de passe doit contenir <strong>au moins une lettre et un chiffre</strong>.</p>
         </div>
 
-        <div class="alert">
+        <div class="alert hidden">
             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             <p>Le mot de passe requiert <strong>8 caractères minimum</strong>.</p>
         </div>

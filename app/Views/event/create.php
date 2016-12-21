@@ -64,24 +64,23 @@
 
         <div class="timetable">
             <div id="dateFirst">
-                <div class="inputbox">
-                    <label for="hstart1">Horaire de début</label>
-                    <input type="time" step="1800" id="hstart1" name="hstart1">
-                </div>
+              <div class="lane-space-around">
+                <label for="hdate1">Date :</label>
+                <input type="date" name="hdate1" id="hdate1">
+              </div>
 
-                <div class="inputbox">
-                    <label for="stop1">Horaire de fin</label>
-                    <input type="time" step="1800" id="hstop1" name="hstop1">
-                </div>
+              <div class="lane-space-around">
+                <label for="hstart1">De</label>
+                <input type="time" step="1800" id="hstart1" name="hstart1">
 
-                <div class="inputbox">
-                    <label for="hdate1">Date :</label>
-                    <input type="date" name="hdate1" id="hdate1">
-                </div>
+                <label for="hstop1">à</label>
+                <input type="time" step="1800" id="hstop1" name="hstop1">
+              </div>
+
             </div>
 
             <div id="adddates" class="adddates">
-                <p>Votre évènement s'étend sur plusieurs jours ?</p>
+                <p>Votre évènement s'étend sur plusieurs jours ? <i class="fa fa-plus-circle" aria-hidden="true"></i></p>
             </div>
 
                 <!-- Dates intermédiaires -->
