@@ -43,6 +43,7 @@ $(function(){
         }
     })
 
+    $('#datesup').show();
     valideguest = 0;
     validepart = 0;
 	timeguest = 0;
@@ -106,13 +107,17 @@ $(function(){
     $(document).on("click",".guest",function(){
         var cla = '.id'+$(this).data('id');
         $(cla).remove();
-        $('#selectguest').append("<input type=\"text\" name=\"guestid"+$(this).data('id')+"\" value=\""+$(this).text()+"\" readonly>");
+        $('#selectguest').append("<input class=\"guestpart\" type=\"text\" name=\"guestid"+$(this).data('id')+"\" value=\""+$(this).text()+"\" readonly>");
     })
 
     $(document).on("click",".part",function(){
         var cla = '.id'+$(this).data('id');
         $(cla).remove();
-        $('#selectpart').append("<input type=\"text\" name=\"partid"+$(this).data('id')+"\" value=\""+$(this).text()+"\" readonly>");
+        $('#selectpart').append("<input class=\"guestpart\" type=\"text\" name=\"partid"+$(this).data('id')+"\" value=\""+$(this).text()+"\" readonly>");
+    })
+
+    $(document).on("click",".guestpart",function(){
+        $(this).remove();
     })
 
 

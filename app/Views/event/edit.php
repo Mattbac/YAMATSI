@@ -23,18 +23,18 @@
 
             <div class="radiolane">
                 <div class="oneradiobox">
-                    <input type="radio" id="categoryall" name="category" value="Tout public" <?php echo ($event['category_of'] === 'Tout public') ? 'checked' : '' ; ?>> <label for="categoryall">Tout public</label>
+                    <input type="radio" id="categoryall" name="category" value="Tout public" <?php echo ($event['category_of'] === '0') ? 'checked' : '' ; ?>> <label for="categoryall">Tout public</label>
                 </div>
                 <div class="oneradiobox">
-                    <input type="radio" id="categorychild" name="category" value="Enfants" <?php echo ($event['category_of'] === 'Enfants') ? 'checked' : '' ; ?>> <label for="categorychild">Enfants</label>
+                    <input type="radio" id="categorychild" name="category" value="Enfants" <?php echo ($event['category_of'] === '1') ? 'checked' : '' ; ?>> <label for="categorychild">Enfants</label>
                 </div>
             </div>
             <div class="radiolane">
                 <div class="oneradiobox">
-                    <input type="radio" id="categoryteenager" name="category" value="Adolescents" <?php echo ($event['category_of'] === 'Adolescents') ? 'checked' : '' ; ?>> <label for="categoryteenager">Adolescents</label>
+                    <input type="radio" id="categoryteenager" name="category" value="Adolescents" <?php echo ($event['category_of'] === '2') ? 'checked' : '' ; ?>> <label for="categoryteenager">Adolescents</label>
                 </div>
                 <div class="oneradiobox">
-                    <input type="radio" id="categoryadult" name="category" value="Adultes" <?php echo ($event['category_of'] === 'Adultes') ? 'checked' : '' ; ?>> <label for="categoryadult">Adultes</label>
+                    <input type="radio" id="categoryadult" name="category" value="Adultes" <?php echo ($event['category_of'] === '3') ? 'checked' : '' ; ?>> <label for="categoryadult">Adultes</label>
                 </div>
             </div>
         </div>
@@ -53,43 +53,51 @@
         </div>
 
         <div class="timetable">
-            <div class="inputbox">
-                <label for="start1">Horaire de début</label>
-                <input type="time" step="1800" id="start1" name="start1">
+            <div id="dateFirst">
+              <div class="lane-space-around">
+                <label for="hdate1">Date :</label>
+                <input type="date" name="hdate1" id="hdate1" value="<?php echo date("Y-m-d", $planning[0][0]); ?>">
+              </div>
+
+              <div class="lane-space-around">
+                <label for="hstart1">De</label>
+                <input type="time" step="1800" id="hstart1" name="hstart1" value="<?php echo date("H:i", $planning[0][0]);?>">
+
+                <label for="hstop1">à</label>
+                <input type="time" step="1800" id="hstop1" name="hstop1" value="<?php echo date("H:i", $planning[0][1]);?>">
+              </div>
             </div>
 
-            <div class="inputbox">
-                <label for="stop1">Horaire de fin</label>
-                <input type="time" step="1800" id="stop1" name="stop1">
-            </div>
-
-            <div class="inputbox">
-                <label for="date">Date :</label>
-                <input type="date" name="date">
-            </div>
-
-
-            <div class="adddates">
-                <p>Votre évènement s'étend sur plusieurs jours ?</p>
+            <div id="adddates" class="adddates">
+                <p>Votre évènement s'étend sur plusieurs jours ? <i class="fa fa-plus-circle" aria-hidden="true"></i></p>
             </div>
 
                 <!-- Dates intermédiaires -->
-
-            <div class="datesup">
-                <div class="inputbox">
-                <label for="laststart">Horaire de début</label>
-                <input type="time" step="1800" id="laststart">
+            <div id="dateinter" class="dateinter">
+                <label>Créneaux intermédiaires</label>
+                <?php foreach($planning as $key => $hour){?>
+                <?php if($key < count($planning)-1 && $key > 0){?>
+                <input type="time" name="hstart<?php echo $key+1 ?>" step="1800" id="hstart<?php echo $key ?>" value="<?php echo date("H:i", $hour[0]); ?>">
+                <input type="time" name="hstop<?php echo $key+1 ?>" step="1800" id="hstop<?php echo $key ?>" value="<?php echo date("H:i", $hour[1]); ?>">
+                <input type="date" name="hdate<?php echo $key+1 ?>" id="hdate<?php echo $key ?>" value="<?php echo date("Y-m-d", $hour[0]); ?>">
+                <div>
+                    <hr>
                 </div>
+                <?php }} ?>
+            </div>
 
-                <div class="inputbox">
-                <label for="laststop">Horaire de fin</label>
-                <input type="time" step="1800" id="laststop">
+            <div id="datesup" class="datesup">
+                <?php ?>
+                <div>
+                    <label for="hstartlast">Créneau de la dernière date</label>
+                    <input type="time" name="hstartlast" step="1800" id="hstartlast" value="<?php echo date("H:i", $planning[count($planning)-1][0]);?>">
+                    <input type="time" name="hstoplast" step="1800" id="hstoplast" value="<?php echo date("H:i", $planning[count($planning)-1][1]);?>">
+                    <input type="date" name="hlastdate" id="hlastdate" value="<?php echo date("Y-m-d", $planning[count($planning)-1][0]); ?>">
+                    <div id="lastdate" class="adddates">
+                        <p>Valider la derniere date ? <i class="fa fa-check" aria-hidden="true"></i></p>
+                    </div>
                 </div>
-
-                <div class="inputbox">
-                <label for="lastdate">Dernière date :</label>
-                <input type="date" name="lastdate">
-                </div>
+                <?php ?>
             </div>
         </div>
 
@@ -119,13 +127,27 @@
         </div>
 
         <div class="inputbox">
-            <input type="text" name="guests" id="guests">
+            <div id="selectguest">
+                <?php if($guestpart['guest'] != ''){
+                    foreach($guestpart['guest'] as $guest){ ?>
+                    <input class="guestpart" type="text" name="partid<?php echo $guest['id']?>" value="<?php echo $guest['nickname']?>" readonly="">
+                <?php }} ?>
+            </div>
+            <input type="text" id="guests">
             <label for="guests">Guest(s) <i class="fa fa-user-o" aria-hidden="true"></i></label>
+            <div id="findguest"></div>
         </div>
-
+        <?php $guestpart ?>
         <div class="inputbox">
-            <input type="text" name="partners" id="partners">
+            <div id="selectpart">
+                <?php if($guestpart['part'] != ''){
+                    foreach($guestpart['part'] as $part){ ?>
+                    <input class="guestpart" type="text" name="partid<?php echo $part['id']?>" value="<?php echo $part['nickname']?>" readonly="">
+                <?php }} ?>
+            </div>
+            <input type="text" id="partners">
             <label for="partners">Partenaire(s) <i class="fa fa-user-o" aria-hidden="true"></i></label>
+            <div id="findpart"></div>
         </div>
 
 
@@ -146,3 +168,8 @@
     </form>
 
 <?php $this->stop('main_content') ?>
+
+<?php $this->start('script_content') ?>
+<script src="<?= $this->assetUrl('js/jquery-3.1.1.min.js') ?>"></script>
+<script src="<?= $this->assetUrl('js/register_create.js') ?>"></script>
+<?php $this->stop('script_content') ?>

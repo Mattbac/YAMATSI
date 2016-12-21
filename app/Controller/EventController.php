@@ -26,11 +26,11 @@ class EventController extends Controller
         $usersModel               = new UsersModel();
         $register_eventModel      = new Register_eventModel();
 
-        $element['event']           			  = $eventModel->find($id);
+        $element['event']           		= $eventModel->find($id);
         if($element['event']){
           $element['user']                  = $usersModel->find($element['event']['users_id']);
-          $element['com']             		  = $commentModel->findAllComWithId($id);
-          $element['type']            		  = $typeModel->find($element['event']['type_id']);
+          $element['com']             		= $commentModel->findAllComWithId($id);
+          $element['type']            		= $typeModel->find($element['event']['type_id']);
           $element['whoIsRegister']         = $register_eventModel->findAllRegister($id);
           $element['category']            	=   ($element['event']['category_of'] == 1) ? 'Enfant' :
                                                 (($element['event']['category_of'] == 2) ? 'Adolescent' :
@@ -46,9 +46,9 @@ class EventController extends Controller
           }
 
           if($element['event']['guest_part_id'] != ''){
-            $element['guest_part']      	  = unserialize($element['event']['guest_part_id']);
+            $element['guest_part']      	= unserialize($element['event']['guest_part_id']);
           }else{
-            $element['guest_part'] 			    = ['guest' => '', 'part' => ''];
+            $element['guest_part'] 			= ['guest' => '', 'part' => ''];
           }
 
           $this->show('event/page', [ 'is_connect'			    => $element['is_connect'],
@@ -56,11 +56,11 @@ class EventController extends Controller
                                       'whoIsRegister'		    => $element['whoIsRegister'],
                                       'user'		            => $element['user'],
                                       'event'     			    => $element['event'],
-                                      'planning'     			  => $element['planning'],
-                                      'id_user_connect'     => $element['id_user_connect'],
-                                      'category'     			  => $element['category'],
+                                      'planning'     			=> $element['planning'],
+                                      'id_user_connect'     	=> $element['id_user_connect'],
+                                      'category'     			=> $element['category'],
                                       'comsFirst'      			=> $element['com'][1],
-                                      'comsAn'      			  => $element['com'][2],
+                                      'comsAn'      			=> $element['com'][2],
                                       'guests'    			    => $element['guest_part']['guest'],
                                       'parts'     			    => $element['guest_part']['part'],
                                       'type'      			    => ($element['type']['name'] != '') ? $element['type']['name'] :'Tout type']);
@@ -73,6 +73,7 @@ class EventController extends Controller
     public function edit($id = 0)
     {
         $eventModel = new EventModel();
+		$typesModel = new TypeModel();
         $event = $eventModel->find($id);
 
         if($id != 0 && $this->getUser()['id'] == $event['users_id']){
@@ -80,10 +81,13 @@ class EventController extends Controller
           {
 
           }
-          $typesModel = new TypeModel();
+		  $planning = unserialize($event['date_time']);
+		  $guestpart = unserialize($event['guest_part_id']);
           $type = $typesModel->findAll();
-          var_dump($event);
-          $this->show('event/edit', ['event' => $event, 'types' => $type]);
+          $this->show('event/edit', [	'event' 		=> $event,
+		  								'planning' 		=> $planning,
+		  								'guestpart' 	=> $guestpart,
+		  								'types' 		=> $type]);
 
         }elseif($id != 0){
           $this->redirectToRoute('event_page', ['id' => $id]);

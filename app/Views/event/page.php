@@ -11,16 +11,20 @@
     <div class="eventview-interact eventpage-header-lane">
 
         <?php
-        if(!$is_connect){
-            echo '<a id="not_connection" href="'.$this->url('security_login').'"><button>Se connecter</button></a>';
-        }else{
-            if($is_register_event){
-                echo '<button style="display:none;" id="registeration_event" data-event-id="'.$event['id'].'">Je participe <i class="fa fa-check" aria-hidden="true"></i></button>';
-                echo '<button id="cancel_registeration_event" data-event-id="'.$event['id'].'">Se désinscrire</button>';
+        if($is_connect){
+            if($w_user['type'] == 'user'){
+                if($is_register_event){
+                    echo '<button style="display:none;" id="registeration_event" data-event-id="'.$event['id'].'">Je participe <i class="fa fa-check" aria-hidden="true"></i></button>';
+                    echo '<button id="cancel_registeration_event" data-event-id="'.$event['id'].'">Se désinscrire</button>';
+                }else{
+                    echo '<button id="registeration_event" data-event-id="'.$event['id'].'">Je participe <i class="fa fa-check" aria-hidden="true"></i></button>';
+                    echo '<button style="display:none;" id="cancel_registeration_event" data-event-id="'.$event['id'].'">Se désinscrire</button>';
+                }
             }else{
-                echo '<button id="registeration_event" data-event-id="'.$event['id'].'">Je participe <i class="fa fa-check" aria-hidden="true"></i></button>';
-                echo '<button style="display:none;" id="cancel_registeration_event" data-event-id="'.$event['id'].'">Se désinscrire</button>';
+                echo '<a id="eventEdition" href="'.$this->url('event_edit', ['id' => $event['id']]).'"><button>Modifier l\'evenement</button></a>';
             }
+        }else{
+            echo '<a id="not_connection" href="'.$this->url('security_login').'"><button>Se connecter</button></a>';
         }
         ?>
 
