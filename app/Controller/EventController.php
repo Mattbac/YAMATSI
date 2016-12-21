@@ -76,9 +76,84 @@ class EventController extends Controller
 		$typesModel = new TypeModel();
         $event = $eventModel->find($id);
 
+        var_dump($id);
         if($id != 0 && $this->getUser()['id'] == $event['users_id']){
           if(isset($_POST['submitformcreate']))
           {
+            $extensions = ["image/png", "image/gif", "image/jpg", "image/jpeg"];
+
+            /* ### CLASSE LES AVATARS PAR USER ### */
+            if (isset($_FILES['file']))
+            {
+                if(in_array($_FILES['file']['type'], $extensions))
+                  {
+                    move_uploaded_file($_FILES['file']['tmp_name'],"assets/img/upload/".$_FILES['file']['name']);
+                  }
+                  if($_FILES['file']['name'] == "")
+                  {
+                      // RIEN SI AUCUN FICHIER CHARGE
+                  }
+                  else
+                  {
+                    $avatar = '';
+                  }
+              $i = 1;
+              $tab = [];
+
+            while(isset($_POST['hstart'.$i]))
+              {
+                if($this->post('hdate'.$i) == NULL || $this->post('hstart'.$i) == NULL || $this->post('hstop'.$i)== NULL)
+                {
+                  $i++;
+                }else{
+                  $dateStart = new \DateTime($this->post('hdate'.$i).' '.$this->post('hstart'.$i));
+                  $dateStop = new \DateTime($this->post('hdate'.$i).' '.$this->post('hstop'.$i));
+                  $tabDate = [$dateStart->getTimestamp(), $dateStop->getTimestamp()];
+                  $tab[] = $tabDate;
+                  $i++;
+                }
+              }
+              if(isset($_POST['hlastdate']))
+              {
+                $dateStart = new \DateTime($this->post('hlastdate').' '.$this->post('hstartlast'));
+                $dateStop = new \DateTime($this->post('hlastdate').' '.$this->post('hstoplast'));
+                $tabDate = [$dateStart->getTimestamp(), $dateStop->getTimestamp()];
+                $tab[] = $tabDate;
+              }
+              var_dump($tab);
+              $tabguest = [];
+              $tabpart = [];
+              $tabguest = [];
+              foreach ($_POST as $key => $value) {
+                  if(substr($key,0,6) == 'partid'){
+                      $tabpart[] = ['id' => explode('partid', $key)[1], 'nickname' => $value];
+                  }
+                  if(substr($key,0,7) == 'guestid'){
+                      $tabguest[] = ['id' => explode('guestid', $key)[1], 'nickname' => $value];
+                  }
+              }
+              $datas = [
+                'name'             => $this->post('name'),
+                'adress'           => $this->post('adress'),
+                'message'          => $this->post('description'),
+                'category_of'      => $this->post('category'),
+                'type_id'          => $this->post('type'),
+                'date_time'        => serialize($tab),
+                'end_of_event'     => ((isset($_POST['hlastdate'])) ? (new \DateTime($this->post('hlastdate')))->getTimestamp() : (new \DateTime($this->post('hdate1')))->getTimestamp()),
+                'start_of_event'   => (new \DateTime($this->post('hdate1')))->getTimestamp(),
+                'guest_part_id'    => serialize(['guest' => ((!empty($tabguest)) ? $tabguest : '' ), 'part' => ((!empty($tabpart)) ? $tabpart : '' )])
+
+              ];
+
+              if (isset($_FILES['file']))
+              {
+                $datas['picture_first'] = $_FILES['file']['name'];
+              }
+
+              $eventModel->update($datas, $id);
+          }
+
+
 
           }
 		  $planning = unserialize($event['date_time']);
@@ -147,8 +222,6 @@ class EventController extends Controller
               $dateStop = new \DateTime($this->post('hlastdate').' '.$this->post('hstoplast'));
               $tabDate = [$dateStart->getTimestamp(), $dateStop->getTimestamp()];
               $tab[] = $tabDate;
-            }else{
-              echo "Fatal error";
             }
             $tabguest = [];
             $tabpart = [];
