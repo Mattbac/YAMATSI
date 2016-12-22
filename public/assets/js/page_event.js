@@ -38,7 +38,7 @@ $(function() {
         $("#add_new_comment").append('<label for="com">Contenu de votre commentaire</label>');
         $("#add_new_comment").append('<textarea name="com" id="com"></textarea>');
         $("#add_new_comment").append('<input id="submitCom" type="submit" name="submit" value="Envoyer votre commentaire">');
-        $("#add_new_comment").append('<input class="cancel" type="submit" name="cancel" value="X">');
+        $("#add_new_comment").append('<button class="cancel" name="cancel"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button');
     });
 
     $(document).on("click","#submitCom",function(e){
@@ -64,7 +64,7 @@ $(function() {
         $(this).next().append('<label for="answer_com">Contenu de votre commentaire</label>');
         $(this).next().append('<textarea name="answer_com" id="answer_com"></textarea>');
         $(this).next().append('<input id="submitAnswerCom" type="submit" name="submit" value="Envoyer votre commentaire">');
-        $(this).next().append('<input class="cancel" type="submit" name="cancel" value="X">');
+        $(this).next().append('<button class="cancel" name="cancel"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button');
     });
 
     $(document).on("click","#submitAnswerCom",function(){
@@ -89,7 +89,7 @@ $(function() {
       $(this).next().append('<label for="editAnswer_com">Edition de votre commentaire</label>');
       $(this).next().append('<textarea name="editAnswer_com" id="editAnswer_com">'+$(this).prev().prev().text()+'</textarea>');
       $(this).next().append('<input id="submitEditAnswerCom" type="submit" name="submitEditCom" value="Envoyer votre commentaire">');
-      $(this).next().append('<input class="cancel" type="submit" name="cancel" value="X">');
+      $(this).next().append('<button class="cancel" name="cancel"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button');
     });
 
     $(document).on("click","#submitEditAnswerCom",function(){
