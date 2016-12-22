@@ -63,7 +63,10 @@ a:focus {
     color:#FF974F;
 }
 
-a:hover {
+a:hover, select:hover,
+ input[type=date],
+ input[type=time],
+ button:hover {
     cursor: pointer;
 }
 
@@ -279,6 +282,7 @@ footer p a:focus {
   border: 0.75rem solid #332532;
   box-shadow: inset 0 0 1rem rgba(0,0,0,0.25);
   background: #B58B94;
+  transition: all 0.5s;
 }
 
 #go:focus {
@@ -286,6 +290,10 @@ footer p a:focus {
   border:0.75rem solid #FFF;
   box-shadow: inset 0 0 1rem rgba(0,0,0,0.5);
   background:#F77A52;
+}
+
+#go:hover {
+  background: #FFF;
 }
 
 .userbar {
@@ -302,10 +310,16 @@ footer p a:focus {
   color:#FFF;
   border:none;
   background:#332532;
+  transition: all 0.5s;
 }
 
 .userbar button:focus {
   background:rgba(255,255,255,0.5);
+}
+
+.userbar button:hover {
+  color:#332532;
+  background:#FFF;
 }
 
 .userbar a.regbutton button {
@@ -480,7 +494,7 @@ footer p a:focus {
 
 #user_information .info-field {
   border: 0.1rem solid #F77A52;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 1rem;
 }
 
@@ -574,6 +588,7 @@ form .picspec {
 }
 
 form .inputbox input:hover ~ label,
+form .inputbox input:focus ~ label,
 form .inputbox input:valid ~ label,
 form .inputbox .toplabel,
 form .timetable label,
@@ -641,6 +656,7 @@ form .timetable .adddates {
     border-radius: 1rem;
     border:none;
     background:#332532;
+    transition: all 0.5s;
 }
 
 form .timetable .adddates p {
@@ -772,8 +788,15 @@ input[type=submit], #send_position, button  {
     border: 0.125rem solid #FFF;
 }
 
-input[type=submit].endform {
+input[type=submit].endform, {
   margin: 1rem 0 3.5rem 0;
+  transition: all 0.5s;
+}
+
+input[type=submit].endform:hover,
+input[type=submit].endform:focus {
+  background:#F77A52;
+  cursor: pointer;
 }
 
 button.not-registered {
@@ -861,6 +884,14 @@ input[type=submit]:focus, #send_position:focus, button:focus {
     background:#332532;
 }
 
+#search_city:hover,
+#search_city:focus {
+  color:#F77A52;
+  border: 0.125rem solid #F77A52;
+  border-radius: 1rem;
+  background: #FFF;
+}
+
 /* ############################### MAP :: EVENTVIEW ############################### */
 
 #event_view{
@@ -878,6 +909,7 @@ input[type=submit]:focus, #send_position:focus, button:focus {
 
 #event_view a {
   color:#F77A52;
+  transition: all 0.5s;
 }
 
 #event_view .cancelling-cross {
@@ -895,6 +927,7 @@ input[type=submit]:focus, #send_position:focus, button:focus {
   border-radius: 1rem;
   color: #FFF;
   font-size: 2rem;
+  transition: all 0.5s;
 }
 
 #event_view .cancelling-cross:focus {
@@ -1149,6 +1182,7 @@ input[type=submit]:focus, #send_position:focus, button:focus {
     font-size: 2rem;
     border:0.125rem solid #332532;
     border-radius: 1rem;
+    transition: all 0.5s;
 }
 
 #send_position {
@@ -1234,7 +1268,7 @@ input[type=submit]:focus, #send_position:focus, button:focus {
 
 /* ############################## DESKTOP ############################## */
 
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
 
 /* ############################## HP ############################## */
 
@@ -1246,10 +1280,11 @@ input[type=submit]:focus, #send_position:focus, button:focus {
 
 .userbar {
   width: 35%;
+  margin: 3% 0 0 0;
 }
 
 .downarrow {
-  margin: 6.5% 0 0 0;
+  margin: 4.5% 0 0 0;
 }
 
 #service .downarrow {
@@ -1283,6 +1318,18 @@ input[type=submit]:focus, #send_position:focus, button:focus {
   display: inline-block;
 }
 
+#corporate > h3:nth-child(4) {
+  text-indent: 20%;
+}
+
+#corporate > h3:nth-child(5) {
+  text-indent: 25%;
+}
+
+#corporate > h3:nth-child(6) {
+  text-indent: 30%;
+}
+
 /* ############################## MAP ############################## */
 
 .hamburger {
@@ -1306,10 +1353,31 @@ input[type=submit]:focus, #send_position:focus, button:focus {
   border-left: 0.25rem solid #F77A52;
 }
 
+#menu a.deskhide {
+  display: none;
+}
+
+#menu a {
+  transition: all 0.5s;
+}
+
+#menu a:hover {
+  color:#FFF;
+}
+
 #header {
   width: 20%;
   height: 100%;
   background: none;
+  border:none;
+  margin: 0;
+}
+
+#header h1 {
+  margin: 0.5rem 5%;
+  color:#332532;
+  background: #FFF;
+  width: 90%;
 }
 
 #header .navbar {
@@ -1321,11 +1389,251 @@ input[type=submit]:focus, #send_position:focus, button:focus {
 }
 
 #header .navbar select,
-#header .navbar input {
+#header .navbar input,
+#header .navbar select:first-child,
+#header .navbar input:last-child {
   height: 2.5rem;
   width: 100%;
   border-radius: 1rem;
   margin: 0.25rem 0;
+  padding: 0.5rem;
+}
+
+#header #result_search {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+}
+
+#header #result_search .searchresult {
+  height: 2.5rem;
+}
+
+/* ############################## MAP::EVENTVIEW ############################## */
+
+#event_view {
+  height: 100%;
+  width: 35%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+}
+
+#event_view a:hover {
+  color:#B58B94;
+}
+
+#event_view .cancelling-cross:hover {
+  background:#B58B94;
+}
+
+#event_view .eventview-organizer,
+.eventview-organizer {
+  margin: 0 0 1rem 0;
+}
+
+#event_view .eventview-guests,
+#event_view .eventview-partners,
+#event_view .eventview-text p:last-child,
+#event_view .who h3,
+.eventview-guests,
+.eventview-partners,
+.eventview-text p:last-child,
+.who h3 {
+  font-size: 1.25rem;
+}
+
+#event_view .eventview-text p,
+.eventview-text p {
+  font-size: 1rem;
+  padding: 1rem 0;
+}
+
+#event_view .eventview-infos table,
+.eventview-infos table {
+  width: 50%;
+}
+
+/* ############################## SCROLLBARS ############################## */
+
+#event_view::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+#event_view::-webkit-scrollbar
+{
+	width: 0.25rem;
+	background-color: #F5F5F5;
+}
+
+#event_view::-webkit-scrollbar-thumb
+{
+	background-color: #FF974F;
+}
+
+/* ############################## EVENT::PAGE ############################## */
+
+.eventpage-infos,
+.eventpage-comments {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.eventpage-comments {
+  padding: 1rem 0;
+}
+
+.eventpage-comments h2 {
+  margin-bottom: 1rem;
+}
+
+.eventpage-header h1,
+.eventpage-header p,
+.eventpage-header p:nth-child(2),
+.eventpage-interact {
+  left:25%;
+}
+
+.eventpage-header h1,
+.eventpage-header p {
+  padding: 0 1%;
+  background: #FFF;
+}
+
+.eventpage-infos .eventpage-text table {
+  width: 35%;
+}
+
+.eventpage-interact {
+  width: 50%;
+  padding: 0 2%;
+}
+
+.eventpage-header .eventpage-interact button {
+  width: 30%;
+  font-size: 1.25rem;
+}
+
+.eventpage-comments .comment h3 {
+  text-indent: 0;
+}
+
+#add_comment {
+  width: 25%;
+  margin: 1.5rem 0 0 25%;
+}
+
+#add_new_comment {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.add_answer_comment {
+  width: 25%;
+  height: 2.5rem;
+}
+
+/* ############################## FORMS ############################## */
+
+.globalforms {
+  width: 50%;
+}
+
+header, #header {
+  height: 10rem;
+}
+
+header #longlogo {
+  height: 50%;
+  width: 100%;
+  padding: 2.5rem 0 0 0;
+}
+
+#user_information .edit-profile {
+  width: 30%;
+}
+
+.showevent {
+  height: auto;
+}
+
+.showevent .blocinfo {
+  width: 40%;
+}
+
+.blocinfo table {
+  width: 100%;
+}
+
+.blocinfo table tr {
+  display: flex;
+  justify-content: space-around;
+}
+
+form .radiobox {
+  display: flex;
+  margin: 0 2rem 1.5rem 2rem;
+}
+
+form .bool {
+  width: 25%;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+form .bool label {
+  top: 1rem;
+  left: -21rem;
+}
+
+form .radiolane {
+  width: 50%;
+}
+
+form .timetable .adddates {
+  width: 28rem;
+  margin: 1.5rem auto;
+}
+
+form .timetable .adddates:hover,
+form .timetable .adddates:focus {
+  background:#F77A52;
+  cursor: pointer;
+}
+
+#dateFirst .lane-space-around,
+#dateinter,
+#datesup {
+  width: 25%;
+  margin: 0.5rem auto;
+}
+
+input[type=submit],
+#send_position,
+button.not-registered,
+button  {
+  width: 25%;
+  height: 5rem;
+  margin: 0.5rem 0 0 75%;
+  transition: all 0.5s;
+}
+
+input[type=submit]:hover,
+#send_position:hover,
+button.not-registered:hover,
+button:hover  {
+  cursor: pointer;
+  color:#332532;
+  background: #FFF;
+}
+
+input[type=submit].endform {
+  width: 50%;
+  margin: 0.5rem 0 3.5rem 75%;
 }
 
 }
