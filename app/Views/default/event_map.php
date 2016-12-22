@@ -4,7 +4,7 @@
 
 <div class="eventview-header">
 
-    <h1><a href="<?php echo $this->url('event_page', ['id' => $event['id']]);?>"><?php echo $event['name']?></a></h1>
+    <h1><a href="<?php echo $this->url('event_page', ['id' => $event['id']]);?>"><?php echo $event['name']?> <i class="fa fa-external-link-square" aria-hidden="true"></i></a></h1>
     <p>Catégorie: <strong><?php echo $category ?></strong></p>
     <p>Type: <strong><?php echo $type ?></strong></p>
 
@@ -83,7 +83,7 @@
 
 <div class="eventview-comments">
 
-    <h2>Commentaire</h2>
+    <h2>Commentaire(s)</h2>
     <?php foreach ($comsFirst as $key => $com){
         if($com['title'] != null){?>
     <div class="comment">

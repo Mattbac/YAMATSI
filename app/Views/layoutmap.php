@@ -11,7 +11,7 @@
 		<a href="#menu" class="hamburger menumap"><i class="fa fa-bars" aria-hidden="true"></i></a>
 
 		<li id="menu">
-			<ul><a href="#">Fermer la fenêtre<i class="fa fa-times" aria-hidden="true"></i></a></ul>
+			<ul><a href="#" class="deskhide">Fermer la fenêtre<i class="fa fa-times" aria-hidden="true"></i></a></ul>
 			<ul><a href="<?php echo $this->url('default_map');?>">Map<i class="fa fa-home" aria-hidden="true"></i></a></ul>
 
 			<?php if(!empty($w_user['id'])){

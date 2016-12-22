@@ -8,7 +8,7 @@
     <p>Catégorie: <strong><?php echo $category ?></strong></p>
     <p>Type: <strong><?php echo $type ?></strong></p>
 
-    <div class="eventview-interact eventpage-header-lane">
+    <div class="eventview-interact eventpage-interact eventpage-header-lane">
 
         <?php
         if($is_connect){
@@ -21,7 +21,7 @@
                     echo '<button style="display:none;" id="cancel_registeration_event" data-event-id="'.$event['id'].'">Se désinscrire</button>';
                 }
             }else{
-                echo '<a id="eventEdition" href="'.$this->url('event_edit', ['id' => $event['id']]).'"><button>Modifier l\'evenement</button></a>';
+                echo '<a id="eventEdition" href="'.$this->url('event_edit', ['id' => $event['id']]).'"><button>Modifier l\'évènement</button></a>';
             }
         }else{
             echo '<a id="not_connection" href="'.$this->url('security_login').'"><button>Se connecter</button></a>';
@@ -36,9 +36,9 @@
 
 </div>
 
-<div class="eventview-infos">
+<div class="eventview-infos eventpage-infos">
 
-    <div class="eventview-organiszer">
+    <div class="eventview-organizer">
     par <a href="<?php echo $this->url('user_profil', ['id' => $event['users_id']]) ?>"><?php echo $user['nickname']; ?></a>
     </div>
     <div class="eventview-guests">
@@ -50,7 +50,7 @@
         }
     } ?>
     </div>
-    <div class="eventview-partners">
+    <div class="eventview-partners eventpage-partners">
       Partenaire(s) :
     <?php
     if($parts != ''){
@@ -60,7 +60,7 @@
      }?>
    </div>
 
-    <div class="eventview-text">
+    <div class="eventview-text eventpage-text">
         <p><?php echo $event['message'] ?></p>
         <p>Horaires :</p>
         <table>
@@ -82,7 +82,7 @@
 <button id="add_comment">Ajouter un commentaire <i class="fa fa-commenting" aria-hidden="true"></i></button>
 <div id="add_new_comment" data-event-id="<?php echo $event['id']?>"></div>
 
-<div class="eventview-comments">
+<div class="eventview-comments eventpage-comments">
     <h2>Commentaire(s)</h2>
     <?php foreach ($comsFirst as $key => $com){
         if($com['title'] != null){?>

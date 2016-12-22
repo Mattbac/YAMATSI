@@ -45,7 +45,7 @@
           <?php }}?>
       </div>
       <div id="futur_event">
-          <h2>Evènements à venir et en cour</h2>
+          <h2>Evènements à venir et en cours</h2>
           <?php foreach($eventsregister as $key => $event){
           if($event['end_of_event'] > (new \DateTime())->getTimestamp()){?>
           <div class="showevent lane-space-between">
