@@ -151,40 +151,18 @@ class UserController extends Controller
         {
           $user = new UserModel();
           $auth = new Auth();
-
-          if($this->post('email') == $this->post('confirmmail') && $this->post('password') == $this->post('confirmpassword') && !$user->emailExists($this->post('email')) && !$user->usernameExists($this->post('nickname')) && !empty($this->post('nickname')) && !empty($this->post('email')) && !empty($this->post('password')))
+          $verifEmail =preg_match("/^[a-z0-9.\-\\_+]+@[a-z0-9.\-_]{2,}\.[a-z]{2,}$/i", $this->post('email'));
+          if($verifEmail == 1 && $this->post('email') == $this->post('confirmmail') && $this->post('password') == $this->post('confirmpassword') && !$user->emailExists($this->post('email')) && !$user->usernameExists($this->post('nickname')) && !empty($this->post('nickname')) && !empty($this->post('email')) && !empty($this->post('password')))
           {
-     			 ## EXTENSIONS DE FICHIERS ACCEPTES ### */
-
-     							 $extensions = ["image/png", "image/gif", "image/jpg", "image/jpeg"];
-
-     			 /* ### CLASSE LES AVATARS PAR USER ### */
-     						 if (isset($_FILES['file']))
-                 {
-     							 if(in_array($_FILES['file']['type'], $extensions))
-                   {
-     								 move_uploaded_file($_FILES['file']['tmp_name'],"assets/img/avatar/".$_FILES['file']['name']);
-     							 }
-     							 if($_FILES['file']['name'] == "")
-                   {
-     								 // RIEN SI AUCUN FICHIER CHARGE
-     							 }
-                   else
-                   {
-    	                $avatar = '';
-     							 }
-     						 }
                  $datas = [
                    'type'     => $this->post('type'),
                    'nickname' => $this->post('nickname'),
                    'email'    => $this->post('email'),
+                    'pictures_profile' => "animal.jpg",
                    'password' => $auth->hashPassword($this->post('password'))
 
                  ];
-                 if (isset($_FILES['file']))
-                 {
-                   $datas['pictures_profile'] = $_FILES['file']['name'];
-                 }
+
                  $user->insert($datas);
 
               $this->redirectToRoute('security_login');

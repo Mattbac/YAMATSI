@@ -54,9 +54,10 @@ class SecurityController extends Controller
        $user = new User;
 
        $email = $this->post('email');
-
+        var_dump(preg_match("/^[a-z0-9.\-\\_+]+@[a-z0-9.\-_]{2,}\.[a-z]{2,}$/i", $this->post('email')));
         if($user->emailExists($email))
         {
+          var_dump($email);
           $token = md5(uniqid()). time();
           // Envoi du mail
 			    $mail = new \PHPMailer();
