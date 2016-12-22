@@ -84,17 +84,17 @@
 
 <div class="eventview-comments">
     <h2>Commentaire(s)</h2>
+    <div class="comment">
     <?php foreach ($comsFirst as $key => $com){
         if($com['title'] != null){?>
-    <div class="comment">
         <h3>Titre : <?php echo $com['title']?></h3>
         <div class="comment-content">
-        <p data-com-id="<?php echo $com['id']?>"><?php echo $com['message']?></p>
-        <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
-        <?php if($id_user_connect == $com['users_id']){?>
-            <button class="editanswer">Editer</button>
-            <div class="answer_edit_comment" data-event-id="<?php echo $event['id']?>" data-com-id="<?php echo $com['id']?>"> </div>
-        <?php } ?>
+            <p data-com-id="<?php echo $com['id']?>"><?php echo $com['message']?></p>
+            <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
+            <?php if($id_user_connect == $com['users_id']){?>
+                <button class="editanswer">Editer</button>
+                <div class="answer_edit_comment" data-event-id="<?php echo $event['id']?>" data-com-id="<?php echo $com['id']?>"> </div>
+            <?php } ?>
         </div>
 
         <div class="answer">
@@ -108,12 +108,12 @@
                 <div class="answer_edit_comment" data-event-id="<?php echo $event['id']?>" data-com-id="<?php echo $com['id']?>"> </div>
               <?php }?>
           </div>
-        </div>
+        <?php }}?>
       </div>
-      <?php }}?>
         <button class="add_answer_comment">Repondre</button>
         <div class="answer_comment" data-event-id="<?php echo $event['id']?>" data-com-id="<?php echo $com['id']?>"></div>
     <?php }}?>
+    </div>
 </div>
 <?php $this->stop('main_content') ?>
 

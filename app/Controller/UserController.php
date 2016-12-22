@@ -79,7 +79,6 @@ class UserController extends Controller
                                                         (   ($sugestionEvent['category_of'] == 2) ? 'Adolescent' :
                                                         (   ($sugestionEvent['category_of'] == 3) ? 'Adulte' : 'Tout public'));
             }
-            /*var_dump($this->getUser());*/
             $this->show('user/profilUser',      [   'user'                      => $this->getUser(),
                                                     'sugestionEvent'            => $sugestionEvents,
                                                     'eventsregister'            => $eventregisters]);
@@ -95,7 +94,6 @@ class UserController extends Controller
                                                         (   ($eventregister['category_of'] == 2) ? 'Adolescent' :
                                                         (   ($eventregister['category_of'] == 3) ? 'Adulte' : 'Tout public'));
             }
-            var_dump($user->find($id));
 
             $this->show('user/profil',      [   'user'                      => $user->find($id),
                                                 'eventsregister'            => $eventregisters]);

@@ -109,27 +109,27 @@ class ApiController extends Controller
     public function send_com()
     {
         $commentModel = new CommentModel();
-         $commentModel->findAll();
+        $commentModel->findAll();
         if(isset($_POST['title']) && isset($_POST['message']) && isset($_POST['event_id']) && isset($this->getUser()['id'])){
             if($this->post('title') != '' && $this->post('message') != ''){
-                $commentModel->insert([ 'users_id'      => $this->getUser()['id'],
+                $com = $commentModel->insert([ 'users_id'      => $this->getUser()['id'],
                                         'event_id'      => $this->post('event_id'),
                                         'message'       => $this->post('message'),
                                         'created_at'    => time(),
                                         'title'         => $this->post('title')]);
-                echo true;
+                echo json_encode(['validate' => true, 'com' => $com, 'nickname' => $this->getUser()['nickname']]);
             }else{
                 echo false;
             }
         }elseif(isset($_POST['com_id']) && isset($_POST['message']) && isset($_POST['event_id']) && isset($this->getUser()['id'])){
             if($this->post('message') != ''){
-                $commentModel->insert([ 'users_id'      => $this->getUser()['id'],
+                $com = $commentModel->insert([ 'users_id'      => $this->getUser()['id'],
                                         'event_id'      => $this->post('event_id'),
                                         'comment_id'    => $this->post('com_id'),
                                         'message'       => $this->post('message'),
                                         'created_at'    => time()]);
 
-            echo true;
+                echo json_encode(['validate' => true, 'com' => $com, 'nickname' => $this->getUser()['nickname']]);
             }else{
                 echo false;
             }
