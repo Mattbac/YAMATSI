@@ -84,7 +84,7 @@ class SecurityController extends Controller
         {
           $password   = $this->post('password');
           $passwordCf = $this->post('password-cf');
-          if ($password == $passwordCf)
+          if(strlen($password) >= 8 && $password == $passwordCf)
           {
             $user->update([
               'token'    => NULL,
@@ -95,7 +95,7 @@ class SecurityController extends Controller
           }
           else
           {
-            $error = "Le mot de passe n'est pas valide.";
+            $error = "Le mot de passe n'est pas valide. Il doit contenir 8 caractères";
           }
         }
         $this->show('security/forgetToken', ['error' => $error]);

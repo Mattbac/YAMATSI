@@ -76,7 +76,6 @@ class EventController extends Controller
 		    $typesModel = new TypeModel();
         $event = $eventModel->find($id);
 
-        
         if($id != 0 && $this->getUser()['id'] == $event['users_id']){
           if(isset($_POST['submitformcreate']))
           {

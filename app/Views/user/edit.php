@@ -17,7 +17,7 @@
 				</div>
 
 				<div class="avatar">
-					<img src="<?= $this->assetUrl('img/avatar/'.$user['pictures_profile']) ?>" alt="Votre avatar">
+					<img src="<?= $this->assetUrl('img/avatar/'.$compFormulaire['pictures_profile']) ?>" alt="Votre avatar">
 				</div>
 					<input type="file" name="file" class="picfile picspec">
 
@@ -40,11 +40,14 @@
 				</div>
 				<!-- Envoi du form -->
 
+				<div class="alert">
+				<?=	$errorPassword ?>
+				</div>
+
 				<button type="submit" name="edit">Modifier</button>
 
 		</form>
 
-	<a onclick="return confirm('Etes-vous sur de vouloir supprimer votre compte ?');"><button class="delete-profile canceller">Supprimer votre profil</button></a>
 
   </div>
 
