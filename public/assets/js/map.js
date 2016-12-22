@@ -391,7 +391,7 @@ function initMap() {
                 content: datas[key]['id'],
                 position: myLatLng,
                 map: map,
-                icon: locationPage[0]+"public/assets/img/music_icon.png",
+                icon: locationPage[0]+"public/assets/img/pinmap.png",
                 title: datas[key]['name']
             });
 

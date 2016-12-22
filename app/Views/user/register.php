@@ -35,6 +35,7 @@
 
         <div class="inputbox">
             <input type="password" name="password" id="password" required>
+						<p>doit contenir au moins 8 caractères.</p>
             <label for="password">Mot de passe</label>
         </div>
 

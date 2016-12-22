@@ -88,7 +88,7 @@
             </div>
 
             <div id="datesup" class="datesup">
-            
+
             </div>
         </div>
 
@@ -148,7 +148,7 @@
 
         </div>
 
-        <input class="endform" type="submit" name="submitformcreate" value="Créer">
+        <input class="endform eventcreate" type="submit" name="submitformcreate" value="Créer">
 
     </form>
 
