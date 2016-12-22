@@ -129,15 +129,12 @@ class UserController extends Controller
               if($this->post('password') == $this->post('confirmpassword')){
                   $datas['password'] = $auth->hashPassword($this->post('password'));
               }else{
-                echo "Mauvais mot de passe";
+                $errorpassword = "Mauvais mot de passe";
               }
 
               $user->update($datas, $id['id']);
               $auth->refreshUser($user); // on utilise la session pour afficher les champs que l'on actualise lors de l'envoi de la requete Update
-
-
-            $user->update($datas, $id['id']);
-            $auth->refreshUser($user); // on utilise la session pour afficher les champs que l'on actualise lors de l'envoi de la requete Update
+              $this->redirectToRoute('user_profil');
         }
         $this->show('user/edit', ['title' => 'edit user', 'compFormulaire' => $this->getUser()]);
     }
@@ -176,6 +173,7 @@ class UserController extends Controller
                    'type'     => $this->post('type'),
                    'nickname' => $this->post('nickname'),
                    'email'    => $this->post('email'),
+                   'pictures_profile' => 'default_avatar.jpg',
                    'password' => $auth->hashPassword($this->post('password'))
 
                  ];
@@ -183,9 +181,9 @@ class UserController extends Controller
                  {
                    $datas['pictures_profile'] = $_FILES['file']['name'];
                  }
-                 $user->insert($datas);
-
-              $this->redirectToRoute('security_login');
+                 $userregisternow = $user->insert($datas);
+                 $auth->logUserIn($userregisternow);
+              $this->redirectToRoute('user_profil');
           }
           else
           {

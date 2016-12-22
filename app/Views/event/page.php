@@ -20,7 +20,7 @@
                     echo '<button id="registeration_event" data-event-id="'.$event['id'].'">Je participe <i class="fa fa-check" aria-hidden="true"></i></button>';
                     echo '<button style="display:none;" id="cancel_registeration_event" data-event-id="'.$event['id'].'">Se désinscrire</button>';
                 }
-            }else{
+            }elseif($w_user['id'] == $event['users_id'] || $w_user['type'] == 'admin'){
                 echo '<a id="eventEdition" href="'.$this->url('event_edit', ['id' => $event['id']]).'"><button>Modifier l\'évènement</button></a>';
             }
         }else{
@@ -91,7 +91,7 @@
         <div class="comment-content">
             <p data-com-id="<?php echo $com['id']?>"><?php echo $com['message']?></p>
             <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $com['nickname']?></a></p>
-            <?php if($id_user_connect == $com['users_id']){?>
+            <?php if($w_user['id'] == $com['users_id'] || $w_user['type'] == 'admin'){?>
                 <button class="editanswer">Editer</button>
                 <div class="answer_edit_comment" data-event-id="<?php echo $event['id']?>" data-com-id="<?php echo $com['id']?>"> </div>
             <?php } ?>
@@ -103,7 +103,7 @@
           <div class="comment-content">
               <p data-com-id="<?php echo $comAnswer['id']?>"><?php echo $comAnswer['message']?></p>
               <p>Auteur : <a href="<?php echo $this->url('user_profil', ['id' => $com['users_id']]) ?>"><?php echo $comAnswer['nickname']?></a></p>
-              <?php if($id_user_connect == $comAnswer['users_id']){?>
+              <?php if($w_user['id'] == $comAnswer['users_id'] || $w_user['type'] == 'admin'){?>
                 <button class="editanswer">Editer</button>
                 <div class="answer_edit_comment" data-event-id="<?php echo $event['id']?>" data-com-id="<?php echo $com['id']?>"> </div>
               <?php }?>
