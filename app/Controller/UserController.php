@@ -130,7 +130,7 @@ class UserController extends Controller
               if(strlen($this->post('password')) >= 8 && $this->post('password') == $this->post('confirmpassword')){
                   $datas['password'] = $auth->hashPassword($this->post('password'));
               }elseif($this->post('password') != ''){
-                $errorPassword = "Mauvais mot de passe ou nombre de caratères insuffisants";
+                $errorPassword = "Mauvais mot de passe ou nombre de caractères insuffisants";
               }
 
               $user->update($datas, $id['id']);

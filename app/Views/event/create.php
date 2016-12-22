@@ -29,7 +29,7 @@
 
             <div class="radiolane">
                 <div class="oneradiobox">
-                    <input type="radio" id="categoryall" name="category" value="0" checked> <label for="categoryall">Tout public</label>
+                    <input type="radio" id="categoryall" name="category" value="0" checked> <label for="categoryall">Tous publics</label>
                 </div>
 
                 <div class="oneradiobox">
@@ -88,22 +88,8 @@
             </div>
 
             <div id="datesup" class="datesup">
-            
+
             </div>
-        </div>
-
-        <div class="inputbox radiobox bool">
-                <label for="limits">Places limitées ?</label>
-
-                <div class="oneradiobox">
-                <input type="radio" id="limit1" name="limits" value="1">
-                <label for="limit1">Oui</label>
-                </div>
-
-                <div class="oneradiobox">
-                <input type="radio" id="limit0" name="limits" value="0">
-                <label for="limit0">Non</label>
-                </div>
         </div>
 
         <div class="inputbox nbplaces">

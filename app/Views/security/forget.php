@@ -3,7 +3,7 @@
 <?php $this->start('main_content') ?>
 	<h1>Mot de passe oublié</h1>
 
-	<p>Un e-mail contenant un lien qui vous permettra de redéfinir votre mot de passe vous sera envoyer.</p>
+	<p>Un e-mail contenant un lien qui vous permettra de redéfinir votre mot de passe vous sera envoyé.</p>
 
 	<form action="" method="post">
 

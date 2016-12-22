@@ -6,7 +6,7 @@ INSERT INTO `comment` (`id`, `event_id`, `users_id`, `comment_id`, `message`, `t
 (2, 1, 2, NULL, 'Second commentaire', 'Commentaire 2', 86541651);
 
 INSERT INTO `type` (`id`, `name`) VALUES
-(1, 'Tout type'),
+(1, 'Tous types'),
 (2, 'Danse'),
 (3, 'Loisir'),
 (4, 'Exposition'),

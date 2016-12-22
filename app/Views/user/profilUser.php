@@ -32,7 +32,7 @@
                     <?php foreach($event['planning'] as $key => $day){
                         if($key == 0 || $key == count($event['planning'])-1){
                           if($key == 0){?>
-                                <tr><th colspan="3">Debut de l'event :</th></tr>
+                                <tr><th colspan="3">Début de l'event :</th></tr>
                             <?php }else{?>
                                 <tr><th colspan="3">Fin de l'event :</th></tr>
                             <?php }?>

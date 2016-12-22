@@ -15,7 +15,7 @@
       <label for="password-cf">Confirmer le mot de passe</label>
       </div>
 
-      <button name="resetMdp"> Redéfinir mon mot de passe </button>
+      <button name="resetMdp"> Redéfinir le mot de passe </button>
     </form><div class="alert"><?= $error ?></div>
 
 <?php $this->stop('main_content') ?>

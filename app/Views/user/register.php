@@ -30,7 +30,7 @@
 
         <div class="inputbox">
             <input type="email" name="confirmmail" id="confirmmail" required>
-            <label for="confirmmail">Confirmez votre e-mail</label>
+            <label for="confirmmail">Confirmer votre e-mail</label>
         </div>
 
         <div class="inputbox">
