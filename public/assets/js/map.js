@@ -1,4 +1,4 @@
-var map, zoom = 5;
+var map, zoom = 10;
 
 var mapOptions = {
   zoom: zoom,
@@ -357,6 +357,13 @@ function initMap() {
     type = null;
     date = null;
 	  marker = [];
+    position = '';
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
+            map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+        });
+        map.setZoom(5);
+    }
     searchEventWithParam();
 
     function searchEventWithParam(){

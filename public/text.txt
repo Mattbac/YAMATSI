@@ -1,1 +1,1 @@
-SELECT id, name, coor_lat, coor_lng, category_of, type_id FROM event WHERE type_id = :type
+SELECT id, name, coor_lat, coor_lng, category_of, type_id FROM event WHERE category_of IN (0,1)

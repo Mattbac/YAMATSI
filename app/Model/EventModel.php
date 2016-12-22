@@ -85,9 +85,9 @@ class EventModel extends \W\Model\Model {
 		}
 
 		if($type_id != 'null' && $category_id != 'null' && $type_id != 0 && is_numeric($type_id) && is_numeric($category_id)){
-			$sql .= ' AND type_id = IN (0,'.$type_id.')';
+			$sql .= ' AND type_id IN (0,'.$type_id.')';
 		}elseif($type_id != 'null' && $type_id != 0 && is_numeric($type_id)){
-			$sql .= ' type_id = IN (0,'.$type_id.')';
+			$sql .= ' type_id IN (0,'.$type_id.')';
 		}
 
 		if($date != 'null' && $type_id != 'null' && $date != 0 && is_numeric($type_id)){
@@ -96,13 +96,9 @@ class EventModel extends \W\Model\Model {
 			$sql .= ' end_of_event >= :date AND start_of_event <= :date';
 		}
 
+		file_put_contents('text.txt', $sql);
+
 		$sth = $this->dbh->prepare($sql);
-		/*if($category_id != 'null' && $category_id != 0 && is_numeric($category_id)){
-			$sth->bindValue(':category'	, $category_id);
-		}
-		if($type_id != 'null' && $type_id != 0 && is_numeric($type_id)){
-			$sth->bindValue(':type'		, $type_id);
-		}*/
 		if($date != 'null' && $date != 0){
 			$sth->bindValue(':date'		, (new \DateTime($date))->getTimestamp());
 		}
