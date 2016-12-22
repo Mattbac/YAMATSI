@@ -95,7 +95,7 @@ class UserController extends Controller
                                                         (   ($eventregister['category_of'] == 2) ? 'Adolescent' :
                                                         (   ($eventregister['category_of'] == 3) ? 'Adulte' : 'Tout public'));
             }
-            var_dump($user->find($id));
+
 
             $this->show('user/profil',      [   'user'                      => $user->find($id),
                                                 'eventsregister'            => $eventregisters]);
@@ -108,7 +108,7 @@ class UserController extends Controller
     {
 
         $extensions = ["image/png", "image/gif", "image/jpg", "image/jpeg"];
-
+        $errorPassword ="";
         $user = new UserModel;
         $auth = new Auth;
 
@@ -128,20 +128,17 @@ class UserController extends Controller
                   }
               }
 
-              if($this->post('password') == $this->post('confirmpassword')){
+              if(strlen($this->post('password')) >= 8 && $this->post('password') == $this->post('confirmpassword')){
                   $datas['password'] = $auth->hashPassword($this->post('password'));
-              }else{
-                echo "Mauvais mot de passe";
+              }elseif($this->post('password') != ''){
+                $errorPassword = "Mauvais mot de passe ou nombre de caratères insuffisants";
               }
 
               $user->update($datas, $id['id']);
               $auth->refreshUser($user); // on utilise la session pour afficher les champs que l'on actualise lors de l'envoi de la requete Update
 
-
-            $user->update($datas, $id['id']);
-            $auth->refreshUser($user); // on utilise la session pour afficher les champs que l'on actualise lors de l'envoi de la requete Update
         }
-        $this->show('user/edit', ['title' => 'edit user', 'compFormulaire' => $this->getUser()]);
+        $this->show('user/edit', ['title' => 'edit user', 'errorPassword' => $errorPassword , 'compFormulaire' => $this->getUser()]);
     }
 
     public function register()
@@ -152,7 +149,7 @@ class UserController extends Controller
           $user = new UserModel();
           $auth = new Auth();
           $verifEmail =preg_match("/^[a-z0-9.\-\\_+]+@[a-z0-9.\-_]{2,}\.[a-z]{2,}$/i", $this->post('email'));
-          if($verifEmail == 1 && $this->post('email') == $this->post('confirmmail') && $this->post('password') == $this->post('confirmpassword') && !$user->emailExists($this->post('email')) && !$user->usernameExists($this->post('nickname')) && !empty($this->post('nickname')) && !empty($this->post('email')) && !empty($this->post('password')))
+          if(strlen($this->post('password')) >= 8 && $verifEmail == 1 && $this->post('email') == $this->post('confirmmail') && $this->post('password') == $this->post('confirmpassword') && !$user->emailExists($this->post('email')) && !$user->usernameExists($this->post('nickname')) && !empty($this->post('nickname')) && !empty($this->post('email')) && !empty($this->post('password')))
           {
                  $datas = [
                    'type'     => $this->post('type'),

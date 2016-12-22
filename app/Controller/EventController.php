@@ -119,11 +119,7 @@ class EventController extends Controller
                 $tabDate = [$dateStart->getTimestamp(), $dateStop->getTimestamp()];
                 $tab[] = $tabDate;
               }
-<<<<<<< HEAD
 
-=======
-              var_dump($tab);
->>>>>>> 03ab2b412360c189ce206666be37d87190e3b446
               $tabguest = [];
               $tabpart = [];
               $tabguest = [];
