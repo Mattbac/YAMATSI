@@ -147,7 +147,7 @@ class ApiController extends Controller
 
                 $com = $commentModel->find($_POST['com_id']);
 
-                if($com['users_id'] == $this->getUser()['id']){
+                if($com['users_id'] == $this->getUser()['id'] || $this->getUser()['type'] == 'admin'){
                     $commentModel->update([ 'message'       => $this->post('message'),
                                             'created_at'    => time()], $_POST['com_id']);
                     echo true;

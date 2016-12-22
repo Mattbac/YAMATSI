@@ -109,6 +109,7 @@ $(function() {
 
     $(document).on("click",".cancel",function(){
         $(".answer_edit_comment").empty();
+        $(".answer_comment").empty();
         $("#add_new_comment").empty();
     });
 

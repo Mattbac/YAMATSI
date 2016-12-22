@@ -80,29 +80,29 @@ class EventModel extends \W\Model\Model {
 	public function findAllEventWithSpecial($category_id, $type_id, $date)
 	{
 		$sql = 'SELECT id, name, coor_lat, coor_lng, category_of, type_id FROM '.$this->table.' WHERE';
-		if($category_id != 'null' && $category_id != 0){
-			$sql .= ' category_of = :category';
+		if($category_id != 'null' && $category_id != 0 && is_numeric($category_id)){
+			$sql .= ' category_of IN (0,'.$category_id.')';
 		}
 
-		if($type_id != 'null' && $category_id != 'null' && $type_id != 0){
-			$sql .= ' AND type_id = :type';
-		}elseif($type_id != 'null' && $type_id != 0){
-			$sql .= ' type_id = :type';
+		if($type_id != 'null' && $category_id != 'null' && $type_id != 0 && is_numeric($type_id) && is_numeric($category_id)){
+			$sql .= ' AND type_id = IN (0,'.$type_id.')';
+		}elseif($type_id != 'null' && $type_id != 0 && is_numeric($type_id)){
+			$sql .= ' type_id = IN (0,'.$type_id.')';
 		}
 
-		if($date != 'null' && $type_id != 'null' && $date != 0){
+		if($date != 'null' && $type_id != 'null' && $date != 0 && is_numeric($type_id)){
 			$sql .= ' AND end_of_event >= :date AND start_of_event <= :date';
 		}elseif($date != 'null' && $date != 0){
 			$sql .= ' end_of_event >= :date AND start_of_event <= :date';
 		}
 
 		$sth = $this->dbh->prepare($sql);
-		if($category_id != 'null' && $category_id != 0){
+		/*if($category_id != 'null' && $category_id != 0 && is_numeric($category_id)){
 			$sth->bindValue(':category'	, $category_id);
 		}
-		if($type_id != 'null' && $type_id != 0){
+		if($type_id != 'null' && $type_id != 0 && is_numeric($type_id)){
 			$sth->bindValue(':type'		, $type_id);
-		}
+		}*/
 		if($date != 'null' && $date != 0){
 			$sth->bindValue(':date'		, (new \DateTime($date))->getTimestamp());
 		}

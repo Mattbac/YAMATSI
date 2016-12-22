@@ -75,8 +75,8 @@ class EventController extends Controller
         $eventModel = new EventModel();
 		    $typesModel = new TypeModel();
         $event = $eventModel->find($id);
-
-        if($id != 0 && $this->getUser()['id'] == $event['users_id']){
+        
+        if(($id != 0 && $this->getUser()['id'] == $event['users_id']) || $this->getUser()['type'] == 'admin'){
           if(isset($_POST['submitformcreate']))
           {
             $extensions = ["image/png", "image/gif", "image/jpg", "image/jpeg"];
@@ -150,13 +150,11 @@ class EventController extends Controller
               }
 
               $eventModel->update($datas, $id);
+              $this->redirectToRoute('event_page', ['id' => $id]);
+            }
           }
-
-
-
-          }
-		  $planning = unserialize($event['date_time']);
-		  $guestpart = unserialize($event['guest_part_id']);
+		      $planning = unserialize($event['date_time']);
+		      $guestpart = unserialize($event['guest_part_id']);
           $type = $typesModel->findAll();
           $this->show('event/edit', [	'event' 		=> $event,
 		  								'planning' 		=> $planning,

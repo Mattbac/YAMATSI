@@ -135,7 +135,7 @@ class UserController extends Controller
 
               $user->update($datas, $id['id']);
               $auth->refreshUser($user); // on utilise la session pour afficher les champs que l'on actualise lors de l'envoi de la requete Update
-
+              $this->redirectToRoute('user_profil');
         }
         $this->show('user/edit', ['title' => 'edit user', 'errorPassword' => $errorPassword , 'compFormulaire' => $this->getUser()]);
     }
@@ -154,14 +154,17 @@ class UserController extends Controller
                    'type'     => $this->post('type'),
                    'nickname' => $this->post('nickname'),
                    'email'    => $this->post('email'),
-                    'pictures_profile' => "animal.jpg",
+                   'pictures_profile' => 'default_avatar.jpg',
                    'password' => $auth->hashPassword($this->post('password'))
 
                  ];
-
-                 $user->insert($datas);
-
-              $this->redirectToRoute('security_login');
+                 if (isset($_FILES['file']))
+                 {
+                   $datas['pictures_profile'] = $_FILES['file']['name'];
+                 }
+                 $userregisternow = $user->insert($datas);
+                 $auth->logUserIn($userregisternow);
+              $this->redirectToRoute('user_profil');
           }
           else
           {
